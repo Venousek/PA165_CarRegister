@@ -1,10 +1,12 @@
-package cz.muni.fi.pa165.CarRegister;
+package cz.muni.fi.pa165.CarRegister.entities;
+
+import cz.muni.fi.pa165.CarRegister.enums.Fuel;
 
 public class Car
 {
 	// Fields
 	
-	private int id;
+	private Long id;
 	
 	private String vin;
 	
@@ -18,14 +20,14 @@ public class Car
 	
 	private int mileage;
 	
-	private int fuel; // skor by som pouzil float, nie?
+	private Fuel fuel;
 
 	// Gets and Sets
-	
-	public int getId() {
-		return id;
-	}
 
+        public Long getId() {
+            return id;
+        }
+		
 	public String getVin() {
 		return vin;
 	}
@@ -74,13 +76,12 @@ public class Car
 		this.mileage = mileage;
 	}
 
-	public int getFuel() {
-		return fuel;
-	}
+        public Fuel getFuel() {
+            return fuel;
+        }
 
-	public void setFuel(int fuel) {
-		this.fuel = fuel;
-	}
-	
+        public void setFuel(Fuel fuel) {
+            this.fuel = fuel;
+        }	
 	
 }
