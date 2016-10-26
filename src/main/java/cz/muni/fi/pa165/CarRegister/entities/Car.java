@@ -2,10 +2,14 @@ package cz.muni.fi.pa165.CarRegister.entities;
 
 import cz.muni.fi.pa165.CarRegister.enums.Fuel;
 
+/**
+ *
+ * @author henrich
+ */
 public class Car
 {
 	// Fields
-	
+
 	private Long id;
 	
 	private String vin;
