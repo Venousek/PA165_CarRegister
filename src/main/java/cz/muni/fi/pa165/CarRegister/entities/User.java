@@ -33,7 +33,7 @@ public class User
 		
 	public void setId(Long id)
   	{
-		this.id = Id;
+		this.id = id;
 	}
 
 	public String getLogin()
