@@ -5,6 +5,7 @@
  */
 package cz.muni.fi.pa165.CarRegister.dao;
 
+import cz.muni.fi.pa165.CarRegister.entities.Drive;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -42,9 +43,8 @@ public class DriveDaoImplTest {
         emf = Persistence.createEntityManagerFactory("default");
         EntityManager em = emf.createEntityManager();
         driveDao = new DriveDaoImpl(em);
-        
-        when(drive.getUserId()).thenReturn(1);
-        when(drive.getCarId()).thenReturn(1);
+        when(drive.getUserId()).thenReturn(Long.getLong("1"));
+        when(drive.getCarId()).thenReturn(Long.getLong("1"));
         when(drive.getBegin()).thenReturn(new DateTime(2016, 5, 10, 10, 15));
         when(drive.getEnd()).thenReturn(new DateTime(2016, 5, 10, 11, 15));
         when(drive.getDistance()).thenReturn(40);
@@ -65,15 +65,15 @@ public class DriveDaoImplTest {
         driveDao.create(drive);
         Assert.assertNotNull(drive.getId());
                 
-        int id = drive.getId();
+        Long id = drive.getId();
         
         //driveDao = new DriveDaoImpl(emf.createEntityManager());
         
         Drive newDrive = driveDao.findById(id);
                 
         assertEquals(newDrive.getId(), id);        
-        assertEquals(newDrive.getUserId(), 1); 
-        assertEquals(newDrive.getCarId(), 1); 
+        assertEquals(newDrive.getUserId(), Long.getLong("1")); 
+        assertEquals(newDrive.getCarId(), Long.getLong("1")); 
         assertEquals(newDrive.getBegin(), new DateTime(2016, 5, 10, 10, 15)); 
         assertEquals(newDrive.getEnd(), new DateTime(2016, 5, 10, 11, 15)); 
         assertEquals(newDrive.getDistance(), 40);         
@@ -83,7 +83,6 @@ public class DriveDaoImplTest {
     public void testDelete() {                        
         Assert.assertNull(drive.getId());
         driveDao.create(drive);
-        int id = drive.getId();
         Assert.assertNotNull(drive.getId());
         driveDao.delete(drive);
         Assert.assertNull(drive.getId());        
@@ -93,7 +92,7 @@ public class DriveDaoImplTest {
     public void testUpdate() {
                         
         driveDao.create(drive);                
-        int id = drive.getId();
+        Long id = drive.getId();
         
         Drive newDrive = driveDao.findById(id);
         
