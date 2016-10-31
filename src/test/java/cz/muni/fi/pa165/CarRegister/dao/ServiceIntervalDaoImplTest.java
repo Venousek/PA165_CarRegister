@@ -16,6 +16,7 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.mockito.Mock;
+import static org.mockito.Mockito.when;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
@@ -40,11 +41,11 @@ public class ServiceIntervalDaoImplTest {
         
         emf = Persistence.createEntityManagerFactory("default");
         EntityManager em = emf.createEntityManager();
-        serviceIntervalDao = new ServiceDaoImpl(em);
-        when(serviceIntervalDao.getCarId()).thenReturn(Long.getLong("1"));
-        when(serviceIntervalDao.getBegin()).thenReturn(new DateTime(2016, 5, 10, 10, 14));
-        when(serviceIntervalDao.getEnd()).thenReturn(new DateTime(2016, 5, 10, 11, 15));
-        when(serviceIntervalDao.getVisited()).thenReturn(new DateTime(2016, 5, 10, 11, 16));
+        serviceIntervalDao = new ServiceIntervalDaoImpl(em);
+        when(serviceInterval.getCarId()).thenReturn(Long.getLong("1"));
+        when(serviceInterval.getBegin()).thenReturn(new DateTime(2016, 5, 10, 10, 14));
+        when(serviceInterval.getEnd()).thenReturn(new DateTime(2016, 5, 10, 11, 15));
+        when(serviceInterval.getVisited()).thenReturn(new DateTime(2016, 5, 10, 11, 16));
     }
     
     @Test
