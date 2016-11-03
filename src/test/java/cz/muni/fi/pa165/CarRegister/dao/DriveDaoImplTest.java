@@ -5,10 +5,12 @@
  */
 package cz.muni.fi.pa165.CarRegister.dao;
 
+import cz.muni.fi.pa165.CarRegister.PersistenceApplicationContext;
 import cz.muni.fi.pa165.CarRegister.entities.Drive;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
 import org.joda.time.DateTime;
 import org.junit.Assert;
 import static org.junit.Assert.assertEquals;
@@ -16,20 +18,28 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.mockito.Mock;
-import static org.mockito.Mockito.when;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestExecutionListeners;
+import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author blahut
  */
+@ContextConfiguration(classes = PersistenceApplicationContext.class)
+@TestExecutionListeners(TransactionalTestExecutionListener.class)
+@Transactional
 public class DriveDaoImplTest {
     
-    //@Inject
+    @Autowired
     private DriveDao driveDao;
     
-    private EntityManagerFactory emf;
+    @PersistenceContext
+    public EntityManager em;
     
     @Mock
     private Drive drive;
@@ -39,7 +49,7 @@ public class DriveDaoImplTest {
         
     @Before
     public void setup() {
-        
+        /*
         emf = Persistence.createEntityManagerFactory("default");
         EntityManager em = emf.createEntityManager();
         driveDao = new DriveDaoImpl(em);
@@ -47,7 +57,7 @@ public class DriveDaoImplTest {
         when(drive.getCarId()).thenReturn(Long.getLong("1"));
         when(drive.getBegin()).thenReturn(new DateTime(2016, 5, 10, 10, 15));
         when(drive.getEnd()).thenReturn(new DateTime(2016, 5, 10, 11, 15));
-        when(drive.getDistance()).thenReturn(40);
+        when(drive.getDistance()).thenReturn(40);*/
              
     }
     

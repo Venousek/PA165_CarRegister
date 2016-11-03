@@ -8,17 +8,21 @@ package cz.muni.fi.pa165.CarRegister.dao;
 import cz.muni.fi.pa165.CarRegister.entities.ServiceInterval;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author robha
  */
+@Repository
+@Transactional
 public class ServiceIntervalDaoImpl implements ServiceIntervalDao {
-    //@Inject
-    //@PersistenceContext
     
-    private EntityManager em; 
+    @PersistenceContext
+    private EntityManager em;
     
     public ServiceIntervalDaoImpl() {
     }

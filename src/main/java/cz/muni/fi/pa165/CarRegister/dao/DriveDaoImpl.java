@@ -3,17 +3,21 @@ import cz.muni.fi.pa165.CarRegister.entities.Car;
 import cz.muni.fi.pa165.CarRegister.entities.Drive;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author robha
  */
+@Repository
+@Transactional
 public class DriveDaoImpl implements DriveDao
 {
-    //@Inject
-    //@PersistenceContext
-    private EntityManager em; 
+    @PersistenceContext
+    private EntityManager em;
 
     public DriveDaoImpl() {
     }

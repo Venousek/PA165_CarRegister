@@ -5,10 +5,12 @@
  */
 package cz.muni.fi.pa165.CarRegister.dao;
 
+import cz.muni.fi.pa165.CarRegister.PersistenceApplicationContext;
 import cz.muni.fi.pa165.CarRegister.entities.ServiceInterval;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
 import org.joda.time.DateTime;
 import org.junit.Assert;
 import static org.junit.Assert.assertEquals;
@@ -16,19 +18,28 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.mockito.Mock;
-import static org.mockito.Mockito.when;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestExecutionListeners;
+import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author robha
  */
+@ContextConfiguration(classes = PersistenceApplicationContext.class)
+@TestExecutionListeners(TransactionalTestExecutionListener.class)
+@Transactional
 public class ServiceIntervalDaoImplTest {
-      //@Inject
+    
+    @Autowired
     private ServiceIntervalDao serviceIntervalDao;
     
-    private EntityManagerFactory emf;
+    @PersistenceContext
+    public EntityManager em;
     
     @Mock
     private ServiceInterval serviceInterval;
@@ -38,14 +49,14 @@ public class ServiceIntervalDaoImplTest {
         
     @Before
     public void setup() {
-        
+        /*
         emf = Persistence.createEntityManagerFactory("default");
         EntityManager em = emf.createEntityManager();
         serviceIntervalDao = new ServiceIntervalDaoImpl(em);
         when(serviceInterval.getCarId()).thenReturn(Long.getLong("1"));
         when(serviceInterval.getBegin()).thenReturn(new DateTime(2016, 5, 10, 10, 14));
         when(serviceInterval.getEnd()).thenReturn(new DateTime(2016, 5, 10, 11, 15));
-        when(serviceInterval.getVisited()).thenReturn(new DateTime(2016, 5, 10, 11, 16));
+        when(serviceInterval.getVisited()).thenReturn(new DateTime(2016, 5, 10, 11, 16));*/
     }
     
     @Test

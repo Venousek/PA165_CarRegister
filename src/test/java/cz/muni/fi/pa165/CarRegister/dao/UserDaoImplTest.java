@@ -1,31 +1,39 @@
 package cz.muni.fi.pa165.CarRegister.dao;
 
-import javax.persistence.EntityManager;
+import cz.muni.fi.pa165.CarRegister.PersistenceApplicationContext;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import org.joda.time.DateTime;
 import org.junit.Assert;
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.mockito.Mock;
-import static org.mockito.Mockito.when;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
 import cz.muni.fi.pa165.CarRegister.entities.User;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestExecutionListeners;
+import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author Cernak
  */
+@ContextConfiguration(classes = PersistenceApplicationContext.class)
+@TestExecutionListeners(TransactionalTestExecutionListener.class)
+@Transactional
 public class UserDaoImplTest
 {
-	//@Inject
+    @Autowired
     private UserDao userDao;
     
-    private EntityManagerFactory emf;
+    @PersistenceContext
+    public EntityManager em;
 
     @Mock
     private User user;
@@ -35,10 +43,10 @@ public class UserDaoImplTest
     
     @Before
     public void setup() {
-        
+        /*
         emf = Persistence.createEntityManagerFactory("default");
         EntityManager em = emf.createEntityManager();
-        userDao = new UserDaoImpl(em);
+        userDao = new UserDaoImpl(em);*/
     }
     
     @Test

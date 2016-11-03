@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.CarRegister.dao;
 
+import cz.muni.fi.pa165.CarRegister.PersistenceApplicationContext;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -15,17 +16,28 @@ import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
 import cz.muni.fi.pa165.CarRegister.entities.Car;
+import javax.inject.Inject;
+import javax.persistence.PersistenceContext;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestExecutionListeners;
+import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author henrich
  */
+@ContextConfiguration(classes = PersistenceApplicationContext.class)
+@TestExecutionListeners(TransactionalTestExecutionListener.class)
+@Transactional
 public class CarDaoImplTest
 {
-	//@Inject
+    @Autowired
     private CarDao carDao;
     
-    private EntityManagerFactory emf;
+    @PersistenceContext
+    public EntityManager em;
 
     @Mock
     private Car car;
@@ -36,9 +48,9 @@ public class CarDaoImplTest
     @Before
     public void setup() {
         
-        emf = Persistence.createEntityManagerFactory("default");
+        /*emf = Persistence.createEntityManagerFactory("default");
         EntityManager em = emf.createEntityManager();
-        carDao = new CarDaoImpl(em);
+        carDao = new CarDaoImpl(em);*/
     }
     
     @Test

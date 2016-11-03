@@ -5,16 +5,20 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import cz.muni.fi.pa165.CarRegister.entities.Car;
-import cz.muni.fi.pa165.CarRegister.entities.User;
+import javax.persistence.PersistenceContext;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author henrich
  */
+@Repository
+@Transactional
 public class CarDaoImpl implements CarDao
 {
-	//@Inject
-    //@PersistenceContext
+
+    @PersistenceContext
     private EntityManager em;
 
     public CarDaoImpl() {
