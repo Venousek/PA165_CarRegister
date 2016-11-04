@@ -1,5 +1,8 @@
 package cz.muni.fi.pa165.CarRegister.entities;
 
+import javax.persistence.*;
+import javax.validation.constraints.*;
+
 /**
  *
  * @author Frantisek Cernak
@@ -8,23 +11,32 @@ package cz.muni.fi.pa165.CarRegister.entities;
 public class User
 {
 	
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+        @NotNull
+        @Column(unique = true)  
 	private String login;
 	
+        @NotNull    
+        @Size(min=4, max=255)
 	private String password;
 	
+        @NotNull
 	private String firstname;
 	
+        @NotNull
 	private String lastname;
 	
+        @NotNull
+        @Column(unique = true)
 	private String email;
 	
 	private int role;
 	
 
-
-  //Methods
+        //Methods
 
 	public Long getId()
   	{

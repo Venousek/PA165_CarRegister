@@ -5,6 +5,8 @@
  */
 package cz.muni.fi.pa165.CarRegister.entities;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import org.joda.time.DateTime;
 
 /**
@@ -13,14 +15,23 @@ import org.joda.time.DateTime;
  */
 public class ServiceInterval {
     
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    
+   
+    @OneToOne
     Long carId;
     
+    @NotNull
+    @Temporal(TemporalType.DATE)
     DateTime begin;
     
+    @NotNull
+    @Temporal(TemporalType.DATE)
     DateTime end;
     
+    @NotNull
+    @Temporal(TemporalType.DATE)
     DateTime visited;
 
     public Long getId() {

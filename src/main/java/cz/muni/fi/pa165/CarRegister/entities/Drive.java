@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package cz.muni.fi.pa165.CarRegister.entities;
+import javax.persistence.*;
+import javax.validation.constraints.*;
 import org.joda.time.DateTime;
 /**
  *
@@ -12,16 +14,25 @@ import org.joda.time.DateTime;
 public class Drive {
     	// Fields
 
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+        @OneToOne
 	private Long carId;
         
+        @OneToOne
         private Long userId;
 	
+        @NotNull
+        @Temporal(TemporalType.TIMESTAMP)
         DateTime begin;
 
+        @NotNull
+        @Temporal(TemporalType.TIMESTAMP)
         DateTime end;
 
+        @Min(0)
         int distance;
 
         public Long getId() {
