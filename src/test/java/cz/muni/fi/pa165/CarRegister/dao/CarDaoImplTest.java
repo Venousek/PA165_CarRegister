@@ -1,28 +1,18 @@
 package cz.muni.fi.pa165.CarRegister.dao;
 
 import cz.muni.fi.pa165.CarRegister.PersistenceApplicationContext;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import org.joda.time.DateTime;
-import org.junit.Assert;
-import static org.junit.Assert.assertEquals;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.mockito.Mock;
-import static org.mockito.Mockito.when;
-import org.mockito.junit.MockitoJUnit;
-import org.mockito.junit.MockitoRule;
-
 import cz.muni.fi.pa165.CarRegister.entities.Car;
-import javax.inject.Inject;
-import javax.persistence.PersistenceContext;
+import cz.muni.fi.pa165.CarRegister.enums.Fuel;
+import javax.validation.ConstraintViolationException;
+import org.junit.Before;
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
+
+import static org.junit.Assert.*;
 
 /**
  *
@@ -35,68 +25,84 @@ public class CarDaoImplTest
 {
     @Autowired
     private CarDao carDao;
-    
-    @PersistenceContext
-    public EntityManager em;
 
-    @Mock
     private Car car;
-    
-    @Rule
-    public MockitoRule mockitoRule = MockitoJUnit.rule();
     
     @Before
     public void setup() {
-        
-        /*emf = Persistence.createEntityManagerFactory("default");
-        EntityManager em = emf.createEntityManager();
-        carDao = new CarDaoImpl(em);*/
+        car = new Car();
+        car.setFuel(Fuel.GASOLINE);
+        car.setManufacturer("Mazda");
+        car.setModel("RX8");
+        car.setMileage(10);
+        car.setRegister_number("1B2C3D4");
+        car.setVin("WBABA91060AL04921");
+    }
+    
+    @Test (expected = ConstraintViolationException.class)
+    public void testCreateNullModel() {                        
+        car.setModel(null);
+        carDao.create(car);
+    }
+    
+    @Test (expected = ConstraintViolationException.class)
+    public void testCreateNullManufacturer() {                        
+        car.setManufacturer(null);
+        carDao.create(car);
+    }
+      
+    @Test (expected = ConstraintViolationException.class)
+    public void testCreateNullRegister_number() {                        
+        car.setRegister_number(null);
+        carDao.create(car);
+    }
+    
+    @Test (expected = ConstraintViolationException.class)
+    public void testCreateNullVin() {                        
+        car.setVin(null);
+        carDao.create(car);
     }
     
     @Test
-    public void testCreate() {                        
-        Assert.assertTrue(car.getId() == 0);
+    public void testFindById() {       
         carDao.create(car);
-        Assert.assertFalse(car.getId() == 0);
+               
+        Car car2 = carDao.findById(car.getId());
+                
+        assertNotNull(car2);
+        assertEquals(car.getId(), car2.getId());                
+    }    
+    
+    @Test
+    public void testGetNotExistingCar() {                        
+        assertNull(carDao.findById(-1l));
     }
     
     @Test
-    public void testFindById() {
-                               
-        Assert.assertTrue(car.getId() == 0);
+    public void testCreate() {
+        assertEquals(carDao.findAll().isEmpty(), true);          
         carDao.create(car);
-        Assert.assertFalse(car.getId() == 0);
-                
-        long id = car.getId();
-                
-        Car car = carDao.findById(id);
-                
-        Assert.assertTrue(car.getId() == id);                
+        assertEquals(carDao.findAll().isEmpty(), false);
     }
     
     @Test
-    public void testDelete() {                        
-        Assert.assertTrue(car.getId() == 0);
+    public void testDelete() {             
         carDao.create(car);
-        Assert.assertFalse(car.getId() == 0);
+        assertEquals(carDao.findAll().isEmpty(), false);
         carDao.delete(car);
-        Assert.assertTrue(car.getId() == 0);        
+        assertEquals(carDao.findAll().isEmpty(), true);
     }
     
     @Test
-    public void testUpdate() {
-                        
-    	carDao.create(car);                
-        long id = car.getId();
-        
-        Car car = carDao.findById(id);
-        
+    public void testUpdate() {                    
+    	carDao.create(car);                       
         car.setModel("Tesla");
         
         carDao.update(car);
         
-        Car newestCar = carDao.findById(id);
+        Car car2 = carDao.findById(car.getId());
                 
-        assertEquals(newestCar.getModel(), "Tesla");         
+        assertEquals(car2.getId(), car.getId());
+        assertEquals(car2.getModel(), "Tesla");    
     }
 }
