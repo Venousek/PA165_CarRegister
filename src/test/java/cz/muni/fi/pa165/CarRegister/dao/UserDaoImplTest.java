@@ -13,6 +13,7 @@ import org.springframework.test.context.transaction.TransactionalTestExecutionLi
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.junit.Assert.*;
+import org.testng.annotations.BeforeMethod;
 
 /**
  *
@@ -28,7 +29,7 @@ public class UserDaoImplTest
 
     private User user;
     
-    @Before
+    @BeforeMethod
     public void setup() {
         user = new User();
         user.setFirstname("First");

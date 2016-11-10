@@ -25,6 +25,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
+import org.testng.annotations.BeforeMethod;
 
 /**
  *
@@ -47,7 +48,7 @@ public class ServiceIntervalDaoImplTest {
     @Rule
     public MockitoRule mockitoRule = MockitoJUnit.rule();
         
-    @Before
+    @BeforeMethod
     public void setup() {
         /*
         emf = Persistence.createEntityManagerFactory("default");

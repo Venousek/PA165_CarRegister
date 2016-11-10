@@ -16,7 +16,7 @@
         </properties>
     </persistence-unit>
     
-    <persistence-unit name="mysql" transaction-type="RESOURCE_LOCAL">
+    <!--persistence-unit name="mysql" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
@@ -28,7 +28,7 @@
             <property name="hibernate.format_sql" value="true" />
             <property name="hibernate.hbm2ddl.auto" value="create" />
         </properties>
-    </persistence-unit>
+    </persistence-unit-->
 
 
 </persistence>
