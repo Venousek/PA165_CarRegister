@@ -5,7 +5,11 @@
  */
 package cz.muni.fi.pa165.CarRegister.dao;
 
+import cz.muni.fi.pa165.CarRegister.entities.Car;
 import cz.muni.fi.pa165.CarRegister.entities.Drive;
+import cz.muni.fi.pa165.CarRegister.entities.User;
+import cz.muni.fi.pa165.CarRegister.enums.Fuel;
+import cz.muni.fi.pa165.CarRegister.enums.Role;
 import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -41,21 +45,37 @@ public class DriveDaoImplTest {
     @PersistenceContext
     public EntityManager em;
     
-    @Mock
     private Drive drive;
-    
-    @Rule
-    public MockitoRule mockitoRule = MockitoJUnit.rule();
-        
+    private User user;
+    private Car car;
+            
     @Before
     public void setup() {
+        user = new User();
+        
+        user.setFirstname("First");
+        user.setLastname("Last");
+        user.setLogin("admin");
+        user.setPassword("123456");
+        user.setEmail("admin@gmail.com");
+        user.setRole(Role.USER);
+        
+        car = new Car();
+        car.setFuel(Fuel.GASOLINE);
+        car.setManufacturer("Mazda");
+        car.setModel("RX8");
+        car.setMileage(10);
+        car.setRegister_number("1B2C3D4");
+        car.setVin("WBABA91060AL04921");
+        car.setYear(1999);
+        
         List<Drive> drives = driveDao.findAll();
         for (Drive d : drives)
             driveDao.delete(d);
                 
         drive = new Drive();        
-        drive.setUserId((long)1);
-        drive.setCarId((long)1);
+        drive.setUser(user);
+        drive.setCar(car);
         drive.setBegin(new DateTime(2016, 5, 10, 10, 15));
         drive.setEnd(new DateTime(2016, 5, 10, 11, 15));
         drive.setDistance(40);             
@@ -82,8 +102,8 @@ public class DriveDaoImplTest {
         Drive newDrive = driveDao.findById(id);
                 
         assertEquals(newDrive.getId(), id);        
-        assertEquals(newDrive.getUserId(), Long.getLong("1")); 
-        assertEquals(newDrive.getCarId(), Long.getLong("1")); 
+        assertEquals(newDrive.getUser(), user); 
+        assertEquals(newDrive.getCar(), car); 
         assertEquals(newDrive.getBegin(), new DateTime(2016, 5, 10, 10, 15)); 
         assertEquals(newDrive.getEnd(), new DateTime(2016, 5, 10, 11, 15)); 
         assertEquals(newDrive.getDistance(), 40);         

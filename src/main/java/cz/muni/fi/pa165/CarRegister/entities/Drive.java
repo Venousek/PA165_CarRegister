@@ -7,6 +7,8 @@ package cz.muni.fi.pa165.CarRegister.entities;
 import java.util.Objects;
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.joda.time.DateTime;
 /**
  *
@@ -20,11 +22,15 @@ public class Drive {
         @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-        //@OneToOne
-	private Long carId;
+        @ManyToOne(fetch = FetchType.EAGER)
+        @Fetch(FetchMode.JOIN)
+        @JoinColumn(name = "carId")
+        private Car car;
         
-       // @OneToOne
-        private Long userId;
+        @ManyToOne(fetch = FetchType.EAGER)
+        @Fetch(FetchMode.JOIN)
+        @JoinColumn(name = "userId")
+        private User user;
 	
         @NotNull
         //@Temporal(TemporalType.TIMESTAMP)
@@ -45,20 +51,20 @@ public class Drive {
             this.id = id;
         }
 
-        public Long getCarId() {
-            return carId;
+        public Car getCar() {
+            return car;
         }
 
-        public void setCarId(Long carId) {
-            this.carId = carId;
+        public void setCar(Car car) {
+            this.car = car;
         }
 
-        public Long getUserId() {
-            return userId;
+        public User getUser() {
+            return user;
         }
-        
-        public void setUserId(Long userId) {
-            this.userId = userId;
+
+        public void setUser(User user) {
+            this.user = user;
         }
         
         public DateTime getBegin() {
@@ -88,8 +94,8 @@ public class Drive {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 47 * hash + Objects.hashCode(this.carId);
-        hash = 47 * hash + Objects.hashCode(this.userId);
+        hash = 47 * hash + Objects.hashCode(this.car);
+        hash = 47 * hash + Objects.hashCode(this.user);
         hash = 47 * hash + Objects.hashCode(this.begin);
         hash = 47 * hash + Objects.hashCode(this.end);
         return hash;
@@ -107,10 +113,10 @@ public class Drive {
             return false;
         }
         final Drive other = (Drive) obj;
-        if (!Objects.equals(this.carId, other.carId)) {
+        if (!Objects.equals(this.car, other.car)) {
             return false;
         }
-        if (!Objects.equals(this.userId, other.userId)) {
+        if (!Objects.equals(this.user, other.user)) {
             return false;
         }
         if (!Objects.equals(this.begin, other.begin)) {

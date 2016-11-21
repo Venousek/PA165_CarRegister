@@ -8,6 +8,8 @@ package cz.muni.fi.pa165.CarRegister.entities;
 import java.util.Objects;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.joda.time.DateTime;
 
 /**
@@ -21,8 +23,10 @@ public class ServiceInterval {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
    
-    //@OneToOne
-    Long carId;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @Fetch(FetchMode.JOIN)
+    @JoinColumn(name = "carId")
+    private Car car;
     
     @NotNull
     //@Temporal(TemporalType.DATE)
@@ -44,12 +48,12 @@ public class ServiceInterval {
         this.id = id;
     }
 
-    public Long getCarId() {
-        return carId;
+    public Car getCar() {
+        return car;
     }
 
-    public void setCarId(Long carId) {
-        this.carId = carId;
+    public void setCar(Car car) {
+        this.car = car;
     }
     
     public DateTime getBegin() {
@@ -79,7 +83,7 @@ public class ServiceInterval {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 83 * hash + Objects.hashCode(this.carId);
+        hash = 83 * hash + Objects.hashCode(this.car);
         hash = 83 * hash + Objects.hashCode(this.begin);
         hash = 83 * hash + Objects.hashCode(this.end);
         hash = 83 * hash + Objects.hashCode(this.visited);
@@ -98,7 +102,7 @@ public class ServiceInterval {
             return false;
         }
         final ServiceInterval other = (ServiceInterval) obj;
-        if (!Objects.equals(this.carId, other.carId)) {
+        if (!Objects.equals(this.car, other.car)) {
             return false;
         }
         if (!Objects.equals(this.begin, other.begin)) {
