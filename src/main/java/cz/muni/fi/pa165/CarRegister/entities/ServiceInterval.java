@@ -14,25 +14,26 @@ import org.joda.time.DateTime;
  *
  * @author blahut
  */
+@Entity
 public class ServiceInterval {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
    
-    @OneToOne
+    //@OneToOne
     Long carId;
     
     @NotNull
-    @Temporal(TemporalType.DATE)
+    //@Temporal(TemporalType.DATE)
     DateTime begin;
     
     @NotNull
-    @Temporal(TemporalType.DATE)
+    //@Temporal(TemporalType.DATE)
     DateTime end;
     
     @NotNull
-    @Temporal(TemporalType.DATE)
+    //@Temporal(TemporalType.DATE)
     DateTime visited;
 
     public Long getId() {

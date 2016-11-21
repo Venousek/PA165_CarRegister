@@ -1,6 +1,5 @@
 package cz.muni.fi.pa165.CarRegister.dao;
 
-import cz.muni.fi.pa165.CarRegister.PersistenceApplicationContext;
 import cz.muni.fi.pa165.CarRegister.entities.Car;
 import cz.muni.fi.pa165.CarRegister.enums.Fuel;
 import javax.inject.Inject;
@@ -9,24 +8,22 @@ import javax.persistence.PersistenceContext;
 import javax.validation.ConstraintViolationException;
 import org.junit.Test;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.TestExecutionListeners;
-import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
-import org.springframework.transaction.annotation.Transactional;
 
 import static org.junit.Assert.*;
 import org.junit.Before;
-import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
+import org.junit.runner.RunWith;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
  *
  * @author henrich
  */
 
-//@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes=PersistenceApplicationContext.class)
-@TestExecutionListeners(listeners = { TransactionalTestExecutionListener.class })
-@Transactional
-public class CarDaoImplTest extends AbstractJUnit4SpringContextTests {
+@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = {"classpath:META-INF/applicationContext.xml"})
+public class CarDaoImplTest {
     
     @Inject
     private CarDao carDao;
@@ -45,6 +42,7 @@ public class CarDaoImplTest extends AbstractJUnit4SpringContextTests {
         car.setMileage(10);
         car.setRegister_number("1B2C3D4");
         car.setVin("WBABA91060AL04921");
+        car.setYear(1999);
     }
     
     @Test (expected = ConstraintViolationException.class)

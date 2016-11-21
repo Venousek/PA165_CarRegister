@@ -6,6 +6,9 @@ import javax.persistence.Query;
 
 import cz.muni.fi.pa165.CarRegister.entities.Car;
 import javax.persistence.PersistenceContext;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,7 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Repository
 @Transactional
-public class CarDaoImpl implements CarDao
+public class CarDaoImpl extends HibernateDaoSupport implements CarDao
 {
 
     @PersistenceContext
@@ -27,6 +30,12 @@ public class CarDaoImpl implements CarDao
     
     public CarDaoImpl(EntityManager em) {
         this.em = em;
+    }
+    
+    @Autowired
+    public void anyMethodName(SessionFactory sessionFactory)
+    {
+        setSessionFactory(sessionFactory);
     }
     
     @Override

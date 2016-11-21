@@ -12,6 +12,7 @@ import org.joda.time.DateTime;
  *
  * @author robha
  */
+@Entity
 public class Drive {
     	// Fields
 
@@ -19,18 +20,18 @@ public class Drive {
         @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-        @OneToOne
+        //@OneToOne
 	private Long carId;
         
-        @OneToOne
+       // @OneToOne
         private Long userId;
 	
         @NotNull
-        @Temporal(TemporalType.TIMESTAMP)
+        //@Temporal(TemporalType.TIMESTAMP)
         DateTime begin;
 
         @NotNull
-        @Temporal(TemporalType.TIMESTAMP)
+        //@Temporal(TemporalType.TIMESTAMP)
         DateTime end;
 
         @Min(0)

@@ -9,6 +9,7 @@ import javax.validation.constraints.*;
  *
  * @author henrich
  */
+@Entity
 public class Car
 {
 	// Fields

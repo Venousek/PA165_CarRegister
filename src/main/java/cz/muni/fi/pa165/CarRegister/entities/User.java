@@ -9,7 +9,7 @@ import javax.validation.constraints.*;
  *
  * @author Frantisek Cernak
  */
- 
+@Entity
 public class User
 {
 	

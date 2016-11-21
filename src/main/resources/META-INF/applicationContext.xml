@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+            http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context.xsd
+            http://www.springframework.org/schema/tx
+            http://www.springframework.org/schema/tx/spring-tx.xsd"
+       xmlns:tx="http://www.springframework.org/schema/tx">
+   
+    
+
+    <import resource="./DataSource.xml" />
+    <import resource="./Hibernate.xml" />
+    
+    
+    <bean id="carDao" class="cz.muni.fi.pa165.CarRegister.dao.CarDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+
+    <bean id="driveDao" class="cz.muni.fi.pa165.CarRegister.dao.DriveDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    
+    <bean id="serviceIntervalDao" class="cz.muni.fi.pa165.CarRegister.dao.ServiceIntervalDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+
+    <bean id="userDao" class="cz.muni.fi.pa165.CarRegister.dao.UserDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="validator"
+          class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>
+
+    <tx:annotation-driven transaction-manager="transactionManager" />
+    <context:component-scan base-package="cz.muni.fi.pa165.CarRegister" annotation-config="true"/>
+   
+</beans>

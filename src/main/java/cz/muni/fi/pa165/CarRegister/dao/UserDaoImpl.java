@@ -10,6 +10,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import cz.muni.fi.pa165.CarRegister.entities.User;
 import javax.persistence.PersistenceContext;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,7 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Repository
 @Transactional
-public class UserDaoImpl implements UserDao {
+public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
     
     @PersistenceContext
     private EntityManager em;
@@ -30,6 +33,12 @@ public class UserDaoImpl implements UserDao {
     
     public UserDaoImpl(EntityManager em) {
         this.em = em;
+    }
+    
+    @Autowired
+    public void anyMethodName(SessionFactory sessionFactory)
+    {
+        setSessionFactory(sessionFactory);
     }
     
     @Override
