@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package cz.muni.fi.pa165.CarRegister.entities;
+import java.util.Objects;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import org.joda.time.DateTime;
@@ -83,4 +84,42 @@ public class Drive {
             return this.distance;
         }
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 47 * hash + Objects.hashCode(this.carId);
+        hash = 47 * hash + Objects.hashCode(this.userId);
+        hash = 47 * hash + Objects.hashCode(this.begin);
+        hash = 47 * hash + Objects.hashCode(this.end);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (!(obj instanceof Drive)) {
+            return false;
+        }
+        final Drive other = (Drive) obj;
+        if (!Objects.equals(this.carId, other.carId)) {
+            return false;
+        }
+        if (!Objects.equals(this.userId, other.userId)) {
+            return false;
+        }
+        if (!Objects.equals(this.begin, other.begin)) {
+            return false;
+        }
+        if (!Objects.equals(this.end, other.end)) {
+            return false;
+        }
+        return true;
+    }
+
+        
 }

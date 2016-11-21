@@ -9,7 +9,6 @@ import cz.muni.fi.pa165.CarRegister.PersistenceApplicationContext;
 import cz.muni.fi.pa165.CarRegister.entities.ServiceInterval;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
 import org.joda.time.DateTime;
 import org.junit.Assert;
@@ -20,12 +19,11 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
+import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
-import org.testng.annotations.BeforeMethod;
 
 /**
  *
@@ -34,9 +32,9 @@ import org.testng.annotations.BeforeMethod;
 @ContextConfiguration(classes = PersistenceApplicationContext.class)
 @TestExecutionListeners(TransactionalTestExecutionListener.class)
 @Transactional
-public class ServiceIntervalDaoImplTest {
+public class ServiceIntervalDaoImplTest extends AbstractJUnit4SpringContextTests {
     
-    @Autowired
+    @Inject
     private ServiceIntervalDao serviceIntervalDao;
     
     @PersistenceContext
@@ -48,7 +46,7 @@ public class ServiceIntervalDaoImplTest {
     @Rule
     public MockitoRule mockitoRule = MockitoJUnit.rule();
         
-    @BeforeMethod
+    @Before
     public void setup() {
         /*
         emf = Persistence.createEntityManagerFactory("default");

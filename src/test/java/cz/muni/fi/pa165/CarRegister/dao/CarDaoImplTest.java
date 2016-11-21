@@ -3,19 +3,19 @@ package cz.muni.fi.pa165.CarRegister.dao;
 import cz.muni.fi.pa165.CarRegister.PersistenceApplicationContext;
 import cz.muni.fi.pa165.CarRegister.entities.Car;
 import cz.muni.fi.pa165.CarRegister.enums.Fuel;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.validation.ConstraintViolationException;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.junit.Assert.*;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
-import org.testng.annotations.BeforeMethod;
+import org.junit.Before;
+import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
 /**
  *
@@ -26,9 +26,9 @@ import org.testng.annotations.BeforeMethod;
 @ContextConfiguration(classes=PersistenceApplicationContext.class)
 @TestExecutionListeners(listeners = { TransactionalTestExecutionListener.class })
 @Transactional
-public class CarDaoImplTest extends AbstractTestNGSpringContextTests {
+public class CarDaoImplTest extends AbstractJUnit4SpringContextTests {
     
-    @Autowired
+    @Inject
     private CarDao carDao;
     
     @PersistenceContext
@@ -36,7 +36,7 @@ public class CarDaoImplTest extends AbstractTestNGSpringContextTests {
 
     private Car car;
     
-    @BeforeMethod
+    @Before
     public void setup() {
         car = new Car();
         car.setFuel(Fuel.GASOLINE);

@@ -27,37 +27,29 @@ public class DriveDaoImpl implements DriveDao
     }
     
     @Override
-    public void create(Drive drive) {
-        if(drive!=null) {
-            em.persist(drive);
-        }
+    public void create(Drive drive) {        
+        em.persist(drive);        
     }
 
     @Override
     public Drive findById(Long id) {
-        Query q = em.createQuery("select d from Drive u where d.id = :id", Drive.class);
-        q.setParameter("id", id);
-        return (Drive) q.getSingleResult();
+        return em.find(Drive.class, id);
     }
 
     @Override
     public List<Drive> findAll() {
-        Query q = em.createQuery("select d from Drive u", Drive.class);
+        Query q = em.createQuery("select d from Drive d");
         return q.getResultList();
     }
 
     @Override
-    public void update(Drive drive) {
-        if(drive!=null) {
-            em.merge(drive);
-        }
+    public void update(Drive drive) {        
+        em.merge(drive);        
     }
 
     @Override
     public void delete(Drive drive) {
-        if(drive!=null) {
-            em.remove(drive);
-        }
+        em.remove(drive);        
     }
 
     

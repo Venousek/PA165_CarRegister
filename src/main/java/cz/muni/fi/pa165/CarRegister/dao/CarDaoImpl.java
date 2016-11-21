@@ -29,32 +29,30 @@ public class CarDaoImpl implements CarDao
         this.em = em;
     }
     
-	@Override
-	public void create(Car car) {    
+    @Override
+    public void create(Car car) {    
         em.persist(car);
-	}
+    }
 
-	@Override
-	public Car findById(Long id) {
-        Query q = em.createQuery("select c from Car u where c.id = :id", Car.class);
-        q.setParameter("id", id);
-        return (Car) q.getSingleResult();
-	}
+    @Override
+    public Car findById(Long id) {
+        return em.find(Car.class, id);
+    }
 
-	@Override
-	public List<Car> findAll() {
-        Query q = em.createQuery("select c from Car c", Car.class);
+    @Override
+    public List<Car> findAll() {
+        Query q = em.createQuery("select c from Car c");
         return q.getResultList();
-	}
+    }
 
-	@Override
-	public void update(Car car) {
-		em.merge(car);
-	}
+    @Override
+    public void update(Car car) {
+            em.merge(car);
+    }
 
-	@Override
-	public void delete(Car car) {
-		em.remove(car);
-	}
+    @Override
+    public void delete(Car car) {
+            em.remove(car);
+    }
 
 }

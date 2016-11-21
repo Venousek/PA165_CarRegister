@@ -33,36 +33,28 @@ public class ServiceIntervalDaoImpl implements ServiceIntervalDao {
     
     @Override
     public void create(ServiceInterval serviceInterval) {
-        if(serviceInterval!=null) {
-            em.persist(serviceInterval);
-        }
+        em.persist(serviceInterval);        
     }
 
     @Override
     public ServiceInterval findById(Long id) {
-        Query q = em.createQuery("select si from ServiceInterval u where si.id = :id", ServiceInterval.class);
-        q.setParameter("id", id);
-        return (ServiceInterval) q.getSingleResult();
+        return em.find(ServiceInterval.class, id);
     }
 
     @Override
     public List<ServiceInterval> findAll() {
-        Query q = em.createQuery("select si from ServiceInterval u", ServiceInterval.class);
+        Query q = em.createQuery("select si from ServiceInterval si");
         return q.getResultList();
     }
 
     @Override
     public void update(ServiceInterval serviceInterval) {
-        if(serviceInterval!=null) {
-            em.merge(serviceInterval);
-        }
+        em.merge(serviceInterval);        
     }
 
     @Override
     public void delete(ServiceInterval serviceInterval) {
-        if(serviceInterval!=null) {
-            em.remove(serviceInterval);
-        }
+        em.remove(serviceInterval);        
     }
     
 }

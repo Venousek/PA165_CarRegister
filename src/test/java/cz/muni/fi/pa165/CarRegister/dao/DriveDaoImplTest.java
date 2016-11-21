@@ -7,9 +7,9 @@ package cz.muni.fi.pa165.CarRegister.dao;
 
 import cz.muni.fi.pa165.CarRegister.PersistenceApplicationContext;
 import cz.muni.fi.pa165.CarRegister.entities.Drive;
+import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
 import org.joda.time.DateTime;
 import org.junit.Assert;
@@ -20,12 +20,12 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
+import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
-import org.testng.annotations.BeforeMethod;
+
 
 /**
  *
@@ -34,9 +34,9 @@ import org.testng.annotations.BeforeMethod;
 @ContextConfiguration(classes = PersistenceApplicationContext.class)
 @TestExecutionListeners(TransactionalTestExecutionListener.class)
 @Transactional
-public class DriveDaoImplTest {
+public class DriveDaoImplTest extends AbstractJUnit4SpringContextTests {
     
-    @Autowired
+    @Inject
     private DriveDao driveDao;
     
     @PersistenceContext
@@ -48,18 +48,18 @@ public class DriveDaoImplTest {
     @Rule
     public MockitoRule mockitoRule = MockitoJUnit.rule();
         
-    @BeforeMethod
+    @Before
     public void setup() {
-        /*
-        emf = Persistence.createEntityManagerFactory("default");
-        EntityManager em = emf.createEntityManager();
-        driveDao = new DriveDaoImpl(em);
-        when(drive.getUserId()).thenReturn(Long.getLong("1"));
-        when(drive.getCarId()).thenReturn(Long.getLong("1"));
-        when(drive.getBegin()).thenReturn(new DateTime(2016, 5, 10, 10, 15));
-        when(drive.getEnd()).thenReturn(new DateTime(2016, 5, 10, 11, 15));
-        when(drive.getDistance()).thenReturn(40);*/
-             
+        List<Drive> drives = driveDao.findAll();
+        for (Drive d : drives)
+            driveDao.delete(d);
+                
+        drive = new Drive();        
+        drive.setUserId((long)1);
+        drive.setCarId((long)1);
+        drive.setBegin(new DateTime(2016, 5, 10, 10, 15));
+        drive.setEnd(new DateTime(2016, 5, 10, 11, 15));
+        drive.setDistance(40);             
     }
     
     @Test
@@ -78,8 +78,8 @@ public class DriveDaoImplTest {
                 
         Long id = drive.getId();
         
-        //driveDao = new DriveDaoImpl(emf.createEntityManager());
-        
+        em.detach(drive);
+                
         Drive newDrive = driveDao.findById(id);
                 
         assertEquals(newDrive.getId(), id);        

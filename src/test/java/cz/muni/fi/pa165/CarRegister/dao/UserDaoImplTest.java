@@ -2,6 +2,7 @@ package cz.muni.fi.pa165.CarRegister.dao;
 
 import cz.muni.fi.pa165.CarRegister.PersistenceApplicationContext;
 import cz.muni.fi.pa165.CarRegister.entities.User;
+import javax.inject.Inject;
 import javax.validation.ConstraintViolationException;
 import org.junit.Assert;
 import org.junit.Before;
@@ -13,7 +14,7 @@ import org.springframework.test.context.transaction.TransactionalTestExecutionLi
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.junit.Assert.*;
-import org.testng.annotations.BeforeMethod;
+import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
 /**
  *
@@ -22,14 +23,14 @@ import org.testng.annotations.BeforeMethod;
 @ContextConfiguration(classes = PersistenceApplicationContext.class)
 @TestExecutionListeners(TransactionalTestExecutionListener.class)
 @Transactional
-public class UserDaoImplTest
-{
-    @Autowired
+public class UserDaoImplTest extends AbstractJUnit4SpringContextTests {
+    
+    @Inject
     private UserDao userDao;
 
     private User user;
     
-    @BeforeMethod
+    @Before
     public void setup() {
         user = new User();
         user.setFirstname("First");

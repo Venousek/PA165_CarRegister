@@ -1,5 +1,7 @@
 package cz.muni.fi.pa165.CarRegister.entities;
 
+import cz.muni.fi.pa165.CarRegister.enums.Role;
+import java.util.Objects;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
@@ -33,7 +35,8 @@ public class User
         @Column(unique = true)
 	private String email;
 	
-	private int role;
+        @NotNull
+	private Role role;
 	
 
         //Methods
@@ -98,14 +101,40 @@ public class User
 		this.email = email;
 	}
   
-  	public int getRole()
+  	public Role getRole()
   	{
 		return role;
 	}
   
-  	public void setRole(int role)
+  	public void setRole(Role role)
   	{
 		this.role = role;
 	}
 
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 83 * hash + Objects.hashCode(this.login);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (!(obj instanceof User)) {
+            return false;
+        }
+        final User other = (User) obj;
+        if (!Objects.equals(this.login, other.login)) {
+            return false;
+        }
+        return true;
+    }
+
+        
 }

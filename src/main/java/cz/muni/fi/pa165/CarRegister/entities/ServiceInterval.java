@@ -5,6 +5,7 @@
  */
 package cz.muni.fi.pa165.CarRegister.entities;
 
+import java.util.Objects;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import org.joda.time.DateTime;
@@ -72,6 +73,43 @@ public class ServiceInterval {
 
     public void setVisited(DateTime visited) {
         this.visited = visited;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 83 * hash + Objects.hashCode(this.carId);
+        hash = 83 * hash + Objects.hashCode(this.begin);
+        hash = 83 * hash + Objects.hashCode(this.end);
+        hash = 83 * hash + Objects.hashCode(this.visited);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (!(obj instanceof ServiceInterval)) {
+            return false;
+        }
+        final ServiceInterval other = (ServiceInterval) obj;
+        if (!Objects.equals(this.carId, other.carId)) {
+            return false;
+        }
+        if (!Objects.equals(this.begin, other.begin)) {
+            return false;
+        }
+        if (!Objects.equals(this.end, other.end)) {
+            return false;
+        }
+        if (!Objects.equals(this.visited, other.visited)) {
+            return false;
+        }
+        return true;
     }
     
     
