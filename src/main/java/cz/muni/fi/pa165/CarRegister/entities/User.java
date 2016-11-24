@@ -10,6 +10,7 @@ import javax.validation.constraints.*;
  * @author Frantisek Cernak
  */
 @Entity
+@Table(name="CarRegisterUser")
 public class User
 {
 	

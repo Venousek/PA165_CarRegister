@@ -33,10 +33,12 @@ public class Drive {
         private User user;
 	
         @NotNull
+        @Column(name = "driveBegin")
         //@Temporal(TemporalType.TIMESTAMP)
         DateTime begin;
 
         @NotNull
+        @Column(name = "driveEnd")
         //@Temporal(TemporalType.TIMESTAMP)
         DateTime end;
 

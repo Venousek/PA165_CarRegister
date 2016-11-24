@@ -29,10 +29,12 @@ public class ServiceInterval {
     private Car car;
     
     @NotNull
+    @Column(name = "intervalBegin")
     //@Temporal(TemporalType.DATE)
     DateTime begin;
     
     @NotNull
+    @Column(name = "intervalEnd")
     //@Temporal(TemporalType.DATE)
     DateTime end;
     

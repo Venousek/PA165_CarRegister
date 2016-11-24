@@ -29,6 +29,7 @@ public class Car
 	private String model;
 	
         @Min(1900)
+        @Column(name = "manufactureYear")
 	private int year;
 	
         @NotNull
