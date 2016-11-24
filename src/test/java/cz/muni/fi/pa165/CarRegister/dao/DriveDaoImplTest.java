@@ -148,4 +148,43 @@ public class DriveDaoImplTest {
                 
         assertEquals(newestDrive.getDistance(), 50);         
     }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void testCreateNullDrive(){
+        driveDao.create(null);
+    }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void testUpdateNullDrive(){
+        driveDao.update(null);
+    }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void testRemoveNullDrive(){
+        driveDao.delete(null);
+    }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void testGetDriveByNullId(){
+        driveDao.findById(null);
+    }
+    
+    @Test(expected = javax.validation.ConstraintViolationException.class)
+    public void testCreateDriveWNullUser(){
+        drive.setUser(null);
+        driveDao.create(drive);
+    }
+    
+    @Test(expected = javax.validation.ConstraintViolationException.class)
+    public void testCreateDriveWNullCar(){
+        drive.setCar(null);
+        driveDao.create(drive);
+    }
+    
+    @Test(expected = javax.validation.ConstraintViolationException.class)
+    public void testCreateDriveWNullDates(){
+        drive.setBegin(null);
+        drive.setEnd(null);
+        driveDao.create(drive);
+    }
 }

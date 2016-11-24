@@ -24,6 +24,7 @@ public class ServiceInterval {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
    
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER)
     @Fetch(FetchMode.JOIN)
     @JoinColumn(name = "carId")
@@ -39,7 +40,6 @@ public class ServiceInterval {
     @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     DateTime end;
     
-    @NotNull
     @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     DateTime visited;
 

@@ -23,11 +23,13 @@ public class Drive {
         @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+        @NotNull
         @ManyToOne(fetch = FetchType.EAGER)
         @Fetch(FetchMode.JOIN)
         @JoinColumn(name = "carId")
         private Car car;
         
+        @NotNull
         @ManyToOne(fetch = FetchType.EAGER)
         @Fetch(FetchMode.JOIN)
         @JoinColumn(name = "userId")
