@@ -9,6 +9,7 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 /**
  *
@@ -34,12 +35,12 @@ public class Drive {
 	
         @NotNull
         @Column(name = "driveBegin")
-        //@Temporal(TemporalType.TIMESTAMP)
+        @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
         DateTime begin;
 
         @NotNull
         @Column(name = "driveEnd")
-        //@Temporal(TemporalType.TIMESTAMP)
+        @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
         DateTime end;
 
         @Min(0)

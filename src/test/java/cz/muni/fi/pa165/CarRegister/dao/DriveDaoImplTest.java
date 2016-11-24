@@ -14,6 +14,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import org.joda.time.DateTime;
 import org.junit.Assert;
 import static org.junit.Assert.assertEquals;
@@ -33,10 +34,17 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:WEB-INF/applicationContext.xml"})
+@Transactional
 public class DriveDaoImplTest {
     
     @Inject
     private DriveDao driveDao;
+    
+    @Inject
+    private UserDao userDao;
+    
+    @Inject
+    private CarDao carDao;
     
     @PersistenceContext
     public EntityManager em;
@@ -56,6 +64,8 @@ public class DriveDaoImplTest {
         user.setEmail("admin@gmail.com");
         user.setRole(Role.USER);
         
+        userDao.create(user);
+        
         car = new Car();
         car.setFuel(Fuel.GASOLINE);
         car.setManufacturer("Mazda");
@@ -64,6 +74,8 @@ public class DriveDaoImplTest {
         car.setRegister_number("1B2C3D4");
         car.setVin("WBABA91060AL04921");
         car.setYear(1999);
+        
+        carDao.create(car);
         
         List<Drive> drives = driveDao.findAll();
         for (Drive d : drives)
@@ -110,8 +122,14 @@ public class DriveDaoImplTest {
         Assert.assertNull(drive.getId());
         driveDao.create(drive);
         Assert.assertNotNull(drive.getId());
+        
+        Long driveId = drive.getId();
+        
+        drive = driveDao.findById(driveId);
         driveDao.delete(drive);
-        Assert.assertNull(drive.getId());        
+        
+        drive = driveDao.findById(driveId);
+        Assert.assertNull(drive);        
     }
     
     @Test

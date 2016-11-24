@@ -10,6 +10,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
 /**
@@ -30,16 +31,16 @@ public class ServiceInterval {
     
     @NotNull
     @Column(name = "intervalBegin")
-    //@Temporal(TemporalType.DATE)
+    @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     DateTime begin;
     
     @NotNull
     @Column(name = "intervalEnd")
-    //@Temporal(TemporalType.DATE)
+    @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     DateTime end;
     
     @NotNull
-    //@Temporal(TemporalType.DATE)
+    @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     DateTime visited;
 
     public Long getId() {
