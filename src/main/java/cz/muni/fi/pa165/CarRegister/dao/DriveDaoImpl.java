@@ -1,12 +1,11 @@
 package cz.muni.fi.pa165.CarRegister.dao;
-import cz.muni.fi.pa165.CarRegister.entities.Car;
 import cz.muni.fi.pa165.CarRegister.entities.Drive;
 import java.util.List;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,7 +28,7 @@ public class DriveDaoImpl extends HibernateDaoSupport implements DriveDao
         this.em = em;
     }
     
-    @Autowired
+    @Inject
     public void anyMethodName(SessionFactory sessionFactory)
     {
         setSessionFactory(sessionFactory);
