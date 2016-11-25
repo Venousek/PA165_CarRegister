@@ -48,6 +48,9 @@ public class Car
 
 	// Gets and Sets
 
+        public void setId(Long id) {
+            this.id = id;
+        }
         public Long getId() {
             return id;
         }
@@ -108,12 +111,12 @@ public class Car
             this.fuel = fuel;
         }	
 
-        public List<Drive> getDrives() {
+       public List<Drive> getDrives() {
             return drives;
         }
 
         public void setDrives(List<Drive> drives) {
-            this.drives = drives;
+           this.drives = drives;
         }
 
         @Override
