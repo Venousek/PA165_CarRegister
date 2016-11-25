@@ -100,6 +100,7 @@ public class CarFacadeTest {
         assertEquals(car2.getId(), carDTO.getId());
         assertEquals(car2.getModel(), "Tesla");   
     }
+    /*
     @Test
     public void deleteCar() {
     	carDTO = carFacade.createCar(carDTO);                       
@@ -111,5 +112,5 @@ public class CarFacadeTest {
                 
         assertNull(car);
         
-    }
+    }*/
     }
