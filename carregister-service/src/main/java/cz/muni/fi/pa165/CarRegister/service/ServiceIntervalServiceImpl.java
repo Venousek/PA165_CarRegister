@@ -15,7 +15,7 @@ import java.util.List;
  *
  * @author robha
  */
-@Service("serviceIntervalService")
+@Service
 @Transactional
 public class ServiceIntervalServiceImpl implements ServiceIntervalService {
 
