@@ -40,7 +40,9 @@ public class Drive {
         @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
         DateTime begin;
 
-        @NotNull
+        /**
+         * if end is null, it means that the car is curretly being used
+         */
         @Column(name = "driveEnd")
         @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
         DateTime end;
