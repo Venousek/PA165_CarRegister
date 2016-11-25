@@ -50,4 +50,11 @@ public interface CarDao {
      */
     void delete(Car car);    
     
+    /**
+     * Returns all Cars from the database that are available for usage at the moment
+     * meaning they are not being used right now and have not exceeded mileage limit
+     * 
+     * @return all cars existing in DB
+     */
+    List<Car> findAllAvailable();
 }

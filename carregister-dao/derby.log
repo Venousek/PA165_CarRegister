@@ -1,11 +1,11 @@
 ----------------------------------------------------------------
-Thu Nov 24 16:36:35 CET 2016:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.13.1.1 - (1765088): instance a816c00e-0158-96fb-3519-0000055416c8 
-on database directory memory:D:\Dropbox\School\PA165\PA165_CarRegister\testdb with class loader sun.misc.Launcher$AppClassLoader@4aa298b7 
+Fri Nov 25 15:02:05 CET 2016:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.13.1.1 - (1765088): instance a816c00e-0158-9bcb-0999-0000053e2e40 
+on database directory memory:D:\Dropbox\School\PA165\CarRegister\carregister-dao\testdb with class loader sun.misc.Launcher$AppClassLoader@4aa298b7 
 Loaded from file:/C:/Users/blahut/.m2/repository/org/apache/derby/derby/10.13.1.1/derby-10.13.1.1.jar
 java.vendor=Oracle Corporation
 java.runtime.version=1.8.0_111-b14
-user.dir=D:\Dropbox\School\PA165\PA165_CarRegister
+user.dir=D:\Dropbox\School\PA165\CarRegister\carregister-dao
 os.name=Windows 10
 os.arch=amd64
 os.version=10.0
