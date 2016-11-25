@@ -6,7 +6,7 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
-        <module>./PA165_CarRegisterDAO</module>
+        <module>./carregister-dao</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
