@@ -6,15 +6,12 @@
 package cz.muni.fi.pa165.CarRegister.facade;
 
 import cz.muni.fi.pa165.CarRegister.dto.CarDTO;
-import cz.muni.fi.pa165.CarRegister.dto.ServiceIntervalDTO;
 import cz.muni.fi.pa165.CarRegister.enums.Fuel;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
-import org.joda.time.DateTime;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;

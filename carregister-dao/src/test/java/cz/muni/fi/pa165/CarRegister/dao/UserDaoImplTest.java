@@ -1,6 +1,5 @@
 package cz.muni.fi.pa165.CarRegister.dao;
 
-import cz.muni.fi.pa165.CarRegister.entities.Drive;
 import cz.muni.fi.pa165.CarRegister.entities.User;
 import cz.muni.fi.pa165.CarRegister.enums.Role;
 import java.util.List;

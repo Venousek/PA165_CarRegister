@@ -7,7 +7,6 @@ package cz.muni.fi.pa165.CarRegister.facade;
 
 import cz.muni.fi.pa165.CarRegister.dto.ServiceIntervalDTO;
 import cz.muni.fi.pa165.CarRegister.entities.ServiceInterval;
-import cz.muni.fi.pa165.CarRegister.facade.ServiceIntervalFacade;
 import cz.muni.fi.pa165.CarRegister.service.BeanMappingService;
 import cz.muni.fi.pa165.CarRegister.service.ServiceIntervalService;
 import cz.muni.fi.pa165.exception.CarRegisterDataAccessException;

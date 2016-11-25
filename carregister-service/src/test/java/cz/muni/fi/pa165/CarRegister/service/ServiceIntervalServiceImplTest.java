@@ -8,7 +8,6 @@ package cz.muni.fi.pa165.CarRegister.service;
 import cz.muni.fi.pa165.CarRegister.entities.Car;
 import cz.muni.fi.pa165.CarRegister.entities.ServiceInterval;
 import cz.muni.fi.pa165.CarRegister.enums.Fuel;
-import java.util.List;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.validation.ConstraintViolationException;

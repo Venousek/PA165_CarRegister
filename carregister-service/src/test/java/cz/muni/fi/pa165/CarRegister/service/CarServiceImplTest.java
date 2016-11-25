@@ -1,17 +1,10 @@
 package cz.muni.fi.pa165.CarRegister.service;
 
 import cz.muni.fi.pa165.CarRegister.entities.Car;
-import cz.muni.fi.pa165.CarRegister.entities.Drive;
-import cz.muni.fi.pa165.CarRegister.entities.User;
 import cz.muni.fi.pa165.CarRegister.enums.Fuel;
-import cz.muni.fi.pa165.CarRegister.enums.Role;
-import java.util.List;
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import javax.validation.ConstraintViolationException;
-import org.joda.time.DateTime;
 import org.junit.Test;
 import org.springframework.test.context.ContextConfiguration;
 
