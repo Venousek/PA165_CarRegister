@@ -1,7 +1,13 @@
 package cz.muni.fi.pa165.CarRegister.dao;
 
+import cz.muni.fi.pa165.CarRegister.entities.Drive;
 import cz.muni.fi.pa165.CarRegister.entities.User;
+import cz.muni.fi.pa165.CarRegister.enums.Role;
+import java.util.List;
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import javax.validation.ConstraintViolationException;
 import org.junit.Assert;
 import org.junit.Before;
@@ -20,6 +26,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:WEB-INF/applicationContext.xml"})
+@Transactional
 public class UserDaoImplTest {
     
     @Inject
@@ -27,14 +34,22 @@ public class UserDaoImplTest {
 
     private User user;
     
+    @PersistenceContext
+    public EntityManager em;
+    
     @Before
     public void setup() {
+        List<User> users = userDao.findAll();
+        for (User u : users)
+            userDao.delete(u);
+                
         user = new User();
         user.setFirstname("First");
         user.setLastname("Last");
         user.setLogin("admin");
         user.setPassword("123456");
         user.setEmail("admin@gmail.com");
+        user.setRole(Role.USER);
     }
     
     @Test (expected = ConstraintViolationException.class)
@@ -75,17 +90,17 @@ public class UserDaoImplTest {
     
     @Test
     public void testCreate() {                        
-        Assert.assertTrue(user.getId() == 0);
+        Assert.assertNull(user.getId());
         userDao.create(user);
-        Assert.assertFalse(user.getId() == 0);
+        Assert.assertNotNull(user.getId());
     }
     
     @Test
     public void testFindById() {
                                
-        Assert.assertTrue(user.getId() == 0);
+        Assert.assertNull(user.getId());
         userDao.create(user);
-        Assert.assertFalse(user.getId() == 0);
+        Assert.assertNotNull(user.getId());
                              
         User user2 = userDao.findById(user.getId());               
         Assert.assertEquals(user2.getId(), user.getId());                
@@ -93,11 +108,16 @@ public class UserDaoImplTest {
     
     @Test
     public void testDelete() {                        
-        Assert.assertTrue(user.getId() == 0);
+        Assert.assertNull(user.getId());
         userDao.create(user);
-        Assert.assertFalse(user.getId() == 0);
+        Assert.assertNotNull(user.getId());
+        Long userId = user.getId();
+        user = userDao.findById(userId);
+        Assert.assertNotNull(user);  
         userDao.delete(user);
-        Assert.assertTrue(user.getId() == 0);        
+        
+        user = userDao.findById(userId);
+        Assert.assertNull(user);       
     }
     
     @Test

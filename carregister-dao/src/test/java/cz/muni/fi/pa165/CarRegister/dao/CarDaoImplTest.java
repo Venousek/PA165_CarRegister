@@ -5,6 +5,7 @@ import cz.muni.fi.pa165.CarRegister.enums.Fuel;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import javax.validation.ConstraintViolationException;
 import org.junit.Test;
 import org.springframework.test.context.ContextConfiguration;
@@ -23,6 +24,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:WEB-INF/applicationContext.xml"})
+@Transactional
 public class CarDaoImplTest {
     
     @Inject

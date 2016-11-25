@@ -12,6 +12,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import org.joda.time.DateTime;
 import org.junit.Assert;
 import static org.junit.Assert.assertEquals;
@@ -29,16 +30,22 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:WEB-INF/applicationContext.xml"})
+@Transactional
 public class ServiceIntervalDaoImplTest {
     
+   
     @Inject
-    private ServiceIntervalDao serviceIntervalDao;
+    private ServiceIntervalDao serviceIntervalDao;    
     
+    @Inject
+    private CarDao carDao;
+        
     @PersistenceContext
     public EntityManager em;
     
-    private ServiceInterval serviceInterval;
     private Car car;
+    private ServiceInterval serviceInterval;
+
             
     @Before
     public void setup() {
@@ -51,6 +58,8 @@ public class ServiceIntervalDaoImplTest {
         car.setRegister_number("1B2C3D4");
         car.setVin("WBABA91060AL04921");
         car.setYear(1999);
+        
+        carDao.create(car);
         
         List<ServiceInterval> intervals = serviceIntervalDao.findAll();
         for (ServiceInterval i : intervals)
@@ -82,9 +91,9 @@ public class ServiceIntervalDaoImplTest {
                 
         assertEquals(newServiceInterval.getId(), id);        
         assertEquals(newServiceInterval.getCar(), car); 
-        assertEquals(newServiceInterval.getBegin(), new DateTime(2016, 5, 10, 10, 14)); 
-        assertEquals(newServiceInterval.getEnd(), new DateTime(2016, 5, 10, 11, 15)); 
-        assertEquals(newServiceInterval.getVisited(), new DateTime(2016, 5, 10, 11, 16));      
+        assertEquals(newServiceInterval.getBegin(), new DateTime(2016, 5, 10, 10, 15)); 
+        assertEquals(newServiceInterval.getEnd(), new DateTime(2017, 5, 10, 10, 15)); 
+        assertEquals(newServiceInterval.getVisited(), new DateTime(2017, 4, 10, 10, 15));      
     }
     
     @Test
@@ -92,8 +101,11 @@ public class ServiceIntervalDaoImplTest {
         Assert.assertNull(serviceInterval.getId());
         serviceIntervalDao.create(serviceInterval);
         Assert.assertNotNull(serviceInterval.getId());
+        Long siId = serviceInterval.getId();
+        serviceInterval = serviceIntervalDao.findById(siId);
         serviceIntervalDao.delete(serviceInterval);
-        Assert.assertNull(serviceInterval.getId());        
+        serviceInterval = serviceIntervalDao.findById(siId);
+        Assert.assertNull(serviceInterval); 
     }
     
     @Test
@@ -104,12 +116,53 @@ public class ServiceIntervalDaoImplTest {
         
         ServiceInterval newServiceInterval = serviceIntervalDao.findById(id);
         
-        newServiceInterval.setBegin(new DateTime(2016, 5, 10, 10, 15));
+        DateTime newDate = new DateTime(2016,5,10,10,15);
+        DateTime newDate2 = new DateTime(2016,6,10,10,15);
+        DateTime newDate3 = new DateTime(2016,7,10,10,15);
+        newServiceInterval.setBegin(newDate);
+        newServiceInterval.setEnd(newDate2);
+        newServiceInterval.setVisited(newDate3);
         
         serviceIntervalDao.update(newServiceInterval);
         
         ServiceInterval newestServiceInterval = serviceIntervalDao.findById(id);
-                
-        assertEquals(newestServiceInterval.getBegin(), new DateTime(2016, 5, 10, 10, 15));         
+        assertEquals(newestServiceInterval.getEnd(), newDate2);   
+        assertEquals(newestServiceInterval.getVisited(), newDate3); 
+        assertEquals(newestServiceInterval.getBegin(), newDate);   
+        
+    }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void testCreateNullServiceInterval(){
+        serviceIntervalDao.create(null);
+    }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void testUpdateNullServiceInterval(){
+        serviceIntervalDao.update(null);
+    }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void testRemoveNullServiceInterval(){
+        serviceIntervalDao.delete(null);
+    }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void testGetServiceIntervalByNullId(){
+        serviceIntervalDao.findById(null);
+    }
+    
+    @Test(expected = javax.validation.ConstraintViolationException.class)
+    public void testCreateServiceIntervalWNullCar(){
+        serviceInterval.setCar(null);
+        serviceIntervalDao.create(serviceInterval);
+    }
+        
+    @Test(expected = javax.validation.ConstraintViolationException.class)
+    public void testServiceIntervalWNullDates(){
+        serviceInterval.setBegin(null);
+        serviceInterval.setEnd(null);
+        serviceInterval.setVisited(null);
+        serviceIntervalDao.create(serviceInterval);
     }
 }
