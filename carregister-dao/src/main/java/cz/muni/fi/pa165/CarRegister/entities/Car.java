@@ -1,6 +1,7 @@
 package cz.muni.fi.pa165.CarRegister.entities;
 
 import cz.muni.fi.pa165.CarRegister.enums.Fuel;
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -41,6 +42,9 @@ public class Car
 	
         @NotNull
 	private Fuel fuel;
+        
+        @OneToMany(fetch = FetchType.EAGER, mappedBy = "car")
+        private List<Drive> drives;
 
 	// Gets and Sets
 
@@ -104,32 +108,40 @@ public class Car
             this.fuel = fuel;
         }	
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 53 * hash + Objects.hashCode(this.vin);
-        return hash;
-    }
+        public List<Drive> getDrives() {
+            return drives;
+        }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
+        public void setDrives(List<Drive> drives) {
+            this.drives = drives;
+        }
+
+        @Override
+        public int hashCode() {
+            int hash = 7;
+            hash = 53 * hash + Objects.hashCode(this.vin);
+            return hash;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (this == obj) {
+                return true;
+            }
+            if (obj == null) {
+                return false;
+            }
+            if (!(obj instanceof Car)) {
+                return false;
+            }
+            final Car other = (Car) obj;
+
+            if (!Objects.equals(this.vin, other.vin)) {
+                return false;
+            }
+
             return true;
         }
-        if (obj == null) {
-            return false;
-        }
-        if (!(obj instanceof Car)) {
-            return false;
-        }
-        final Car other = (Car) obj;
 
-        if (!Objects.equals(this.vin, other.vin)) {
-            return false;
-        }
-
-        return true;
-    }
-	
         
 }
