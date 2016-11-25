@@ -1,4 +1,4 @@
-package cz.muni.fi.pa165.carregister.dto;
+package cz.muni.fi.pa165.CarRegister.dto;
 
 import cz.muni.fi.pa165.CarRegister.enums.Role;
 import java.util.Objects;

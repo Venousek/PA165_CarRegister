@@ -1,6 +1,6 @@
-package cz.muni.fi.pa165.carregister.facade;
+package cz.muni.fi.pa165.CarRegister.facade;
 
-import cz.muni.fi.pa165.carregister.dto.DriveDTO;
+import cz.muni.fi.pa165.CarRegister.dto.DriveDTO;
 import java.util.List;
 
 /**

@@ -182,9 +182,15 @@ public class DriveDaoImplTest {
     }
     
     @Test(expected = javax.validation.ConstraintViolationException.class)
-    public void testCreateDriveWNullDates(){
+    public void testCreateDriveWNullBegin(){
         drive.setBegin(null);
+        driveDao.create(drive);
+    }
+        
+    @Test
+    public void testCreateDriveWNullEnd(){
         drive.setEnd(null);
         driveDao.create(drive);
+        Assert.assertNotNull(drive.getId());
     }
 }

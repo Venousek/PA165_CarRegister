@@ -1,6 +1,6 @@
-package cz.muni.fi.pa165.carregister.facade;
+package cz.muni.fi.pa165.CarRegister.facade;
 
-import cz.muni.fi.pa165.carregister.dto.ServiceIntervalDTO;
+import cz.muni.fi.pa165.CarRegister.dto.ServiceIntervalDTO;
 import java.util.List;
 
 /**
