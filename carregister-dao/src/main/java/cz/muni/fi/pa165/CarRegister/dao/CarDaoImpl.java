@@ -67,7 +67,7 @@ public class CarDaoImpl extends HibernateDaoSupport implements CarDao
     @Override
     public List<Car> findAllAvailable() {
         Query q = em.createQuery("select c from Car c where c.mileage < 300000"
-                + " and not exists (from Drive d where d.car = c and d.end not null)");
+                + " and not exists (from Drive d where d.car = c and d.end is null)");
         return q.getResultList();
     }
 

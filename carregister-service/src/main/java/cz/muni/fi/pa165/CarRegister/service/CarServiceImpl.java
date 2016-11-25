@@ -4,6 +4,7 @@ import cz.muni.fi.pa165.CarRegister.dao.CarDao;
 import cz.muni.fi.pa165.CarRegister.entities.Car;
 import java.util.List;
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 /**
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
  * @author blahut
  */
 @Service("carService")
+@Transactional
 public class CarServiceImpl implements CarService {
     
     @Inject
