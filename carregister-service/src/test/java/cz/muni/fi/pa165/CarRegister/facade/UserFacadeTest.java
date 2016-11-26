@@ -36,13 +36,15 @@ public class UserFacadeTest {
 
     @Before
      public void setup() {
+       user1DTO = new UserDTO();
        user1DTO.setFirstname("Ferda");
        user1DTO.setLastname("Mravenec");
        user1DTO.setLogin("mravenec");
        user1DTO.setPassword("123456");
        user1DTO.setEmail("mravenec@gmail.com");
        user1DTO.setRole(Role.USER);
-        
+       
+       user2DTO = new UserDTO();  
        user2DTO.setFirstname("Peter");
        user2DTO.setLastname("Novak");
        user2DTO.setLogin("novak1");
