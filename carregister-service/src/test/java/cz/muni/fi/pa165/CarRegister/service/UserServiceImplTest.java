@@ -32,11 +32,10 @@ public class UserServiceImplTest {
     private UserService userService;
         
     private User user;
-    private Car car; 
-    private Drive drive;
     
     @Before
     public void setup() {
+       user = new User();
        user.setFirstname("Ferda");
        user.setLastname("Mravenec");
        user.setLogin("mravenec");
