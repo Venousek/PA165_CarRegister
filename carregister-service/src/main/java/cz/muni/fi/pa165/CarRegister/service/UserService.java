@@ -4,7 +4,7 @@ import cz.muni.fi.pa165.CarRegister.entities.User;
 import java.util.List;
 
 /**
- * @author Cernak
+ * @author Sevo001
  */
 
 
