@@ -41,7 +41,7 @@ public class DriveFacadeImpl implements DriveFacade
         }
         catch (Exception e)
         {
-            throw new CarRegisterDataAccessException("cannot create a drive", e);
+            throw new CarRegisterDataAccessException("cannot create new drive", e);
         }
     }
 
@@ -83,7 +83,7 @@ public class DriveFacadeImpl implements DriveFacade
             Drive carMapped = beanMappingService.mapTo(drive, Drive.class);
             driveService.delete(carMapped);
         } catch (Exception e) {
-            throw new CarRegisterDataAccessException("cannot remove car", e);
+            throw new CarRegisterDataAccessException("cannot remove drive", e);
         }
     }
 
@@ -91,12 +91,12 @@ public class DriveFacadeImpl implements DriveFacade
     public DriveDTO update(DriveDTO drive)
     {
         try {
-            Drive carMapped = beanMappingService.mapTo(drive, Drive.class);       
-            Drive updated = driveService.update(carMapped);
+            Drive driveMapped = beanMappingService.mapTo(drive, Drive.class);       
+            Drive updated = driveService.update(driveMapped);
             
             return beanMappingService.mapTo(updated, DriveDTO.class);
         } catch (Exception e) {
-            throw new CarRegisterDataAccessException("cannot update car",e);
+            throw new CarRegisterDataAccessException("cannot update drive",e);
         }
     }
 }
