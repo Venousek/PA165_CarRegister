@@ -1,4 +1,5 @@
 package cz.muni.fi.pa165.CarRegister.dao;
+import cz.muni.fi.pa165.CarRegister.entities.Car;
 import cz.muni.fi.pa165.CarRegister.entities.Drive;
 import java.util.List;
 import javax.inject.Inject;
@@ -47,6 +48,13 @@ public class DriveDaoImpl extends HibernateDaoSupport implements DriveDao
     @Override
     public List<Drive> findAll() {
         Query q = em.createQuery("select d from Drive d");
+        return q.getResultList();
+    }
+
+    @Override
+    public List<Drive> findAllByCar(Car car) {
+        Query q = em.createQuery("select d from Drive d where d.car.id = :carId order by d.begin");
+        q.setParameter("carId", car.getId());
         return q.getResultList();
     }
 

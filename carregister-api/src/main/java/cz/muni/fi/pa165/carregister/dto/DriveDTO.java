@@ -14,9 +14,9 @@ public class DriveDTO {
         
         private UserDTO user;
 	
-        private Long begin;
+        private Long beginLong;
 
-        private Long end;
+        private Long endLong;
 
         int distance;
 
@@ -44,20 +44,20 @@ public class DriveDTO {
             this.user = user;
         }
         
-        public Long getBegin() {
-            return begin;
+        public Long getBeginLong() {
+            return beginLong;
         }
 
-        public void setBegin(Long begin) {
-            this.begin = begin;
+        public void setBeginLong(Long begin) {
+            this.beginLong = begin;
         }
 
-        public Long getEnd() {
-            return end;
+        public Long getEndLong() {
+            return endLong;
         }
 
-        public void setEnd(Long end) {
-            this.end = end;
+        public void setEndLong(Long end) {
+            this.endLong = end;
         }
         
         public void setDistance(int distance) {
@@ -73,8 +73,8 @@ public class DriveDTO {
             int hash = 7;
             hash = 47 * hash + Objects.hashCode(this.car);
             hash = 47 * hash + Objects.hashCode(this.user);
-            hash = 47 * hash + Objects.hashCode(this.begin);
-            hash = 47 * hash + Objects.hashCode(this.end);
+            hash = 47 * hash + Objects.hashCode(this.beginLong);
+            hash = 47 * hash + Objects.hashCode(this.endLong);
             return hash;
         }
 
@@ -96,10 +96,10 @@ public class DriveDTO {
             if (!Objects.equals(this.user, other.user)) {
                 return false;
             }
-            if (!Objects.equals(this.begin, other.begin)) {
+            if (!Objects.equals(this.beginLong, other.beginLong)) {
                 return false;
             }
-            if (!Objects.equals(this.end, other.end)) {
+            if (!Objects.equals(this.endLong, other.endLong)) {
                 return false;
             }
             return true;

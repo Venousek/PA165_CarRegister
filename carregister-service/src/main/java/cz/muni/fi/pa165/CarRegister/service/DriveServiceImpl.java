@@ -29,6 +29,9 @@ public class DriveServiceImpl implements DriveService
     
     @Inject
     private CarService carService;
+    
+    @Inject
+    private UserService userService;
 
     public void setCarDAO(DriveDao driveDao) {
         this.driveDao = driveDao;
@@ -37,6 +40,28 @@ public class DriveServiceImpl implements DriveService
     @Override
     public Drive create(Drive drive)
     {
+        if (drive == null || drive.getCar() == null || drive.getUser() == null)
+        {
+            throw new CarRegisterDataAccessException("Drive, car or user is null.");
+        }
+        
+        Car foundCar = carService.findById(drive.getCar().getId());
+       
+        if (foundCar == null)
+        {
+            throw new CarRegisterDataAccessException("Car not found");
+        }
+        
+        User foundUser = userService.findById(drive.getUser().getId());
+       
+        if (foundUser == null)
+        {
+            throw new CarRegisterDataAccessException("User not found");
+        }
+        
+        drive.setCar(foundCar);
+        drive.setUser(foundUser);
+        
         driveDao.create(drive);
         return drive;
     }
@@ -44,6 +69,28 @@ public class DriveServiceImpl implements DriveService
     @Override
     public Drive update(Drive drive)
     {
+        if (drive == null || drive.getCar() == null || drive.getUser() == null)
+        {
+            throw new CarRegisterDataAccessException("Drive, car or user is null.");
+        }
+        
+        Car foundCar = carService.findById(drive.getCar().getId());
+       
+        if (foundCar == null)
+        {
+            throw new CarRegisterDataAccessException("Car not found");
+        }
+        
+        User foundUser = userService.findById(drive.getUser().getId());
+       
+        if (foundUser == null)
+        {
+            throw new CarRegisterDataAccessException("User not found");
+        }
+        
+        drive.setCar(foundCar);
+        drive.setUser(foundUser);
+        
         driveDao.update(drive);
         return drive;
     }
@@ -51,7 +98,9 @@ public class DriveServiceImpl implements DriveService
     @Override
     public void delete(Drive drive)
     {
-        driveDao.delete(drive);
+        Drive foundDrive = findById(drive.getId());
+        
+        driveDao.delete(foundDrive);
     }
 
     @Override
@@ -81,9 +130,9 @@ public class DriveServiceImpl implements DriveService
             throw new CarRegisterDataAccessException("Car not found");
         }
         
-        List<Drive> drives = foundCar.getDrives();
+        List<Drive> drives = driveDao.findAllByCar(car);
          
-        if (!drives.isEmpty() && drives.get(drives.size() - 1).getEnd() == null)      
+        if (drives != null && !drives.isEmpty() && drives.get(drives.size() - 1).getEnd() == null)      
         {
             throw new CarRegisterDataAccessException("Car is already on drive");
         }
@@ -113,9 +162,9 @@ public class DriveServiceImpl implements DriveService
             throw new CarRegisterDataAccessException("Car not found");
         }
         
-        List<Drive> drives = foundCar.getDrives();
+        List<Drive> drives = driveDao.findAllByCar(car);
         
-        if (drives.isEmpty())
+        if (drives == null || drives.isEmpty())
         {   
             throw new CarRegisterDataAccessException("Car has no drives");
         }

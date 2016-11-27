@@ -1,4 +1,5 @@
 package cz.muni.fi.pa165.CarRegister.dao;
+import cz.muni.fi.pa165.CarRegister.entities.Car;
 import cz.muni.fi.pa165.CarRegister.entities.Drive;
 import java.util.List;
 
@@ -29,6 +30,13 @@ public interface DriveDao {
      * @return all drives existing in DB
      */
     List<Drive> findAll();
+    
+    /**
+     * Retrieves all drives from DB for defined car.
+     * 
+     * @return all car's drives existing in DB
+     */
+    List<Drive> findAllByCar(Car car);
     
     /**
      *  Updates drive record in DB.

@@ -12,11 +12,11 @@ public class ServiceIntervalDTO {
    
         private CarDTO car;
 
-        private Long begin;
+        private Long beginLong;
         
-        private Long end;
+        private Long endLong;
         
-        private Long visited;
+        private Long visitedLong;
 
         public Long getId() {
             return id;
@@ -34,37 +34,37 @@ public class ServiceIntervalDTO {
             this.car = car;
         }
 
-        public Long getBegin() {
-            return begin;
+        public Long getBeginLong() {
+            return beginLong;
         }
 
-        public void setBegin(Long begin) {
-            this.begin = begin;
+        public void setBeginLong(Long begin) {
+            this.beginLong = begin;
         }
 
-        public Long getEnd() {
-            return end;
+        public Long getEndLong() {
+            return endLong;
         }
 
-        public void setEnd(Long end) {
-            this.end = end;
+        public void setEndLong(Long end) {
+            this.endLong = end;
         }
 
-        public Long getVisited() {
-            return visited;
+        public Long getVisitedLong() {
+            return visitedLong;
         }
 
-        public void setVisited(Long visited) {
-            this.visited = visited;
+        public void setVisitedLong(Long visited) {
+            this.visitedLong = visited;
         }
 
         @Override
         public int hashCode() {
             int hash = 7;
             hash = 83 * hash + Objects.hashCode(this.car);
-            hash = 83 * hash + Objects.hashCode(this.begin);
-            hash = 83 * hash + Objects.hashCode(this.end);
-            hash = 83 * hash + Objects.hashCode(this.visited);
+            hash = 83 * hash + Objects.hashCode(this.beginLong);
+            hash = 83 * hash + Objects.hashCode(this.endLong);
+            hash = 83 * hash + Objects.hashCode(this.visitedLong);
             return hash;
         }
 
@@ -83,13 +83,13 @@ public class ServiceIntervalDTO {
             if (!Objects.equals(this.car, other.car)) {
                 return false;
             }
-            if (!Objects.equals(this.begin, other.begin)) {
+            if (!Objects.equals(this.beginLong, other.beginLong)) {
                 return false;
             }
-            if (!Objects.equals(this.end, other.end)) {
+            if (!Objects.equals(this.endLong, other.endLong)) {
                 return false;
             }
-            if (!Objects.equals(this.visited, other.visited)) {
+            if (!Objects.equals(this.visitedLong, other.visitedLong)) {
                 return false;
             }
             return true;

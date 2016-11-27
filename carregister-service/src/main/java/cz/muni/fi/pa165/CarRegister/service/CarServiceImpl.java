@@ -36,7 +36,9 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public void delete(Car car) {
-        carDao.delete(car);        
+        Car foundCar = findById(car.getId());
+        
+        carDao.delete(foundCar);        
     }
 
     @Override

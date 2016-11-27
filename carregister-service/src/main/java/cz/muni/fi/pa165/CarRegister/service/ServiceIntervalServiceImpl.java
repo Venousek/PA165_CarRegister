@@ -5,7 +5,10 @@
  */
 package cz.muni.fi.pa165.CarRegister.service;
 import cz.muni.fi.pa165.CarRegister.dao.ServiceIntervalDao;
+import cz.muni.fi.pa165.CarRegister.entities.Car;
 import  cz.muni.fi.pa165.CarRegister.entities.ServiceInterval;
+import cz.muni.fi.pa165.CarRegister.entities.User;
+import cz.muni.fi.pa165.exception.CarRegisterDataAccessException;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
@@ -21,6 +24,9 @@ public class ServiceIntervalServiceImpl implements ServiceIntervalService {
 
     @Inject
     private ServiceIntervalDao serviceIntervalDao;
+
+    @Inject
+    private CarService carService;
     
     public void setServiceIntervalDAO(ServiceIntervalDao intervalDao) {
         this.serviceIntervalDao = intervalDao;
@@ -28,19 +34,51 @@ public class ServiceIntervalServiceImpl implements ServiceIntervalService {
     
     @Override
     public ServiceInterval create(ServiceInterval interval) {
+        
+        if (interval == null || interval.getCar() == null)
+        {
+            throw new CarRegisterDataAccessException("interval or car is null.");
+        }
+
+        Car foundCar = carService.findById(interval.getCar().getId());
+
+        if (foundCar == null)
+        {
+            throw new CarRegisterDataAccessException("Car not found");
+        }
+
+        interval.setCar(foundCar);
+        
         serviceIntervalDao.create(interval);
         return interval;
     }
 
     @Override
     public ServiceInterval update(ServiceInterval interval) {
+        
+        if (interval == null || interval.getCar() == null)
+        {
+            throw new CarRegisterDataAccessException("interval or car is null.");
+        }
+
+        Car foundCar = carService.findById(interval.getCar().getId());
+
+        if (foundCar == null)
+        {
+            throw new CarRegisterDataAccessException("Car not found");
+        }
+
+        interval.setCar(foundCar);
+        
         serviceIntervalDao.update(interval);
         return interval;
     }
 
     @Override
     public void delete(ServiceInterval interval) {
-        serviceIntervalDao.delete(interval); 
+        ServiceInterval foundInterval = findById(interval.getId());
+        
+        serviceIntervalDao.delete(foundInterval); 
     }
 
     @Override

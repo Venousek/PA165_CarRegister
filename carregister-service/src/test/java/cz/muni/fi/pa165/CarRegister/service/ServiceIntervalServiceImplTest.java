@@ -8,6 +8,7 @@ package cz.muni.fi.pa165.CarRegister.service;
 import cz.muni.fi.pa165.CarRegister.entities.Car;
 import cz.muni.fi.pa165.CarRegister.entities.ServiceInterval;
 import cz.muni.fi.pa165.CarRegister.enums.Fuel;
+import cz.muni.fi.pa165.exception.CarRegisterDataAccessException;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.validation.ConstraintViolationException;
@@ -58,13 +59,10 @@ public class ServiceIntervalServiceImplTest {
         serviceInterval.setCar(car);
         serviceInterval.setBegin(new DateTime(2016, 5, 10, 10, 15));
         serviceInterval.setEnd(new DateTime(2017, 5, 10, 10, 15));
-        serviceInterval.setVisited(new DateTime(2017, 4, 10, 10, 15));
-        
-        
-        
+        serviceInterval.setVisited(new DateTime(2017, 4, 10, 10, 15));        
     }
     
-    @Test (expected = ConstraintViolationException.class)
+    @Test (expected = CarRegisterDataAccessException.class)
     public void testCreateNullCar() {                        
         serviceInterval.setCar(null);
         intervalService.create(serviceInterval);
@@ -119,6 +117,8 @@ public class ServiceIntervalServiceImplTest {
         car2.setRegister_number("1C2D3R4");
         car2.setVin("WBABAA1D3AS21DAS32D1");
         car2.setYear(2016);
+        carService.create(car2);
+        
         serviceInterval.setCar(car2);
         
         intervalService.update(serviceInterval);

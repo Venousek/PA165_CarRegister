@@ -38,6 +38,12 @@ public class DriveServiceImplTest
 {
     @Inject
     private DriveService driveService;
+    
+    @Inject
+    private CarService carService;
+    
+    @Inject
+    private UserService userService;
         
     private User user;   
     private Car car; 
@@ -54,6 +60,8 @@ public class DriveServiceImplTest
         user.setEmail("admin@gmail.com");
         user.setRole(Role.USER);
         
+        userService.create(user);
+        
         car = new Car();
         car.setFuel(Fuel.GASOLINE);
         car.setManufacturer("Audi");
@@ -62,6 +70,8 @@ public class DriveServiceImplTest
         car.setRegister_number("1B2C3D4");
         car.setVin("WBABA91060AL04921");
         car.setYear(1999);
+        
+        carService.create(car);
                         
         drive = new Drive();        
         drive.setUser(user);
@@ -71,13 +81,13 @@ public class DriveServiceImplTest
         drive.setDistance(40);  
     }
     
-    @Test (expected = ConstraintViolationException.class)
+    @Test (expected = CarRegisterDataAccessException.class)
     public void testCreateNullCar() {                        
         drive.setCar(null);       
         driveService.create(drive);
     }
     
-    @Test (expected = ConstraintViolationException.class)
+    @Test (expected = CarRegisterDataAccessException.class)
     public void testCreateNulluser() {                        
         drive.setUser(null);       
         driveService.create(drive);
@@ -133,14 +143,18 @@ public class DriveServiceImplTest
         newUser.setEmail("user@gmail.com");
         newUser.setRole(Role.USER);
         
+        userService.create(newUser);
+        
         Car newCar = new Car();
         newCar.setFuel(Fuel.DIESEL);
         newCar.setManufacturer("Audi");
         newCar.setModel("R8");
         newCar.setMileage(10);
-        newCar.setRegister_number("1B2C3D4");
-        newCar.setVin("WBABA91060AL04921");
+        newCar.setRegister_number("1B2C3D5");
+        newCar.setVin("WBABA91060AL04925");
         newCar.setYear(1999);
+        
+        carService.create(newCar);
         
         Drive newDrive = driveService.startUsingCar(newCar, newUser);    
         Drive drive2 = driveService.findById(newDrive.getId());
@@ -152,15 +166,19 @@ public class DriveServiceImplTest
     @Test (expected = CarRegisterDataAccessException.class)
     public void testStartExistingDrive()
     {       
+        drive.setEnd(null);
+        drive.setDistance(0);
         driveService.create(drive);
         
         User newUser = new User();   
         newUser.setFirstname("First");
         newUser.setLastname("Last");
-        newUser.setLogin("user");
+        newUser.setLogin("user1");
         newUser.setPassword("12345678");
         newUser.setEmail("user@gmail.com");
         newUser.setRole(Role.USER);
+        
+        userService.create(newUser);
         
         driveService.startUsingCar(car, newUser);
     }
@@ -171,19 +189,23 @@ public class DriveServiceImplTest
         User newUser = new User();     
         newUser.setFirstname("First");
         newUser.setLastname("Last");
-        newUser.setLogin("user");
+        newUser.setLogin("user1");
         newUser.setPassword("12345678");
         newUser.setEmail("user@gmail.com");
         newUser.setRole(Role.USER);
+        
+        userService.create(newUser);
         
         Car newCar = new Car();
         newCar.setFuel(Fuel.DIESEL);
         newCar.setManufacturer("Audi");
         newCar.setModel("R8");
         newCar.setMileage(10);
-        newCar.setRegister_number("1B2C3D4");
-        newCar.setVin("WBABA91060AL04921");
+        newCar.setRegister_number("1B2C3D5");
+        newCar.setVin("WBABA91060AL04925");
         newCar.setYear(1999);
+        
+        carService.create(newCar);
         
         Drive newDrive = driveService.startUsingCar(newCar, newUser);
         
@@ -201,9 +223,11 @@ public class DriveServiceImplTest
         newCar.setManufacturer("Audi");
         newCar.setModel("R8");
         newCar.setMileage(10);
-        newCar.setRegister_number("1B2C3D4");
-        newCar.setVin("WBABA91060AL04921");
+        newCar.setRegister_number("1B2C3D5");
+        newCar.setVin("WBABA91060AL04925");
         newCar.setYear(1999);
+        
+        carService.create(newCar);
         
         driveService.stopUsingCar(newCar, 10); 
     }

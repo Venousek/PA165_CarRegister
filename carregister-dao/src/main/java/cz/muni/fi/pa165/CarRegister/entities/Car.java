@@ -43,7 +43,7 @@ public class Car
         @NotNull
 	private Fuel fuel;
         
-        @OneToMany(fetch = FetchType.EAGER, mappedBy = "car")
+        @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER, mappedBy = "car")
         private List<Drive> drives;
 
 	// Gets and Sets

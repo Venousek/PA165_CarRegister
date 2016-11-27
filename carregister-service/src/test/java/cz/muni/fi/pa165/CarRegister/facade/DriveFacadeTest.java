@@ -36,6 +36,12 @@ public class DriveFacadeTest
     @Inject
     private DriveFacade driveFacade;
     
+    @Inject
+    private UserFacade userFacade;
+    
+    @Inject
+    private CarFacade carFacade;
+    
     private UserDTO userDTO;    
     private CarDTO carDTO;
     private DriveDTO driveDTO;
@@ -51,6 +57,8 @@ public class DriveFacadeTest
         userDTO.setEmail("admin@gmail.com");
         userDTO.setRole(Role.USER);
         
+        userDTO = userFacade.createUser(userDTO);
+        
         carDTO = new CarDTO();
         carDTO.setFuel(Fuel.GASOLINE);
         carDTO.setManufacturer("Audi");
@@ -59,12 +67,14 @@ public class DriveFacadeTest
         carDTO.setRegister_number("1B2C3D4");
         carDTO.setVin("WBABA91060AL04921");
         carDTO.setYear(1999);
+        
+        carDTO = carFacade.createCar(carDTO);
                         
         driveDTO = new DriveDTO();        
         driveDTO.setUser(userDTO);
         driveDTO.setCar(carDTO);
-        driveDTO.setBegin(new DateTime(2016, 5, 10, 10, 15).getMillis());
-        driveDTO.setEnd(new DateTime(2016, 5, 10, 11, 15).getMillis());
+        driveDTO.setBeginLong(new DateTime(2016, 5, 10, 10, 15).getMillis());
+        driveDTO.setEndLong(new DateTime(2016, 5, 10, 11, 15).getMillis());
         driveDTO.setDistance(40);  
     }
      

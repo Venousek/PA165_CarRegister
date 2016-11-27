@@ -82,6 +82,42 @@ public class ServiceInterval {
     public void setVisited(DateTime visited) {
         this.visited = visited;
     }
+    
+    @Transient
+    public Long getBeginLong() {
+        return begin == null ? null : begin.getMillis();
+    }
+
+    public void setBeginLong(Long begin) {
+        if (begin != null)
+            this.begin = new DateTime(begin);
+        else
+            this.begin = null;
+    }        
+
+    @Transient
+    public Long getEndLong() {
+        return end == null ? null : end.getMillis();
+    }
+
+    public void setEndLong(Long end) {
+        if (end != null)
+            this.end = new DateTime(end);
+        else
+            this.end = null;
+    }
+
+    @Transient
+    public Long getVisitedLong() {
+        return visited == null ? null : visited.getMillis();
+    }
+
+    public void setVisitedLong(Long visited) {
+        if (visited != null)
+            this.visited = new DateTime(visited);
+        else
+            this.visited = null;
+    }
 
     @Override
     public int hashCode() {
