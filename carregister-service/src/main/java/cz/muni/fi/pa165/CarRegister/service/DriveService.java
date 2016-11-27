@@ -5,7 +5,9 @@
  */
 package cz.muni.fi.pa165.CarRegister.service;
 
+import cz.muni.fi.pa165.CarRegister.entities.Car;
 import cz.muni.fi.pa165.CarRegister.entities.Drive;
+import cz.muni.fi.pa165.CarRegister.entities.User;
 import java.util.List;
 
 /**
@@ -51,4 +53,20 @@ public interface DriveService
      * @return Drive object with given id or null if no such entry
      */
     Drive findById(Long id); 
+    
+    /**
+     * Starts a drive with car and user
+     * 
+     * @param car a car to drive
+     * @param user an user in drive
+     */
+    Drive startUsingCar(Car car, User user);    
+    
+    /**
+     * Stops a drive with car
+     * 
+     * @param car a car on drive
+     * @param distance distance driven with car
+     */
+    Drive stopUsingCar(Car car, int distance);
 }

@@ -10,6 +10,7 @@ import cz.muni.fi.pa165.CarRegister.entities.Drive;
 import cz.muni.fi.pa165.CarRegister.entities.User;
 import cz.muni.fi.pa165.CarRegister.enums.Fuel;
 import cz.muni.fi.pa165.CarRegister.enums.Role;
+import cz.muni.fi.pa165.exception.CarRegisterDataAccessException;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.validation.ConstraintViolationException;
@@ -119,5 +120,91 @@ public class DriveServiceImplTest
     @Test
     public void testFindByNotExistingId() {                        
         assertNull(driveService.findById(-1l));
+    }
+    
+    @Test
+    public void testStartNewDrive()
+    {       
+        User newUser = new User();    
+        newUser.setFirstname("First");
+        newUser.setLastname("Last");
+        newUser.setLogin("user");
+        newUser.setPassword("12345678");
+        newUser.setEmail("user@gmail.com");
+        newUser.setRole(Role.USER);
+        
+        Car newCar = new Car();
+        newCar.setFuel(Fuel.DIESEL);
+        newCar.setManufacturer("Audi");
+        newCar.setModel("R8");
+        newCar.setMileage(10);
+        newCar.setRegister_number("1B2C3D4");
+        newCar.setVin("WBABA91060AL04921");
+        newCar.setYear(1999);
+        
+        Drive newDrive = driveService.startUsingCar(newCar, newUser);    
+        Drive drive2 = driveService.findById(newDrive.getId());
+        
+        assertNotNull(drive2);        
+        assertNull(drive2.getEnd());
+    }
+    
+    @Test (expected = CarRegisterDataAccessException.class)
+    public void testStartExistingDrive()
+    {       
+        driveService.create(drive);
+        
+        User newUser = new User();   
+        newUser.setFirstname("First");
+        newUser.setLastname("Last");
+        newUser.setLogin("user");
+        newUser.setPassword("12345678");
+        newUser.setEmail("user@gmail.com");
+        newUser.setRole(Role.USER);
+        
+        driveService.startUsingCar(car, newUser);
+    }
+    
+    @Test
+    public void testStopDrive()
+    {     
+        User newUser = new User();     
+        newUser.setFirstname("First");
+        newUser.setLastname("Last");
+        newUser.setLogin("user");
+        newUser.setPassword("12345678");
+        newUser.setEmail("user@gmail.com");
+        newUser.setRole(Role.USER);
+        
+        Car newCar = new Car();
+        newCar.setFuel(Fuel.DIESEL);
+        newCar.setManufacturer("Audi");
+        newCar.setModel("R8");
+        newCar.setMileage(10);
+        newCar.setRegister_number("1B2C3D4");
+        newCar.setVin("WBABA91060AL04921");
+        newCar.setYear(1999);
+        
+        Drive newDrive = driveService.startUsingCar(newCar, newUser);
+        
+        Drive drive2 = driveService.stopUsingCar(newCar, 10); 
+                
+        assertEquals(drive2.getId(), newDrive.getId());
+        assertEquals(drive2.getDistance(), 10); 
+    }
+    
+    @Test (expected = CarRegisterDataAccessException.class)
+    public void testStopNonExistingDrive()
+    {     
+        Car newCar = new Car();
+        newCar.setFuel(Fuel.DIESEL);
+        newCar.setManufacturer("Audi");
+        newCar.setModel("R8");
+        newCar.setMileage(10);
+        newCar.setRegister_number("1B2C3D4");
+        newCar.setVin("WBABA91060AL04921");
+        newCar.setYear(1999);
+        
+        driveService.stopUsingCar(newCar, 10); 
     }
 }
