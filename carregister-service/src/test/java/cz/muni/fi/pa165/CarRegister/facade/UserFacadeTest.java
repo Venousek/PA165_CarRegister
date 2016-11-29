@@ -55,7 +55,7 @@ public class UserFacadeTest {
     }
 
     @Test
-    public void findCarTest() {
+    public void findUserTest() {
         user1DTO = userFacade.createUser(user1DTO);
         user2DTO = userFacade.createUser(user2DTO); 
         UserDTO usr1 = userFacade.findById(user1DTO.getId());
@@ -74,7 +74,7 @@ public class UserFacadeTest {
     }
 
     @Test
-    public void updateCar() {
+    public void updateUser() {
     	user1DTO = userFacade.createUser(user1DTO);                       
         user1DTO.setFirstname("Peter");
         
