@@ -9,7 +9,8 @@
         <module>./carregister-dao</module>
         <module>carregister-service</module>
         <module>carregister-api</module>
-    </modules>
+    <module>carregister-web</module>
+  </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
