@@ -28,7 +28,7 @@
             <form:label path="interval.beginLong" cssClass="col-sm-2 control-label"><fmt:message key="general.begin"/></form:label>
             <div class="col-sm-4">
                 <jsp:setProperty name="dateObject" property="time" value="${interval.beginLong}" />
-                <fmt:formatDate value="${dateObject}" type="date" pattern="dd-mm-yyyy" var="theFormattedDate" />
+                <fmt:formatDate value="${dateObject}" type="date" pattern="dd/MM/yyyy" var="theFormattedDate" />
                 <form:input type="text" path="interval.beginLong"  readonly="true" value="${theFormattedDate}" cssClass="form-control"/>
             </div>
           </div>
@@ -36,7 +36,7 @@
             <form:label path="interval.endLong" cssClass="col-sm-2 control-label"><fmt:message key="general.end"/></form:label>
             <div class="col-sm-4">
                 <jsp:setProperty name="dateObject" property="time" value="${interval.endLong}" />
-                <fmt:formatDate value="${dateObject}" type="date" pattern="dd-mm-yyyy" var="theFormattedDate" />
+                <fmt:formatDate value="${dateObject}" type="date" pattern="dd/MM/yyyy" var="theFormattedDate" />
                 <form:input type="text" path="interval.endLong" readonly="true" value="${theFormattedDate}" cssClass="form-control"/>
             </div>
           </div>
@@ -44,7 +44,7 @@
             <form:label path="interval.visitedLong" cssClass="col-sm-2 control-label"><fmt:message key="general.visited"/></form:label>
             <div class="col-sm-4">
                 <jsp:setProperty name="dateObject" property="time" value="${interval.visitedLong}" />
-                <fmt:formatDate value="${dateObject}" type="date" pattern="dd-mm-yyyy" var="theFormattedDate" />
+                <fmt:formatDate value="${dateObject}" type="date" pattern="dd/MM/yyyy" var="theFormattedDate" />
                 <form:input type="text" readonly="true" path="interval.visitedLong" value="${theFormattedDate}" cssClass="form-control"/>
             </div>
           </div> 
