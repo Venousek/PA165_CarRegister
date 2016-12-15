@@ -1,6 +1,7 @@
 package cz.muni.fi.pa165.CarRegister.web.config;
 
-import cz.muni.fi.pa165.sampledata.CarRentalWithSampleDataConfiguration;
+
+import cz.muni.fi.pa165.carrental.sampledata.CarRentalWithSampleDataConfiguration;
 import javax.validation.Validator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

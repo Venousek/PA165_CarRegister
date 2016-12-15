@@ -6,9 +6,11 @@
 package cz.muni.fi.pa165.CarRegister.facade;
 
 import cz.muni.fi.pa165.CarRegister.dto.CarDTO;
+import cz.muni.fi.pa165.CarRegister.dto.ServiceIntervalCreateDTO;
 import cz.muni.fi.pa165.CarRegister.dto.ServiceIntervalDTO;
 import cz.muni.fi.pa165.CarRegister.enums.Fuel;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -38,7 +40,7 @@ public class ServiceIntervalFacadeTest {
     @Inject
     private CarFacade carFacade;
     
-    private ServiceIntervalDTO serviceIntervalDTO;
+    private ServiceIntervalCreateDTO serviceIntervalDTO;
     private ServiceIntervalDTO serviceInterval2DTO;
     private CarDTO carDTO;
     private CarDTO car2DTO;
@@ -64,11 +66,11 @@ public class ServiceIntervalFacadeTest {
         car2DTO.setYear(1999);
         car2DTO = carFacade.createCar(car2DTO);
         
-        serviceIntervalDTO = new ServiceIntervalDTO();        
-        serviceIntervalDTO.setCar(carDTO);
-        serviceIntervalDTO.setBeginLong(new DateTime(2016, 5, 10, 10, 15).getMillis());
-        serviceIntervalDTO.setEndLong(new DateTime(2017, 5, 10, 10, 15).getMillis());
-        serviceIntervalDTO.setVisitedLong(new DateTime(2017, 4, 10, 10, 15).getMillis());
+        serviceIntervalDTO = new ServiceIntervalCreateDTO();        
+        serviceIntervalDTO.setCarId(carDTO.getId());
+        serviceIntervalDTO.setBegin(new Date(2016, 5, 10, 10, 15));
+        serviceIntervalDTO.setEnd(new Date(2017, 5, 10, 10, 15));
+        serviceIntervalDTO.setVisited(new Date(2017, 4, 10, 10, 15));
      
         serviceInterval2DTO = new ServiceIntervalDTO();        
         serviceInterval2DTO.setCar(car2DTO);
@@ -79,41 +81,38 @@ public class ServiceIntervalFacadeTest {
 
     @Test
     public void findServiceIntervalTest() {
-        serviceIntervalDTO = serviceIntervalFacade.createServiceInterval(serviceIntervalDTO);
+        serviceInterval2DTO = serviceIntervalFacade.createServiceInterval(serviceIntervalDTO);
         
-        ServiceIntervalDTO foundServiceInterval = serviceIntervalFacade.findById(serviceIntervalDTO.getId());
+        ServiceIntervalDTO foundServiceInterval = serviceIntervalFacade.findById(serviceInterval2DTO.getId());
         
-        assertTrue(serviceIntervalDTO.equals(foundServiceInterval));
+        assertTrue(serviceInterval2DTO.equals(foundServiceInterval));
         
     }
     @Test
     public void findAllServiceIntervalTest() {
-        serviceIntervalDTO = serviceIntervalFacade.createServiceInterval(serviceIntervalDTO);
-        serviceInterval2DTO = serviceIntervalFacade.createServiceInterval(serviceInterval2DTO); 
-        List<ServiceIntervalDTO> serviceIntervals = new ArrayList<ServiceIntervalDTO>();
-        serviceIntervals.add(serviceIntervalDTO);
-        serviceIntervals.add(serviceInterval2DTO);
-        assertTrue(serviceIntervals.equals(serviceIntervalFacade.findAll()));
+        serviceInterval2DTO = serviceIntervalFacade.createServiceInterval(serviceIntervalDTO);
+        serviceInterval2DTO = serviceIntervalFacade.createServiceInterval(serviceIntervalDTO); 
+        assertTrue(serviceIntervalFacade.findAll().size() == 2);
     }
     @Test
     public void updateServiceInterval() {
-    	serviceIntervalDTO = serviceIntervalFacade.createServiceInterval(serviceIntervalDTO);                       
-        serviceIntervalDTO.setCar(car2DTO);
+    	serviceInterval2DTO = serviceIntervalFacade.createServiceInterval(serviceIntervalDTO);                       
+        serviceInterval2DTO.setCar(car2DTO);
         
-        serviceIntervalFacade.update(serviceIntervalDTO);
+        serviceIntervalFacade.update(serviceInterval2DTO);
         
-        ServiceIntervalDTO serviceInterval2 = serviceIntervalFacade.findById(serviceIntervalDTO.getId());
+        ServiceIntervalDTO serviceInterval2 = serviceIntervalFacade.findById(serviceInterval2DTO.getId());
                 
-        assertEquals(serviceInterval2.getId(), serviceIntervalDTO.getId());
+        assertEquals(serviceInterval2.getId(), serviceInterval2DTO.getId());
         assertEquals(serviceInterval2.getCar(), car2DTO);   
     }
 
     @Test
     public void deleteServiceInterval() {
-    	serviceIntervalDTO = serviceIntervalFacade.createServiceInterval(serviceIntervalDTO);                       
+    	serviceInterval2DTO = serviceIntervalFacade.createServiceInterval(serviceIntervalDTO);                       
         
-        Long id = serviceIntervalDTO.getId();
-        serviceIntervalFacade.remove(serviceIntervalDTO);
+        Long id = serviceInterval2DTO.getId();
+        serviceIntervalFacade.remove(serviceInterval2DTO);
         
         ServiceIntervalDTO serviceInterval = serviceIntervalFacade.findById(id);
                 

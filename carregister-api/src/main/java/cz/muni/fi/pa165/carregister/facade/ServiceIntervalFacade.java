@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.CarRegister.facade;
 
+import cz.muni.fi.pa165.CarRegister.dto.ServiceIntervalCreateDTO;
 import cz.muni.fi.pa165.CarRegister.dto.ServiceIntervalDTO;
 import java.util.List;
 
@@ -14,7 +15,7 @@ public interface ServiceIntervalFacade {
      * @param serviceInterval ServiceInterval object as DTO
      * @return created object
      */
-    ServiceIntervalDTO createServiceInterval(ServiceIntervalDTO serviceInterval);
+    ServiceIntervalDTO createServiceInterval(ServiceIntervalCreateDTO serviceInterval);
 
     /**
      * Gets All ServiceIntervals

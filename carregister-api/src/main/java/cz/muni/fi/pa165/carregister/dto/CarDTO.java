@@ -88,7 +88,10 @@ public class CarDTO {
         public void setFuel(Fuel fuel) {
             this.fuel = fuel;
         }	
-
+        @Override
+        public String toString() {
+            return getManufacturer()+" "+ getModel();
+        }
         @Override
         public int hashCode() {
             int hash = 7;

@@ -10,7 +10,7 @@
         <module>carregister-service</module>
         <module>carregister-api</module>
     <module>carregister-web</module>
-        <module>../../../Desktop/PA165_CarRegister/SampleData</module>
+        <module>sampledata</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

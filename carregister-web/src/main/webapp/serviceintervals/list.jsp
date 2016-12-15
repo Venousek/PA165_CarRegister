@@ -26,19 +26,23 @@
             <th><fmt:message key="general.begin"/></th>
             <th><fmt:message key="general.end"/></th>
             <th><fmt:message key="general.visited"/></th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
         <c:forEach items="${intervals}" var="interval">
             <tr>
                 <td>${interval.id}</td>
-                <td><c:out value="${interval.car.manufacturer} - ${interval.car.model}"/></td>
+                <td><c:out value="${interval.car}"/></td>
                 <jsp:setProperty name="dateObject" property="time" value="${interval.beginLong}" />
-                <td><fmt:formatDate value="${dateObject}" pattern="yyyy-MM-dd"/></td>
+                <td><fmt:formatDate value="${dateObject}" pattern="dd-mm-yyyy"/></td>
                 <jsp:setProperty name="dateObject" property="time" value="${interval.endLong}" />
-                <td><fmt:formatDate value="${dateObject}" pattern="yyyy-MM-dd"/></td>
+                <td><fmt:formatDate value="${dateObject}" pattern="dd-mm-yyyy"/></td>
                 <jsp:setProperty name="dateObject" property="time" value="${interval.visitedLong}" />
-                <td><fmt:formatDate value="${dateObject}" pattern="yyyy-MM-dd"/></td>
+                <td><fmt:formatDate value="${dateObject}" pattern="dd-mm-yyyy"/></td>
+                <td><my:a href="/serviceintervals/view/${interval.id}"><fmt:message key="general.detail"/></my:a> | 
+                    <my:a href="/serviceintervals/edit/${interval.id}" class=""><fmt:message key="general.edit"/></my:a> | 
+                    <my:a href="/serviceintervals/delete/${interval.id}" class=""><fmt:message key="general.delete"/></my:a></td>
             </tr>
         </c:forEach>
         </tbody>

@@ -5,9 +5,11 @@
  */
 package cz.muni.fi.pa165.CarRegister.facade;
 
+import cz.muni.fi.pa165.CarRegister.dto.ServiceIntervalCreateDTO;
 import cz.muni.fi.pa165.CarRegister.dto.ServiceIntervalDTO;
 import cz.muni.fi.pa165.CarRegister.entities.ServiceInterval;
 import cz.muni.fi.pa165.CarRegister.service.BeanMappingService;
+import cz.muni.fi.pa165.CarRegister.service.CarService;
 import cz.muni.fi.pa165.CarRegister.service.ServiceIntervalService;
 import cz.muni.fi.pa165.exception.CarRegisterDataAccessException;
 import java.util.List;
@@ -23,14 +25,20 @@ public class ServiceIntervalFacadeImpl implements ServiceIntervalFacade {
 
     @Inject
     private ServiceIntervalService serviceIntervalService;
-
+    @Inject
+    private CarService carService;
     @Inject
     private BeanMappingService beanMappingService;
     
     @Override
-    public ServiceIntervalDTO createServiceInterval(ServiceIntervalDTO serviceInterval) {
+    public ServiceIntervalDTO createServiceInterval(ServiceIntervalCreateDTO serviceInterval) {
        try {
-        ServiceInterval interval = beanMappingService.mapTo(serviceInterval, ServiceInterval.class);
+        ServiceInterval interval = new ServiceInterval();
+        interval.setCar(carService.findById(serviceInterval.getCarId()));
+        interval.setBeginLong(serviceInterval.getBegin().getTime());
+        interval.setEndLong(serviceInterval.getEnd().getTime());
+        interval.setVisitedLong(serviceInterval.getVisited().getTime());
+        
         ServiceInterval created = serviceIntervalService.create(interval);
         return beanMappingService.mapTo(created, ServiceIntervalDTO.class);
         } catch (Exception e) {
