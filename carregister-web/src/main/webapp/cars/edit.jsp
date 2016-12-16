@@ -14,7 +14,7 @@
 <s:message code="cars.edit" var="title"/>
 <my:pagetemplate title="${title}">
 <jsp:attribute name="body">
-    <form:form method="post" action="${pageContext.request.contextPath}/cars/edit"
+    <form:form method="post" action="${pageContext.request.contextPath}/cars/edited"
                modelAttribute="car" cssClass="form-horizontal">
         
         <form:input type="hidden" path="id" />

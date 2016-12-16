@@ -6,8 +6,10 @@
 package cz.muni.fi.pa165.CarRegister.web.controllers;
 
 import cz.muni.fi.pa165.CarRegister.dto.CarDTO;
+import cz.muni.fi.pa165.CarRegister.dto.DriveCreateDTO;
 import cz.muni.fi.pa165.CarRegister.enums.Fuel;
 import cz.muni.fi.pa165.CarRegister.facade.CarFacade;
+import cz.muni.fi.pa165.carregister.dto.CarCreateDTO;
 import javax.inject.Inject;
 import javax.validation.Valid;
 import org.slf4j.Logger;
@@ -15,6 +17,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,7 +56,7 @@ public class CarController
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String create(Model model) {  
         log.debug("New car");
-        model.addAttribute("carCreate", new CarDTO());
+        model.addAttribute("carCreate", new DriveCreateDTO());
         return "cars/create";
     }
     
@@ -60,17 +64,6 @@ public class CarController
     public String created(@Valid @ModelAttribute("carCreate") CarDTO formBean, BindingResult bindingResult,
                          Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder) {
         log.debug("Created car {}", formBean);
-        //in case of validation error forward back to the the form
-        /*if (bindingResult.hasErrors()) {
-            for (ObjectError ge : bindingResult.getGlobalErrors()) {
-                log.trace("ObjectError: {}", ge);
-            }
-            for (FieldError fe : bindingResult.getFieldErrors()) {
-                model.addAttribute(fe.getField() + "_error",true);
-                log.trace("FieldError: {}", fe);
-            }
-            return "cars/create";
-        }*/
           
         CarDTO car = carFacade.createCar(formBean);
        
@@ -93,6 +86,11 @@ public class CarController
         log.debug("edit({})", id);
         model.addAttribute("car", carFacade.findById(id));        
         return "cars/edit";
+    }
+    
+    
+    @InitBinder
+    protected void initBinder(WebDataBinder binder){
     }
     
     @RequestMapping(value = "/edited", method = RequestMethod.POST)
