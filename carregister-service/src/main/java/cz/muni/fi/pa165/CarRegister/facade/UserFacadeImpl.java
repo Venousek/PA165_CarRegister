@@ -5,6 +5,7 @@
  */
 package cz.muni.fi.pa165.CarRegister.facade;
 
+import cz.muni.fi.pa165.CarRegister.dto.UserAuthenticateDTO;
 import cz.muni.fi.pa165.CarRegister.dto.UserDTO;
 import cz.muni.fi.pa165.CarRegister.entities.User;
 import cz.muni.fi.pa165.CarRegister.service.BeanMappingService;
@@ -85,6 +86,22 @@ public class UserFacadeImpl implements UserFacade
         } catch (Exception e) {
             throw new CarRegisterDataAccessException("cannot update user",e);
         }
+    }
+
+    @Override
+    public UserDTO findByLogin(String login) {
+        try {
+            User user = userService.findByLogin(login);
+            return (user == null) ? null : beanMappingService.mapTo(user, UserDTO.class);
+        } catch (Exception e) {
+            throw new CarRegisterDataAccessException("cannot find user login", e);
+        }
+    }
+    
+    @Override
+    public boolean authenticate(UserAuthenticateDTO u) {
+        return userService.authenticate(
+                userService.findById(u.getUserId()), u.getPassword());
     }
     
 }

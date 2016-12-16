@@ -24,6 +24,14 @@ public interface UserDao {
     User findById(Long id);
     
     /**
+     * Retrieves user with specified Login from DB.
+     * 
+     * @param Login
+     * @return user with specified Login
+     */
+    User findByLogin(String login);
+    
+    /**
      * Retrieves all users from DB.
      * 
      * @return all users existing in DB

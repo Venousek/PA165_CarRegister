@@ -92,6 +92,10 @@ public class UserDTO {
   	{
 		this.role = role;
 	}
+        
+        public boolean isAdmin() {
+            return role == Role.ADMIN;
+        }
 
         @Override
         public int hashCode() {

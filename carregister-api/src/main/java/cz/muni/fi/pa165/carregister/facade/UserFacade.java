@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.CarRegister.facade;
 
+import cz.muni.fi.pa165.CarRegister.dto.UserAuthenticateDTO;
 import cz.muni.fi.pa165.CarRegister.dto.UserDTO;
 import java.util.List;
 
@@ -28,6 +29,13 @@ public interface UserFacade {
      * @return UserDto
      */
     UserDTO findById(Long id);
+    
+    /**
+     * Get Existing user by login
+     * @param id User id
+     * @return UserDto
+     */
+    UserDTO findByLogin(String login);
 
     /**
      * Delete User by id
@@ -41,5 +49,7 @@ public interface UserFacade {
      * @return updated User DTO
      */
     UserDTO update(UserDTO user);
+    
+    boolean authenticate(UserAuthenticateDTO u);
 
 }

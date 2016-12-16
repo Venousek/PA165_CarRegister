@@ -58,6 +58,13 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
     }
     
     @Override
+    public User findByLogin(String login) {
+        Query q = em.createQuery("select u from User u where u.login = :login");
+        q.setParameter("login", login);
+        return (User)q.getSingleResult();
+    }
+    
+    @Override
     public void update(User user) {        
         em.merge(user);        
     }

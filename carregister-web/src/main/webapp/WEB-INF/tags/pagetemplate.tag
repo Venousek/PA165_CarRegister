@@ -40,14 +40,16 @@
             <ul class="nav navbar-nav">
                 <li><my:a href="/cars/list"><f:message key="navigation.cars"/></my:a></li>
                 <li><my:a href="/drives/list"><f:message key="navigation.drives"/></my:a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><f:message key="navigation.admin"/><b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><my:a href="/users/list"><f:message key="navigation.admin.users"/></my:a></li>
-                        <li><my:a href="/serviceintervals/list"><f:message key="navigation.admin.intervals"/></my:a></li>
-                        <li><my:a href="/cars/admin"><f:message key="navigation.admin.cars"/></my:a></li>
-                    </ul>
-                </li>
+                <c:if test="${not empty authenticatedUser and authenticatedUser.admin}">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><f:message key="navigation.admin"/><b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><my:a href="/users/list"><f:message key="navigation.admin.users"/></my:a></li>
+                            <li><my:a href="/serviceintervals/list"><f:message key="navigation.admin.intervals"/></my:a></li>
+                            <li><my:a href="/cars/admin"><f:message key="navigation.admin.cars"/></my:a></li>
+                        </ul>
+                    </li>
+                </c:if>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
@@ -69,7 +71,7 @@
         <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <c:out value="${authenticatedUser.givenName} ${authenticatedUser.surname}"/>
+                    <c:out value="${authenticatedUser.firstname} ${authenticatedUser.lastname}"/>
                 </div>
             </div>
         </div>

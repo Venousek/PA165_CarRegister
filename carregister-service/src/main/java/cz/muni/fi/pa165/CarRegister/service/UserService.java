@@ -36,5 +36,13 @@ public interface UserService {
      * @return User object with given id or null if no such entry */
     User findById(Long id);
         
+    /* Returns specific User identified by his login
+     * If no such login in the database, returns null
+     * @param login Unique identifier entered by user
+     * @return User object with given login or null if no such entry */
+    User findByLogin(String login);
+    
+    boolean authenticate(User u, String password);
+        
         
 }

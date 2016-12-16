@@ -48,10 +48,14 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
         Car car2 = car("254","SKODA","SUPERB",2015,"rulez322",5465,Fuel.DIESEL);
         Car car3 = car("666","SKODA","OCTAVIE",2010,"srot22",545444,Fuel.GASOLINE);
         Car car4 = car("547","SKODA","FABIE",2012,"BlAzE420",88465,Fuel.DIESEL);
-        User user1 = user("heslo","Admin","František","Vedoucí","frantisek.vedouci@admin.com",Role.ADMIN);
-        User user2 = user("heslo","drak","Josef","Rychly","josef.rychly@fast.com",Role.USER);
-        User user3 = user("heslo","snek","Radim","Pomaly","radim.pomaly@slow.com",Role.USER);
-        User user4 = user("heslo","lady92","Aneta","Krásná","aneta.krasna@cmuk.com",Role.USER);
+        User user1 = user("1000:1ded99485eaa8c0542e86a5b9042653b9e00aeffb4393394:63525619e50bc29588dc6389fe9a0a083157bc6e58cced2a",
+                "Admin","František","Vedoucí","frantisek.vedouci@admin.com",Role.ADMIN);
+        User user2 = user("1000:1ded99485eaa8c0542e86a5b9042653b9e00aeffb4393394:63525619e50bc29588dc6389fe9a0a083157bc6e58cced2a",
+                "drak","Josef","Rychly","josef.rychly@fast.com",Role.USER);
+        User user3 = user("1000:1ded99485eaa8c0542e86a5b9042653b9e00aeffb4393394:63525619e50bc29588dc6389fe9a0a083157bc6e58cced2a",
+                "snek","Radim","Pomaly","radim.pomaly@slow.com",Role.USER);
+        User user4 = user("1000:1ded99485eaa8c0542e86a5b9042653b9e00aeffb4393394:63525619e50bc29588dc6389fe9a0a083157bc6e58cced2a",
+                "lady92","Aneta","Krásná","aneta.krasna@cmuk.com",Role.USER);
         Drive drive1 = drive(car1, user2,daysFromNow(0),daysFromNow(1),50);
         Drive drive2 = drive(car2, user3,daysFromNow(0),daysFromNow(4),250);
         Drive drive3 = drive(car4, user4,daysFromNow(0),daysFromNow(8),550);
