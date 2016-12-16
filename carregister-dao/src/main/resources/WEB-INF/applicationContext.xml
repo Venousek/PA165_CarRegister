@@ -79,7 +79,7 @@
     <bean id="userDao" class="cz.muni.fi.pa165.CarRegister.dao.UserDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
-
+    
     <bean id="validator"
           class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>
 

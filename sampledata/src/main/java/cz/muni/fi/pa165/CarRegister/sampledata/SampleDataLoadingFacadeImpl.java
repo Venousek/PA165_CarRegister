@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cz.muni.fi.pa165.carrental.sampledata;
+package cz.muni.fi.pa165.CarRegister.sampledata;
 
 import cz.muni.fi.pa165.CarRegister.entities.Car;
 import cz.muni.fi.pa165.CarRegister.entities.Drive;

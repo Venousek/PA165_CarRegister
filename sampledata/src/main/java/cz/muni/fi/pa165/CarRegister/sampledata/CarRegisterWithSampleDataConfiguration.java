@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cz.muni.fi.pa165.carrental.sampledata;
+package cz.muni.fi.pa165.CarRegister.sampledata;
 
 import cz.muni.fi.pa165.CarRegister.conf.ServiceConfiguration;
 import java.io.IOException;
@@ -23,9 +23,9 @@ import org.springframework.context.annotation.Import;
 @Configuration
 @Import(ServiceConfiguration.class)
 @ComponentScan(basePackageClasses = {SampleDataLoadingFacadeImpl.class})
-public class CarRentalWithSampleDataConfiguration {
+public class CarRegisterWithSampleDataConfiguration {
 
-    final static Logger log = LoggerFactory.getLogger(CarRentalWithSampleDataConfiguration.class);
+    final static Logger log = LoggerFactory.getLogger(CarRegisterWithSampleDataConfiguration.class);
 
     @Inject
     SampleDataLoadingFacade sampleDataLoadingFacade;

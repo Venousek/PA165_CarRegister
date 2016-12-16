@@ -13,6 +13,7 @@ import cz.muni.fi.pa165.exception.CarRegisterDataAccessException;
 import java.util.List;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 /**
@@ -21,6 +22,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @Transactional
+@Component(value = "userFacade")
 public class UserFacadeImpl implements UserFacade
 {
     @Inject

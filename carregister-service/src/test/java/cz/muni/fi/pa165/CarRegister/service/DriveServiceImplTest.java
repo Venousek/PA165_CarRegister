@@ -13,7 +13,6 @@ import cz.muni.fi.pa165.CarRegister.enums.Role;
 import cz.muni.fi.pa165.exception.CarRegisterDataAccessException;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
-import javax.validation.ConstraintViolationException;
 import org.joda.time.DateTime;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
