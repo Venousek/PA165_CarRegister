@@ -1,9 +1,5 @@
 package cz.muni.fi.pa165.CarRegister.rest.conf;
 
-import cz.muni.fi.pa165.CarRegister.sampledata.SampleDataLoadingFacade;
-import java.io.IOException;
-import javax.annotation.PostConstruct;
-import javax.inject.Inject;
 import javax.servlet.Filter;
 import org.springframework.web.context.request.RequestContextListener;
 import org.springframework.web.filter.CharacterEncodingFilter;
@@ -11,17 +7,7 @@ import org.springframework.web.filter.ShallowEtagHeaderFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 public class Initializer extends AbstractAnnotationConfigDispatcherServletInitializer {
-
-    @Inject
-    SampleDataLoadingFacade sampleDataLoadingFacade;
-
-    @PostConstruct
-    public void dataLoading() {
-        try {
-            sampleDataLoadingFacade.loadData();
-        } catch (IOException e) {
-        }
-    }   
+   
     
     @Override
     protected Class<?>[] getRootConfigClasses() {
