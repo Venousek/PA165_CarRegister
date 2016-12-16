@@ -14,11 +14,11 @@ public class ServiceIntervalCreateDTO {
         
         private Long carId;
         
-        private Date begin;
+        private Date beginDate;
         
-        private Date end;
+        private Date endDate;
         
-        private Date visited;
+        private Date visitedDate;
 
         public Long getId() {
             return id;
@@ -36,37 +36,37 @@ public class ServiceIntervalCreateDTO {
             this.carId = carId;
         }
 
-        public Date getBegin() {
-            return begin;
+        public Date getBeginDate() {
+            return beginDate;
         }
 
-        public void setBegin(Date begin) {
-            this.begin = begin;
+        public void setBeginDate(Date begin) {
+            this.beginDate = begin;
         }
 
-        public Date getEnd() {
-            return end;
+        public Date getEndDate() {
+            return endDate;
         }
 
-        public void setEnd(Date end) {
-            this.end = end;
+        public void setEndDate(Date end) {
+            this.endDate = end;
         }
 
-        public Date getVisited() {
-            return visited;
+        public Date getVisitedDate() {
+            return visitedDate;
         }
 
-        public void setVisited(Date visited) {
-            this.visited = visited;
+        public void setVisitedDate(Date visited) {
+            this.visitedDate = visited;
         }
 
         @Override
         public int hashCode() {
             int hash = 7;
             hash = 83 * hash + Objects.hashCode(this.carId);
-            hash = 83 * hash + Objects.hashCode(this.begin);
-            hash = 83 * hash + Objects.hashCode(this.end);
-            hash = 83 * hash + Objects.hashCode(this.visited);
+            hash = 83 * hash + Objects.hashCode(this.beginDate);
+            hash = 83 * hash + Objects.hashCode(this.endDate);
+            hash = 83 * hash + Objects.hashCode(this.visitedDate);
             return hash;
         }
 
@@ -85,13 +85,13 @@ public class ServiceIntervalCreateDTO {
             if (!Objects.equals(this.carId, other.carId)) {
                 return false;
             }
-            if (!Objects.equals(this.begin, other.begin)) {
+            if (!Objects.equals(this.beginDate, other.beginDate)) {
                 return false;
             }
-            if (!Objects.equals(this.end, other.end)) {
+            if (!Objects.equals(this.endDate, other.endDate)) {
                 return false;
             }
-            if (!Objects.equals(this.visited, other.visited)) {
+            if (!Objects.equals(this.visitedDate, other.visitedDate)) {
                 return false;
             }
             return true;

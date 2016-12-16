@@ -17,38 +17,38 @@
                modelAttribute="interval" cssClass="form-horizontal">
           <form:input type="hidden" path="id" />
       <div class="form-group">
-          <form:label path="carId" cssClass="col-sm-2 control-label"><fmt:message key="general.car"/></form:label>
+          <form:label path="car.id" cssClass="col-sm-2 control-label"><fmt:message key="general.car"/></form:label>
             <div class="col-sm-4">
-                <form:select path="carId" cssClass="form-control">
+                <form:select path="car.id" cssClass="form-control">
                     <c:forEach items="${cars}" var="c">
                         <form:option value="${c.id}">${c.manufacturer} - ${c.model}</form:option>
                     </c:forEach>
                 </form:select>
-                <p class="help-block"><form:errors path="carId" cssClass="help-block"/></p>
+                <p class="help-block"><form:errors path="car.id" cssClass="help-block"/></p>
             </div> 
         </div>
        <div class="form-group ${begin_error?'has-error':''}" >
-            <form:label path="begin" cssClass="col-sm-2 control-label"><fmt:message key="general.begin"/></form:label>
+            <form:label path="beginDate" cssClass="col-sm-2 control-label"><fmt:message key="general.begin"/></form:label>
             <div class="col-sm-4">
-                <fmt:formatDate value="${interval.begin}" type="date" pattern="dd/MM/yyyy" var="theFormattedDate" />
+                <fmt:formatDate value="${interval.beginDate}" type="date" pattern="dd/MM/yyyy" var="theFormattedDate" />
                 <form:input type="text" path="begin" id="timepicker"  value="${theFormattedDate}" cssClass="form-control"/>
-                <form:errors path="begin" cssClass="help-block"/>
+                <form:errors path="beginDate" cssClass="help-block"/>
             </div>
         </div>
         <div class="form-group ${end_error?'has-error':''}" >
-            <form:label path="end" cssClass="col-sm-2 control-label"><fmt:message key="general.end"/></form:label>
+            <form:label path="endDate" cssClass="col-sm-2 control-label"><fmt:message key="general.end"/></form:label>
             <div class="col-sm-4">
-                <fmt:formatDate value="${interval.end}" type="date" pattern="dd/MM/yyyy" var="theFormattedDate" />
+                <fmt:formatDate value="${interval.endDate}" type="date" pattern="dd/MM/yyyy" var="theFormattedDate" />
                 <form:input type="text" path="end" id="timepicker2"  value="${theFormattedDate}" cssClass="form-control"/>
-                <form:errors path="end" cssClass="help-block"/>
+                <form:errors path="endDate" cssClass="help-block"/>
             </div>
         </div>
         <div class="form-group ${visited_error?'has-error':''}" >
-            <form:label path="visited" cssClass="col-sm-2 control-label"><fmt:message key="general.visited"/></form:label>
+            <form:label path="visitedDate" cssClass="col-sm-2 control-label"><fmt:message key="general.visited"/></form:label>
             <div class="col-sm-4">
-                <fmt:formatDate value="${interval.visited}" type="date" pattern="dd/MM/yyyy" var="theFormattedDate" />
+                <fmt:formatDate value="${interval.visitedDate}" type="date" pattern="dd/MM/yyyy" var="theFormattedDate" />
                 <form:input type="text" path="visited" id="timepicker3"  value="${theFormattedDate}" cssClass="form-control"/>
-                <form:errors path="visited" cssClass="help-block"/>
+                <form:errors path="visitedDate" cssClass="help-block"/>
             </div>
         </div>
            

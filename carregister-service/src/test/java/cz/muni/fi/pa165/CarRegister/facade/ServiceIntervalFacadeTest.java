@@ -66,15 +66,15 @@ public class ServiceIntervalFacadeTest {
         
         serviceIntervalDTO = new ServiceIntervalCreateDTO();        
         serviceIntervalDTO.setCarId(carDTO.getId());
-        serviceIntervalDTO.setBegin(new Date(2016, 5, 10, 10, 15));
-        serviceIntervalDTO.setEnd(new Date(2017, 5, 10, 10, 15));
-        serviceIntervalDTO.setVisited(new Date(2017, 4, 10, 10, 15));
+        serviceIntervalDTO.setBeginDate(new DateTime(2016, 5, 10, 10, 15).toDate());
+        serviceIntervalDTO.setEndDate(new DateTime(2017, 5, 10, 10, 15).toDate());
+        serviceIntervalDTO.setVisitedDate(new DateTime(2017, 4, 10, 10, 15).toDate());
      
         serviceInterval2DTO = new ServiceIntervalDTO();        
         serviceInterval2DTO.setCar(car2DTO);
-        serviceInterval2DTO.setBeginLong(new DateTime(2016, 5, 10, 10, 15).getMillis());
-        serviceInterval2DTO.setEndLong(new DateTime(2017, 5, 10, 10, 15).getMillis());
-        serviceInterval2DTO.setVisitedLong(new DateTime(2017, 4, 10, 10, 15).getMillis());
+        serviceInterval2DTO.setBeginDate(new DateTime(2016, 5, 10, 10, 15).toDate());
+        serviceInterval2DTO.setEndDate(new DateTime(2017, 5, 10, 10, 15).toDate());
+        serviceInterval2DTO.setVisitedDate(new DateTime(2017, 4, 10, 10, 15).toDate());
     }
 
     @Test

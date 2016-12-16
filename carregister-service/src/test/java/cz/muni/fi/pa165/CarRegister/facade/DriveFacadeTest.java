@@ -73,8 +73,8 @@ public class DriveFacadeTest
         driveDTO = new DriveDTO();        
         driveDTO.setUser(userDTO);
         driveDTO.setCar(carDTO);
-        driveDTO.setBeginLong(new DateTime(2016, 5, 10, 10, 15).getMillis());
-        driveDTO.setEndLong(new DateTime(2016, 5, 10, 11, 15).getMillis());
+        driveDTO.setBeginDate(new DateTime(2016, 5, 10, 10, 15).toDate());
+        driveDTO.setEndDate(new DateTime(2016, 5, 10, 11, 15).toDate());
         driveDTO.setDistance(40);  
     }
      

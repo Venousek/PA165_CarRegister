@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.CarRegister.dto;
 
+import java.util.Date;
 import java.util.Objects;
 
 /**
@@ -14,9 +15,9 @@ public class DriveDTO {
         
         private UserDTO user;
 	
-        private Long beginLong;
+        private Date beginDate;
 
-        private Long endLong;
+        private Date endDate;
 
         int distance;
 
@@ -43,23 +44,23 @@ public class DriveDTO {
         public void setUser(UserDTO user) {
             this.user = user;
         }
-        
-        public Long getBeginLong() {
-            return beginLong;
+
+        public Date getBeginDate() {
+            return beginDate;
         }
 
-        public void setBeginLong(Long begin) {
-            this.beginLong = begin;
+        public void setBeginDate(Date beginDate) {
+            this.beginDate = beginDate;
         }
 
-        public Long getEndLong() {
-            return endLong;
+        public Date getEndDate() {
+            return endDate;
         }
 
-        public void setEndLong(Long end) {
-            this.endLong = end;
+        public void setEndDate(Date endDate) {
+            this.endDate = endDate;
         }
-        
+
         public void setDistance(int distance) {
             this.distance = distance;
         }
@@ -73,8 +74,8 @@ public class DriveDTO {
             int hash = 7;
             hash = 47 * hash + Objects.hashCode(this.car);
             hash = 47 * hash + Objects.hashCode(this.user);
-            hash = 47 * hash + Objects.hashCode(this.beginLong);
-            hash = 47 * hash + Objects.hashCode(this.endLong);
+            hash = 47 * hash + Objects.hashCode(this.beginDate);
+            hash = 47 * hash + Objects.hashCode(this.endDate);
             return hash;
         }
 
@@ -96,10 +97,10 @@ public class DriveDTO {
             if (!Objects.equals(this.user, other.user)) {
                 return false;
             }
-            if (!Objects.equals(this.beginLong, other.beginLong)) {
+            if (!Objects.equals(this.beginDate, other.beginDate)) {
                 return false;
             }
-            if (!Objects.equals(this.endLong, other.endLong)) {
+            if (!Objects.equals(this.endDate, other.endDate)) {
                 return false;
             }
             return true;

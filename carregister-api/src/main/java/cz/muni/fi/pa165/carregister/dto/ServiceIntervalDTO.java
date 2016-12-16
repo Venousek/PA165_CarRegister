@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.CarRegister.dto;
 
+import java.util.Date;
 import java.util.Objects;
 
 /**
@@ -12,11 +13,11 @@ public class ServiceIntervalDTO {
    
         private CarDTO car;
 
-        private Long beginLong;
+        private Date beginDate;
         
-        private Long endLong;
+        private Date endDate;
         
-        private Long visitedLong;
+        private Date visitedDate;
 
         public Long getId() {
             return id;
@@ -34,37 +35,37 @@ public class ServiceIntervalDTO {
             this.car = car;
         }
 
-        public Long getBeginLong() {
-            return beginLong;
+        public Date getBeginDate() {
+            return beginDate;
         }
 
-        public void setBeginLong(Long begin) {
-            this.beginLong = begin;
+        public void setBeginDate(Date begin) {
+            this.beginDate = begin;
         }
 
-        public Long getEndLong() {
-            return endLong;
+        public Date getEndDate() {
+            return endDate;
         }
 
-        public void setEndLong(Long end) {
-            this.endLong = end;
+        public void setEndDate(Date end) {
+            this.endDate = end;
         }
 
-        public Long getVisitedLong() {
-            return visitedLong;
+        public Date getVisitedDate() {
+            return visitedDate;
         }
 
-        public void setVisitedLong(Long visited) {
-            this.visitedLong = visited;
+        public void setVisitedDate(Date visited) {
+            this.visitedDate = visited;
         }
 
         @Override
         public int hashCode() {
             int hash = 7;
             hash = 83 * hash + Objects.hashCode(this.car);
-            hash = 83 * hash + Objects.hashCode(this.beginLong);
-            hash = 83 * hash + Objects.hashCode(this.endLong);
-            hash = 83 * hash + Objects.hashCode(this.visitedLong);
+            hash = 83 * hash + Objects.hashCode(this.beginDate);
+            hash = 83 * hash + Objects.hashCode(this.endDate);
+            hash = 83 * hash + Objects.hashCode(this.visitedDate);
             return hash;
         }
 
@@ -83,13 +84,13 @@ public class ServiceIntervalDTO {
             if (!Objects.equals(this.car, other.car)) {
                 return false;
             }
-            if (!Objects.equals(this.beginLong, other.beginLong)) {
+            if (!Objects.equals(this.beginDate, other.beginDate)) {
                 return false;
             }
-            if (!Objects.equals(this.endLong, other.endLong)) {
+            if (!Objects.equals(this.endDate, other.endDate)) {
                 return false;
             }
-            if (!Objects.equals(this.visitedLong, other.visitedLong)) {
+            if (!Objects.equals(this.visitedDate, other.visitedDate)) {
                 return false;
             }
             return true;

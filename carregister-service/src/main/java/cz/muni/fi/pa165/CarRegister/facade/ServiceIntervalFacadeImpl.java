@@ -35,9 +35,9 @@ public class ServiceIntervalFacadeImpl implements ServiceIntervalFacade {
        try {
         ServiceInterval interval = new ServiceInterval();
         interval.setCar(carService.findById(serviceInterval.getCarId()));
-        interval.setBeginLong(serviceInterval.getBegin().getTime());
-        interval.setEndLong(serviceInterval.getEnd().getTime());
-        interval.setVisitedLong(serviceInterval.getVisited().getTime());
+        interval.setBeginDate(serviceInterval.getBeginDate());
+        interval.setEndDate(serviceInterval.getEndDate());
+        interval.setVisitedDate(serviceInterval.getVisitedDate());
         
         ServiceInterval created = serviceIntervalService.create(interval);
         return beanMappingService.mapTo(created, ServiceIntervalDTO.class);
