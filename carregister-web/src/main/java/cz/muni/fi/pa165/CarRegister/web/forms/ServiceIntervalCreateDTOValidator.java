@@ -23,9 +23,9 @@ public class ServiceIntervalCreateDTOValidator implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
         ServiceIntervalCreateDTO createDTO = (ServiceIntervalCreateDTO) target;
-        if (createDTO.getBegin() == null) return;
-        if (createDTO.getEnd() == null) return;
-        if (createDTO.getBegin().after(createDTO.getEnd()))
+        if (createDTO.getBeginDate() == null) return;
+        if (createDTO.getEndDate() == null) return;
+        if (createDTO.getBeginDate().after(createDTO.getEndDate()))
             errors.rejectValue("end", "intervals.err");
     }
 }

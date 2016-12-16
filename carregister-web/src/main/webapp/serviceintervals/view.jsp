@@ -25,27 +25,27 @@
             </div>
           </div>
           <div class="form-group" >
-            <form:label path="interval.beginLong" cssClass="col-sm-2 control-label"><fmt:message key="general.begin"/></form:label>
+            <form:label path="interval.beginDate" cssClass="col-sm-2 control-label"><fmt:message key="general.begin"/></form:label>
             <div class="col-sm-4">
-                <jsp:setProperty name="dateObject" property="time" value="${interval.beginLong}" />
+                <jsp:setProperty name="dateObject" property="time" value="${interval.beginDate}" />
                 <fmt:formatDate value="${dateObject}" type="date" pattern="dd/MM/yyyy" var="theFormattedDate" />
-                <form:input type="text" path="interval.beginLong"  readonly="true" value="${theFormattedDate}" cssClass="form-control"/>
+                <form:input type="text" path="interval.beginDate"  readonly="true" value="${theFormattedDate}" cssClass="form-control"/>
             </div>
           </div>
           <div class="form-group" >
-            <form:label path="interval.endLong" cssClass="col-sm-2 control-label"><fmt:message key="general.end"/></form:label>
+            <form:label path="interval.endDate" cssClass="col-sm-2 control-label"><fmt:message key="general.end"/></form:label>
             <div class="col-sm-4">
-                <jsp:setProperty name="dateObject" property="time" value="${interval.endLong}" />
+                <jsp:setProperty name="dateObject" property="time" value="${interval.endDate}" />
                 <fmt:formatDate value="${dateObject}" type="date" pattern="dd/MM/yyyy" var="theFormattedDate" />
-                <form:input type="text" path="interval.endLong" readonly="true" value="${theFormattedDate}" cssClass="form-control"/>
+                <form:input type="text" path="interval.endDate" readonly="true" value="${theFormattedDate}" cssClass="form-control"/>
             </div>
           </div>
          <div class="form-group" >
-            <form:label path="interval.visitedLong" cssClass="col-sm-2 control-label"><fmt:message key="general.visited"/></form:label>
+            <form:label path="interval.visitedDate" cssClass="col-sm-2 control-label"><fmt:message key="general.visited"/></form:label>
             <div class="col-sm-4">
-                <jsp:setProperty name="dateObject" property="time" value="${interval.visitedLong}" />
+                <jsp:setProperty name="dateObject" property="time" value="${interval.visitedDate}" />
                 <fmt:formatDate value="${dateObject}" type="date" pattern="dd/MM/yyyy" var="theFormattedDate" />
-                <form:input type="text" readonly="true" path="interval.visitedLong" value="${theFormattedDate}" cssClass="form-control"/>
+                <form:input type="text" readonly="true" path="interval.visitedDate" value="${theFormattedDate}" cssClass="form-control"/>
             </div>
           </div> 
            <div class="form-group" >

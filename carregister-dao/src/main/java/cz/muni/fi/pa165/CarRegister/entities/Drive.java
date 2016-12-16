@@ -11,6 +11,7 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
+import java.util.Date;
 /**
  *
  * @author robha
@@ -91,11 +92,11 @@ public class Drive {
         }
         
         @Transient
-        public Long getBeginLong() {
-            return begin == null ? null : begin.getMillis();
+        public Date getBeginDate() {
+            return begin == null ? null : new Date(begin.getMillis());
         }
 
-        public void setBeginLong(Long begin) {
+        public void setBeginDate(Date begin) {
             if (begin != null)
                 this.begin = new DateTime(begin);
             else
@@ -103,11 +104,11 @@ public class Drive {
         }        
         
         @Transient
-        public Long getEndLong() {
-            return end == null ? null : end.getMillis();
+        public Date getEndDate() {
+            return end == null ? null : new Date(end.getMillis());
         }
 
-        public void setEndLong(Long end) {
+        public void setEndDate(Date end) {
             if (end != null)
                 this.end = new DateTime(end);
             else

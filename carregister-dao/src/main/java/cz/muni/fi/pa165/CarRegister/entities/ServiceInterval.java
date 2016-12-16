@@ -5,6 +5,7 @@
  */
 package cz.muni.fi.pa165.CarRegister.entities;
 
+import java.util.Date;
 import java.util.Objects;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -84,11 +85,11 @@ public class ServiceInterval {
     }
     
     @Transient
-    public Long getBeginLong() {
-        return begin == null ? null : begin.getMillis();
+    public Date getBeginDate() {
+        return begin == null ? null : new Date(begin.getMillis());
     }
 
-    public void setBeginLong(Long begin) {
+    public void setBeginDate(Date begin) {
         if (begin != null)
             this.begin = new DateTime(begin);
         else
@@ -96,11 +97,11 @@ public class ServiceInterval {
     }        
 
     @Transient
-    public Long getEndLong() {
-        return end == null ? null : end.getMillis();
+    public Date getEndDate() {
+        return end == null ? null : new Date(end.getMillis());
     }
 
-    public void setEndLong(Long end) {
+    public void setEndDate(Date end) {
         if (end != null)
             this.end = new DateTime(end);
         else
@@ -108,11 +109,11 @@ public class ServiceInterval {
     }
 
     @Transient
-    public Long getVisitedLong() {
-        return visited == null ? null : visited.getMillis();
+    public Date getVisitedDate() {
+        return visited == null ? null : new Date(visited.getMillis());
     }
 
-    public void setVisitedLong(Long visited) {
+    public void setVisitedDate(Date visited) {
         if (visited != null)
             this.visited = new DateTime(visited);
         else
