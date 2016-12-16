@@ -8,8 +8,6 @@ package cz.muni.fi.pa165.CarRegister.web.controllers;
 import cz.muni.fi.pa165.CarRegister.dto.CarDTO;
 import cz.muni.fi.pa165.CarRegister.enums.Fuel;
 import cz.muni.fi.pa165.CarRegister.facade.CarFacade;
-import java.util.ArrayList;
-import java.util.List;
 import javax.inject.Inject;
 import javax.validation.Valid;
 import org.slf4j.Logger;
@@ -17,8 +15,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -83,10 +79,19 @@ public class CarController
     }
     
     
+   @RequestMapping(value = "/view/{id}", method = RequestMethod.GET)
+    public String view(@PathVariable long id, Model model) {
+        log.debug("view({})", id);
+
+        model.addAttribute("car", carFacade.findById(id));
+        
+        return "cars/view";
+    }
+    
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public String edit(@PathVariable long id, Model model) {
         log.debug("edit({})", id);
-        model.addAttribute("interval", carFacade.findById(id));        
+        model.addAttribute("car", carFacade.findById(id));        
         return "cars/edit";
     }
     
