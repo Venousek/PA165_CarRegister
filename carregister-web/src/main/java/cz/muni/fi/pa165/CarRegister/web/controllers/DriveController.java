@@ -58,7 +58,7 @@ public class DriveController {
     }
     @RequestMapping(value = "/new", method = RequestMethod.GET)
     public String newDrive(Model model) {
-        log.debug("Drive.new()");
+        log.debug("drive.new()");
         model.addAttribute("driveCreate", new DriveCreateDTO());
         return "drives/create";
     }
@@ -73,8 +73,8 @@ public class DriveController {
         return userFacade.findAll();
     }
     
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String create(@Valid @ModelAttribute("driveCreate") DriveCreateDTO formBean, BindingResult bindingResult,
+   @RequestMapping(value = "/create", method = RequestMethod.POST)
+    public String create(@Valid @ModelAttribute("driveCreate")DriveCreateDTO formBean, BindingResult bindingResult,
                          Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder) {
         log.debug("drive.create(driveCreate={})", formBean);
         //in case of validation error forward back to the the form
@@ -91,11 +91,11 @@ public class DriveController {
           
         DriveDTO dr = driveFacade.createDrive(formBean);
        
-        redirectAttributes.addFlashAttribute("alert_success", "Drive " + dr.getId() + " was created");
+        redirectAttributes.addFlashAttribute("alert_success", "Drive" + dr.getId() + " has been created");
         return "redirect:" + uriBuilder.path("/serviceintervals/view/{id}").buildAndExpand(dr.getId()).encode().toUriString();
     }
     @RequestMapping(value = "/editItem", method = RequestMethod.POST)
-    public String editItem(@Valid @ModelAttribute("drive") DriveCreateDTO formBean, BindingResult bindingResult,
+    public String editItem(@Valid @ModelAttribute("drive") DriveDTO formBean, BindingResult bindingResult,
                          Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder) {
         log.debug("drive.edit(drive={})", formBean);
 
@@ -110,7 +110,8 @@ public class DriveController {
             return "redirect:" + uriBuilder.path("/drives/edit/{id}").buildAndExpand(formBean.getId()).encode().toUriString();
         }
              
-        redirectAttributes.addFlashAttribute("alert_success", "Drive " + formBean.getId() + " has been edited");
+        DriveDTO dr = driveFacade.update(formBean);
+        redirectAttributes.addFlashAttribute("alert_success", "Drive " + dr.getId() + " has been edited");
         return "redirect:" + uriBuilder.path("/drives/view/{id}").buildAndExpand(formBean.getId()).encode().toUriString();
     }
     
