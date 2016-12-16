@@ -1,6 +1,7 @@
 package cz.muni.fi.pa165.CarRegister.facade;
 
 import cz.muni.fi.pa165.CarRegister.dto.DriveDTO;
+import cz.muni.fi.pa165.CarRegister.dto.DriveCreateDTO;
 import java.util.List;
 
 /**
@@ -14,7 +15,7 @@ public interface DriveFacade {
      * @param drive Drive object as DTO
      * @return created object
      */
-    DriveDTO createDrive(DriveDTO drive);
+    DriveDTO createDrive(DriveCreateDTO drive);
 
     /**
      * Gets All Drives
