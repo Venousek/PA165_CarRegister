@@ -40,9 +40,6 @@
                 <td><fmt:formatDate value="${drive.beginDate}" pattern="dd/MM/yyyy"/></td>
                 <td><fmt:formatDate value="${drive.endDate}" pattern="dd/MM/yyyy"/></td>
                 <td><c:out value="${drive.distance}"/></td>
-                <td><my:a href="/drives/view/${drive.id}"><fmt:message key="general.detail"/></my:a> | 
-                    <my:a href="/drives/edit/${drive.id}" class=""><fmt:message key="general.edit"/></my:a> | 
-                    <my:a href="/drives/delete/${drive.id}" class=""><fmt:message key="general.delete"/></my:a></td>
             </tr>
         </c:forEach>
         </tbody>
