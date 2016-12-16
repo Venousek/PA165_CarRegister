@@ -92,7 +92,7 @@ public class DriveController {
         DriveDTO dr = driveFacade.createDrive(formBean);
        
         redirectAttributes.addFlashAttribute("alert_success", "Drive" + dr.getId() + " has been created");
-        return "redirect:" + uriBuilder.path("/serviceintervals/view/{id}").buildAndExpand(dr.getId()).encode().toUriString();
+        return "redirect:" + uriBuilder.path("/drives/view/{id}").buildAndExpand(dr.getId()).encode().toUriString();
     }
     @RequestMapping(value = "/editItem", method = RequestMethod.POST)
     public String editItem(@Valid @ModelAttribute("drive") DriveDTO formBean, BindingResult bindingResult,
