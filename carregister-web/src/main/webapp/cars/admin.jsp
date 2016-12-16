@@ -1,5 +1,5 @@
 <%-- 
-    Document   : list
+    Document   : admin
     Created on : 16.12.2016, 11:52:57
     Author     : Henrich
 --%>
@@ -14,7 +14,11 @@
 <s:message code="general.car" var="title"/>
 <my:pagetemplate title="${title}">
 <jsp:attribute name="body">
-
+    
+    <my:a href="/cars/new" class="btn btn-primary">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        <fmt:message key="cars.new"/>
+    </my:a>        
     <table class="table">
         <thead>
         <tr>

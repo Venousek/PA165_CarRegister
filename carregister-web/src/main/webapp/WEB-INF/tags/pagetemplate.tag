@@ -45,6 +45,7 @@
                     <ul class="dropdown-menu">
                         <li><my:a href="/users/list"><f:message key="navigation.admin.users"/></my:a></li>
                         <li><my:a href="/serviceintervals/list"><f:message key="navigation.admin.intervals"/></my:a></li>
+                        <li><my:a href="/cars/admin"><f:message key="navigation.admin.cars"/></my:a></li>
                     </ul>
                 </li>
             </ul>
