@@ -96,7 +96,10 @@ public class UserDTO {
         public boolean isAdmin() {
             return role == Role.ADMIN;
         }
-
+	@Override
+        public String toString() {
+            return getFirstname()+" "+ getLastname();
+        }
         @Override
         public int hashCode() {
             int hash = 5;
