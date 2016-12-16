@@ -40,6 +40,7 @@ public class DriveFacadeImpl implements DriveFacade
     {
         try {
         Drive drive1 = new Drive();
+        drive1.setUser(userService.findById(drive.getUserId()));
         drive1.setCar(carService.findById(drive.getCarId()));
         drive1.setBeginDate(drive.getBeginDate());
         drive1.setEndDate(drive.getEndDate());
