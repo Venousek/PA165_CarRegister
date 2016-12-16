@@ -6,6 +6,7 @@
 package cz.muni.fi.pa165.CarRegister.facade;
 
 import cz.muni.fi.pa165.CarRegister.dto.CarDTO;
+import cz.muni.fi.pa165.CarRegister.dto.DriveCreateDTO;
 import cz.muni.fi.pa165.CarRegister.dto.DriveDTO;
 import cz.muni.fi.pa165.CarRegister.dto.UserDTO;
 import cz.muni.fi.pa165.CarRegister.enums.Fuel;
@@ -44,7 +45,7 @@ public class DriveFacadeTest
     
     private UserDTO userDTO;    
     private CarDTO carDTO;
-    private DriveDTO driveDTO;
+    private DriveCreateDTO driveDTO;
   
      @Before
      public void setup()
@@ -70,9 +71,9 @@ public class DriveFacadeTest
         
         carDTO = carFacade.createCar(carDTO);
                         
-        driveDTO = new DriveDTO();        
-        driveDTO.setUser(userDTO);
-        driveDTO.setCar(carDTO);
+        driveDTO = new DriveCreateDTO();        
+        driveDTO.setUserId(userDTO.getId());
+        driveDTO.setCarId(carDTO.getId());
         driveDTO.setBeginDate(new DateTime(2016, 5, 10, 10, 15).toDate());
         driveDTO.setEndDate(new DateTime(2016, 5, 10, 11, 15).toDate());
         driveDTO.setDistance(40);  
@@ -81,25 +82,25 @@ public class DriveFacadeTest
     @Test
     public void findDriveTest()
     {       
-        driveDTO = driveFacade.createDrive(driveDTO);
+        DriveDTO driveDTO1 = driveFacade.createDrive(driveDTO);
 
-        DriveDTO driveDTO2 = driveFacade.findById(driveDTO.getId());
+        DriveDTO driveDTO2 = driveFacade.findById(driveDTO1.getId());
         
-        assertFalse(driveDTO == null);
-        assertEquals(driveDTO.getId(), driveDTO2.getId());
+        assertFalse(driveDTO1 == null);
+        assertEquals(driveDTO1.getId(), driveDTO2.getId());
     }
     
     
     @Test
     public void updateDrive() {
-    	driveDTO = driveFacade.createDrive(driveDTO);                       
-        driveDTO.setDistance(80);
+        DriveDTO driveDTO1 = driveFacade.createDrive(driveDTO);                       
+        driveDTO1.setDistance(80);
         
-        driveFacade.update(driveDTO);
+        driveFacade.update(driveDTO1);
         
-        DriveDTO driveDTO2 = driveFacade.findById(driveDTO.getId());
+        DriveDTO driveDTO2 = driveFacade.findById(driveDTO1.getId());
                 
-        assertEquals(driveDTO.getId(), driveDTO2.getId());
-        assertEquals(driveDTO2.getDistance(), 80);   
+        assertEquals(driveDTO1.getId(), driveDTO2.getId());
+        assertEquals(driveDTO2.getDistance(), 80);
     }
 }
