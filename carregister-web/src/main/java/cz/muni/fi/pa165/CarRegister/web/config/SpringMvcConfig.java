@@ -1,7 +1,6 @@
 package cz.muni.fi.pa165.CarRegister.web.config;
 
 
-import cz.muni.fi.pa165.CarRegister.sampledata.CarRegisterWithSampleDataConfiguration;
 import cz.muni.fi.pa165.CarRegister.sampledata.SampleDataLoadingFacade;
 import java.io.IOException;
 import javax.annotation.PostConstruct;
@@ -13,7 +12,6 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
@@ -31,7 +29,6 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @EnableWebMvc
 @Configuration
-@Import({CarRegisterWithSampleDataConfiguration.class})
 @ImportResource("classpath:WEB-INF/applicationContext.xml")
 @ComponentScan(basePackages = {"cz.muni.fi.pa165.CarRegister.web.controllers", "cz.muni.fi.pa165.CarRegister.facade"})
 public class SpringMvcConfig extends WebMvcConfigurerAdapter {
@@ -49,8 +46,7 @@ public class SpringMvcConfig extends WebMvcConfigurerAdapter {
         } catch (IOException e) {
             log.error("Sample data creation exception!", e);
         }
-    }
-    
+    }    
     
     public static final String TEXTS = "Texts";
 
