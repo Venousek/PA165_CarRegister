@@ -125,8 +125,6 @@ public class DriveController {
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public String delete(@PathVariable long id,RedirectAttributes redirectAttributes,Model model, UriComponentsBuilder uriBuilder) {
         log.debug("delete({})", id);
-log.debug("delete({})", id);
-        driveFacade.remove(driveFacade.findById(id));
         driveFacade.remove(driveFacade.findById(id));
         model.addAttribute("drives", driveFacade.findAll());
         redirectAttributes.addFlashAttribute("alert_warning", "Drive " + id + " has been deleted");
