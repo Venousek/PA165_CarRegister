@@ -11,7 +11,8 @@
         <module>carregister-api</module>
 	<module>carregister-web</module>
         <module>carregister-sampledata</module>
-    </modules>
+    <module>carregister-rest</module>
+  </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
