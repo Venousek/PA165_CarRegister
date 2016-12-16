@@ -6,12 +6,16 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.MapperFeature;
 import cz.muni.fi.pa165.CarRegister.dto.UserDTO;
 import cz.muni.fi.pa165.CarRegister.rest.mixin.UserDTOMixin;
+import cz.muni.fi.pa165.CarRegister.sampledata.SampleDataLoadingFacade;
+import java.io.IOException;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
+import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.annotation.Primary;
@@ -37,6 +41,17 @@ public class RootWebContext extends WebMvcConfigurerAdapter {
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
         configurer.enable();
     }
+    
+    @Inject
+    SampleDataLoadingFacade sampleDataLoadingFacade;
+
+    @PostConstruct
+    public void dataLoading() {
+        try {
+            sampleDataLoadingFacade.loadData();
+        } catch (IOException e) {
+        }
+    }   
     
     @Bean
     @Primary
