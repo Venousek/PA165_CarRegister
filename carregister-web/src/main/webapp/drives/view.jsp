@@ -30,19 +30,17 @@
                 <form:input path="drive.car" readonly="true" cssClass="form-control"/>
             </div>
           </div>  
-            <div class="form-group" >
+          <div class="form-group" >
             <form:label path="drive.beginDate" cssClass="col-sm-2 control-label"><fmt:message key="general.begin"/></form:label>
             <div class="col-sm-4">
-                <jsp:setProperty name="dateObject" property="time" value="${drive.beginDate}" />
-                <fmt:formatDate value="${dateObject}" type="date" pattern="dd/MM/yyyy" var="theFormattedDate" />
+                <fmt:formatDate value="${drive.beginDate}" type="date" pattern="dd/MM/yyyy" var="theFormattedDate" />
                 <form:input type="text" path="drive.beginDate"  readonly="true" value="${theFormattedDate}" cssClass="form-control"/>
             </div>
           </div>
           <div class="form-group" >
             <form:label path="drive.endDate" cssClass="col-sm-2 control-label"><fmt:message key="general.end"/></form:label>
             <div class="col-sm-4">
-                <jsp:setProperty name="dateObject" property="time" value="${drive.endDate}" />
-                <fmt:formatDate value="${dateObject}" type="date" pattern="dd/MM/yyyy" var="theFormattedDate" />
+                <fmt:formatDate value="${drive.endDate}" type="date" pattern="dd/MM/yyyy" var="theFormattedDate" />
                 <form:input type="text" path="drive.endDate" readonly="true" value="${theFormattedDate}" cssClass="form-control"/>
             </div>
           </div>
