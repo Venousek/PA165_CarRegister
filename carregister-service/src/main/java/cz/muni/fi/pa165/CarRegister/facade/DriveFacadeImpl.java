@@ -5,10 +5,13 @@
  */
 package cz.muni.fi.pa165.CarRegister.facade;
 
+import cz.muni.fi.pa165.CarRegister.dto.DriveCreateDTO;
 import cz.muni.fi.pa165.CarRegister.dto.DriveDTO;
 import cz.muni.fi.pa165.CarRegister.entities.Drive;
 import cz.muni.fi.pa165.CarRegister.service.BeanMappingService;
+import cz.muni.fi.pa165.CarRegister.service.CarService;
 import cz.muni.fi.pa165.CarRegister.service.DriveService;
+import cz.muni.fi.pa165.CarRegister.service.UserService;
 import cz.muni.fi.pa165.exception.CarRegisterDataAccessException;
 import java.util.List;
 import javax.inject.Inject;
@@ -25,25 +28,30 @@ public class DriveFacadeImpl implements DriveFacade
 {
     @Inject
     private DriveService driveService;
-    
+    @Inject
+    private CarService carService;
+    @Inject
+    private UserService userService;
     @Inject
     private BeanMappingService beanMappingService;
     
     @Override
-    public DriveDTO createDrive(DriveDTO drive)
+    public DriveDTO createDrive(DriveCreateDTO drive)
     {
-        try
-        {
-            Drive driveMapped = beanMappingService.mapTo(drive, Drive.class);
-            Drive created = driveService.create(driveMapped);
-            drive =  beanMappingService.mapTo(created, DriveDTO.class);
-            return drive;
-        }
-        catch (Exception e)
-        {
-            throw new CarRegisterDataAccessException("cannot create new drive", e);
+        try {
+        Drive drive1 = new Drive();
+        drive1.setCar(carService.findById(drive.getCarId()));
+        drive1.setBeginDate(drive.getBeginDate());
+        drive1.setEndDate(drive.getEndDate());
+        drive1.setDistance(drive.getDistance());
+        
+        Drive created = driveService.create(drive1);
+        return beanMappingService.mapTo(created, DriveDTO.class);
+        } catch (Exception e) {
+            throw new CarRegisterDataAccessException("cannot create drive",e);
         }
     }
+
 
 
     @Override
