@@ -7,9 +7,7 @@ package cz.muni.fi.pa165.CarRegister.web.controllers;
 
 import cz.muni.fi.pa165.CarRegister.dto.CarDTO;
 import cz.muni.fi.pa165.CarRegister.dto.DriveCreateDTO;
-import cz.muni.fi.pa165.CarRegister.enums.Fuel;
 import cz.muni.fi.pa165.CarRegister.facade.CarFacade;
-import cz.muni.fi.pa165.carregister.dto.CarCreateDTO;
 import javax.inject.Inject;
 import javax.validation.Valid;
 import org.slf4j.Logger;

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cz.muni.fi.pa165.carregister.dto;
+package cz.muni.fi.pa165.CarRegister.dto;
 
 import cz.muni.fi.pa165.CarRegister.enums.Fuel;
 import java.util.Objects;
