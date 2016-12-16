@@ -31,7 +31,7 @@
             <form:label path="beginDate" cssClass="col-sm-2 control-label"><fmt:message key="general.begin"/></form:label>
             <div class="col-sm-4">
                 <fmt:formatDate value="${interval.beginDate}" type="date" pattern="dd/MM/yyyy" var="theFormattedDate" />
-                <form:input type="text" path="begin" id="timepicker"  value="${theFormattedDate}" cssClass="form-control"/>
+                <form:input type="text" path="beginDate" id="timepicker"  value="${theFormattedDate}" cssClass="form-control"/>
                 <form:errors path="beginDate" cssClass="help-block"/>
             </div>
         </div>
@@ -39,7 +39,7 @@
             <form:label path="endDate" cssClass="col-sm-2 control-label"><fmt:message key="general.end"/></form:label>
             <div class="col-sm-4">
                 <fmt:formatDate value="${interval.endDate}" type="date" pattern="dd/MM/yyyy" var="theFormattedDate" />
-                <form:input type="text" path="end" id="timepicker2"  value="${theFormattedDate}" cssClass="form-control"/>
+                <form:input type="text" path="endDate" id="timepicker2"  value="${theFormattedDate}" cssClass="form-control"/>
                 <form:errors path="endDate" cssClass="help-block"/>
             </div>
         </div>
@@ -47,7 +47,7 @@
             <form:label path="visitedDate" cssClass="col-sm-2 control-label"><fmt:message key="general.visited"/></form:label>
             <div class="col-sm-4">
                 <fmt:formatDate value="${interval.visitedDate}" type="date" pattern="dd/MM/yyyy" var="theFormattedDate" />
-                <form:input type="text" path="visited" id="timepicker3"  value="${theFormattedDate}" cssClass="form-control"/>
+                <form:input type="text" path="visitedDate" id="timepicker3"  value="${theFormattedDate}" cssClass="form-control"/>
                 <form:errors path="visitedDate" cssClass="help-block"/>
             </div>
         </div>

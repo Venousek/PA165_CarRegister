@@ -91,7 +91,7 @@ public class ServiceIntervalController {
     }
     
     @RequestMapping(value = "/editItem", method = RequestMethod.POST)
-    public String editItem(@Valid @ModelAttribute("interval") ServiceIntervalCreateDTO formBean, BindingResult bindingResult,
+    public String editItem(@Valid @ModelAttribute("interval") ServiceIntervalDTO formBean, BindingResult bindingResult,
                          Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder) {
         log.debug("serviceInterval.edit(interval={})", formBean);
 
@@ -105,8 +105,10 @@ public class ServiceIntervalController {
             }
             return "redirect:" + uriBuilder.path("/serviceintervals/edit/{id}").buildAndExpand(formBean.getId()).encode().toUriString();
         }
+        
+        ServiceIntervalDTO si = serviceIntervalFacade.update(formBean);
              
-        redirectAttributes.addFlashAttribute("alert_success", "Service interval " + formBean.getId() + " was edited");
+        redirectAttributes.addFlashAttribute("alert_success", "Service interval " + si.getId() + " was edited");
         return "redirect:" + uriBuilder.path("/serviceintervals/view/{id}").buildAndExpand(formBean.getId()).encode().toUriString();
     }
     
@@ -123,7 +125,6 @@ public class ServiceIntervalController {
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public String delete(@PathVariable long id,RedirectAttributes redirectAttributes,Model model, UriComponentsBuilder uriBuilder) {
         log.debug("delete({})", id);
-        serviceIntervalFacade.remove(serviceIntervalFacade.findById(id));
         serviceIntervalFacade.remove(serviceIntervalFacade.findById(id));
         model.addAttribute("intervals", serviceIntervalFacade.findAll());
         redirectAttributes.addFlashAttribute("alert_warning", "Service interval " + id + " was deleted");
