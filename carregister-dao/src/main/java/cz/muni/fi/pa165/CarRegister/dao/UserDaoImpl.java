@@ -61,7 +61,10 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
     public User findByLogin(String login) {
         Query q = em.createQuery("select u from User u where u.login = :login");
         q.setParameter("login", login);
-        return (User)q.getSingleResult();
+        List results = q.getResultList();
+        if (results.isEmpty()) return null;
+        else if (results.size() == 1) return (User)results.get(0);
+        throw new IllegalStateException("login is not unique!");        
     }
     
     @Override
