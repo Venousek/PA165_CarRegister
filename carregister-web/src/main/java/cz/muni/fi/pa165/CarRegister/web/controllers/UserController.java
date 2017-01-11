@@ -5,8 +5,6 @@ import cz.muni.fi.pa165.CarRegister.dto.UserDTO;
 import cz.muni.fi.pa165.CarRegister.enums.Role;
 import cz.muni.fi.pa165.CarRegister.facade.UserFacade;
 import cz.muni.fi.pa165.CarRegister.web.forms.ServiceIntervalCreateDTOValidator;
-import java.util.ArrayList;
-import java.util.List;
 import javax.inject.Inject;
 import javax.validation.Valid;
 import org.slf4j.Logger;

@@ -15,14 +15,14 @@
 <my:pagetemplate title="${title}">
     
 <jsp:attribute name="body">
-    <form:form method="post" action="${pageContext.request.contextPath}/cars/create"
-               modelAttribute="carCreate" cssClass="form-horizontal">
+    <form:form method="post" action="${pageContext.request.contextPath}/cars/created" modelAttribute="car" cssClass="form-horizontal">
 
         <div class="form-group" >
             <form:label path="manufacturer" cssClass="col-sm-2 control-label"><fmt:message key="cars.manufacturer"/></form:label>
             <div class="col-sm-4">
                 <jsp:setProperty name="text" property="text" value="${car.manufacturer}" />
                 <form:input type="text" path="manufacturer" id="text" value=""/>
+                <form:errors path="manufacturer" cssClass="help-block"/>
             </div>
         </div>
           
@@ -31,24 +31,26 @@
             <div class="col-sm-4">
                 <jsp:setProperty name="text" property="text" value="${car.manufacturer}" />
                 <form:input type="text" path="model" id="text" value=""/>
+                <form:errors path="model" cssClass="help-block"/>
             </div>
         </div>  
                     
       <div class="form-group">
-          <form:label path="carId" cssClass="col-sm-2 control-label"><fmt:message key="general.car"/></form:label>
+          <form:label path="fuel" cssClass="col-sm-2 control-label"><fmt:message key="cars.fuel"/></form:label>
             <div class="col-sm-4">
-                <form:select path="Fuel" cssClass="form-control">
-                    <form:option value="GASOLINE">Gasoline</form:option>
-                    <form:option value="DIESEL">Diesel</form:option>
+                <form:select path="fuel" cssClass="form-control">
+                    <c:forEach items="${fuels}" var="fuel">
+                        <form:option value="${fuel}">${fuel.description}</form:option>
+                    </c:forEach>
                 </form:select>
-                <p class="help-block"><form:errors path="carId" cssClass="help-block"/></p>
+                <p class="help-block"><form:errors path="fuel" cssClass="help-block"/></p>
             </div> 
         </div>
            
             <div class="form-group">  
                 <div class="col-sm-2"></div>
                 <div class="col-sm-4">
-                    <button class="btn btn-primary" type="submit"><fmt:message key="intervals.create"/></button>
+                    <button class="btn btn-primary" type="submit"><fmt:message key="cars.created"/></button>
                 </div>
             </div>
  

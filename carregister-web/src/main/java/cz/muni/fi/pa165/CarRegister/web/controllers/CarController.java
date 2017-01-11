@@ -6,7 +6,6 @@
 package cz.muni.fi.pa165.CarRegister.web.controllers;
 
 import cz.muni.fi.pa165.CarRegister.dto.CarDTO;
-import cz.muni.fi.pa165.CarRegister.dto.DriveCreateDTO;
 import cz.muni.fi.pa165.CarRegister.facade.CarFacade;
 import javax.inject.Inject;
 import javax.validation.Valid;
@@ -54,7 +53,7 @@ public class CarController
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String create(Model model) {  
         log.debug("New car");
-        model.addAttribute("carCreate", new DriveCreateDTO());
+        model.addAttribute("car", new CarDTO());
         return "cars/create";
     }
     
@@ -66,7 +65,7 @@ public class CarController
         CarDTO car = carFacade.createCar(formBean);
        
         redirectAttributes.addFlashAttribute("alert_success", "Car " + car.getId() + " was created");
-        return "redirect:" + uriBuilder.path("/cars/view/{id}").buildAndExpand(car.getId()).encode().toUriString();
+        return "redirect:" + uriBuilder.path("/cars/admin").buildAndExpand(car.getId()).encode().toUriString();
     }
     
     
@@ -110,7 +109,7 @@ public class CarController
         CarDTO car = carFacade.update(formBean);
              
         redirectAttributes.addFlashAttribute("alert_success", "Car " + car.getId() + " was edited");
-        return "redirect:" + uriBuilder.path("/cars/view/{id}").buildAndExpand(formBean.getId()).encode().toUriString();
+        return "redirect:" + uriBuilder.path("/cars/admin").buildAndExpand(formBean.getId()).encode().toUriString();
     }
     
     
@@ -120,6 +119,6 @@ public class CarController
         carFacade.remove(carFacade.findById(id));
         model.addAttribute("cars", carFacade.findAll());
         redirectAttributes.addFlashAttribute("alert_warning", "Car " + id + " was deleted");
-        return "redirect:" + uriBuilder.path("/cars/list/").buildAndExpand().encode().toUriString();
+        return "redirect:" + uriBuilder.path("/cars/admin").buildAndExpand().encode().toUriString();
     }
 }

@@ -4,8 +4,6 @@ import cz.muni.fi.pa165.CarRegister.dto.DriveDTO;
 import cz.muni.fi.pa165.CarRegister.dto.DriveCreateDTO;
 import cz.muni.fi.pa165.CarRegister.dto.CarDTO;
 import cz.muni.fi.pa165.CarRegister.dto.UserDTO;
-import cz.muni.fi.pa165.CarRegister.enums.Fuel;
-import cz.muni.fi.pa165.CarRegister.enums.Role;
 import cz.muni.fi.pa165.CarRegister.facade.DriveFacade;
 import cz.muni.fi.pa165.CarRegister.facade.CarFacade;
 import cz.muni.fi.pa165.CarRegister.facade.UserFacade;
