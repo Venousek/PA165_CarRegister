@@ -1,10 +1,9 @@
 package cz.muni.fi.pa165.CarRegister.web.controllers;
 
-import cz.muni.fi.pa165.CarRegister.dto.ServiceIntervalCreateDTO;
 import cz.muni.fi.pa165.CarRegister.dto.UserDTO;
 import cz.muni.fi.pa165.CarRegister.enums.Role;
 import cz.muni.fi.pa165.CarRegister.facade.UserFacade;
-import cz.muni.fi.pa165.CarRegister.web.forms.ServiceIntervalCreateDTOValidator;
+import cz.muni.fi.pa165.CarRegister.web.forms.UserDTOValidator;
 import javax.inject.Inject;
 import javax.validation.Valid;
 import org.slf4j.Logger;
@@ -125,8 +124,8 @@ public class UserController {
     
     @InitBinder
     protected void initBinder(WebDataBinder binder) {
-        if (binder.getTarget() instanceof ServiceIntervalCreateDTO) {
-            binder.addValidators(new ServiceIntervalCreateDTOValidator());
+        if (binder.getTarget() instanceof UserDTO) {
+            binder.addValidators(new UserDTOValidator());
         }
     }
     

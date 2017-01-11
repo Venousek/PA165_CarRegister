@@ -7,6 +7,7 @@ package cz.muni.fi.pa165.CarRegister.web.controllers;
 
 import cz.muni.fi.pa165.CarRegister.dto.CarDTO;
 import cz.muni.fi.pa165.CarRegister.facade.CarFacade;
+import cz.muni.fi.pa165.CarRegister.web.forms.CarDTOValidator;
 import javax.inject.Inject;
 import javax.validation.Valid;
 import org.slf4j.Logger;
@@ -35,6 +36,13 @@ public class CarController
     
     @Inject
     private CarFacade carFacade;
+    
+    @InitBinder
+    protected void initBinder(WebDataBinder binder) {
+        if (binder.getTarget() instanceof CarDTO) {
+            binder.addValidators(new CarDTOValidator());
+        }
+    }
     
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list(Model model) {
@@ -83,11 +91,6 @@ public class CarController
         log.debug("edit({})", id);
         model.addAttribute("car", carFacade.findById(id));        
         return "cars/edit";
-    }
-    
-    
-    @InitBinder
-    protected void initBinder(WebDataBinder binder){
     }
     
     @RequestMapping(value = "/edited", method = RequestMethod.POST)
