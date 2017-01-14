@@ -20,51 +20,51 @@
         <form:input type="hidden" path="id" />
           
         <div class="form-group" >
-            <form:label path="car.manufacturer" cssClass="col-sm-2 control-label"><fmt:message key="cars.manufacturer"/></form:label>
+            <form:label path="manufacturer" cssClass="col-sm-2 control-label"><fmt:message key="cars.manufacturer"/></form:label>
             <div class="col-sm-4">
-                <form:input path="car.manufacturer" cssClass="form-control"/>
+                <form:input path="manufacturer" cssClass="form-control"/>
             </div>
           </div>
             
           <div class="form-group" >
-            <form:label path="car.model" cssClass="col-sm-2 control-label"><fmt:message key="cars.model"/></form:label>
+            <form:label path="model" cssClass="col-sm-2 control-label"><fmt:message key="cars.model"/></form:label>
             <div class="col-sm-4">
-                <form:input path="car.model" cssClass="form-control"/>
+                <form:input path="model" cssClass="form-control"/>
             </div>
           </div>
             
           <div class="form-group" >
-            <form:label path="car.year" cssClass="col-sm-2 control-label"><fmt:message key="cars.year"/></form:label>
+            <form:label path="year" cssClass="col-sm-2 control-label"><fmt:message key="cars.year"/></form:label>
             <div class="col-sm-4">
-                <form:input path="car.year" cssClass="form-control"/>
+                <form:input path="year" cssClass="form-control"/>
             </div>
           </div>
             
           <div class="form-group" >
-            <form:label path="car.fuel" cssClass="col-sm-2 control-label"><fmt:message key="cars.fuel"/></form:label>
+            <form:label path="fuel" cssClass="col-sm-2 control-label"><fmt:message key="cars.fuel"/></form:label>
             <div class="col-sm-4">
-                <form:input path="car.fuel" cssClass="form-control"/>
+                <form:input path="fuel" cssClass="form-control"/>
             </div>
           </div>
             
           <div class="form-group" >
-            <form:label path="car.mileage" cssClass="col-sm-2 control-label"><fmt:message key="cars.mileage"/></form:label>
+            <form:label path="mileage" cssClass="col-sm-2 control-label"><fmt:message key="cars.mileage"/></form:label>
             <div class="col-sm-4">
-                <form:input path="car.mileage" cssClass="form-control"/>
+                <form:input path="mileage" cssClass="form-control"/>
             </div>
           </div>
             
           <div class="form-group" >
-            <form:label path="car.register_number" cssClass="col-sm-2 control-label"><fmt:message key="cars.register_number"/></form:label>
+            <form:label path="register_number" cssClass="col-sm-2 control-label"><fmt:message key="cars.register_number"/></form:label>
             <div class="col-sm-4">
-                <form:input path="car.register_number" cssClass="form-control"/>
+                <form:input path="register_number" cssClass="form-control"/>
             </div>
           </div>
             
           <div class="form-group" >
-            <form:label path="car.vin" cssClass="col-sm-2 control-label"><fmt:message key="cars.vin"/></form:label>
+            <form:label path="vin" cssClass="col-sm-2 control-label"><fmt:message key="cars.vin"/></form:label>
             <div class="col-sm-4">
-                <form:input path="car.vin" cssClass="form-control"/>
+                <form:input path="vin" cssClass="form-control"/>
             </div>
           </div>
            
