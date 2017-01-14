@@ -26,6 +26,6 @@ public class ServiceIntervalCreateDTOValidator implements Validator {
         if (createDTO.getBeginDate() == null) return;
         if (createDTO.getEndDate() == null) return;
         if (createDTO.getBeginDate().after(createDTO.getEndDate()))
-            errors.rejectValue("end", "intervals.err");
+            errors.rejectValue("endDate", "intervals.err");
     }
 }

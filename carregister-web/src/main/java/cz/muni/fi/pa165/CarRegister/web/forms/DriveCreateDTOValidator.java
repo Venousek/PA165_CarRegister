@@ -21,6 +21,6 @@ public class DriveCreateDTOValidator implements Validator {
         if (createDTO.getBeginDate()== null) return;
         if (createDTO.getEndDate()== null) return;
         if (createDTO.getBeginDate().after(createDTO.getEndDate()))
-            errors.rejectValue("end", "drives.err");
+            errors.rejectValue("endDate", "drives.err");
     }
 }
