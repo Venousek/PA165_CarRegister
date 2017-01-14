@@ -1,6 +1,10 @@
 package cz.muni.fi.pa165.CarRegister.dto;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Objects;
 
 /**
@@ -15,9 +19,15 @@ public class ServiceIntervalDTO {
 
         private Date beginDate;
         
+        private String beginStringDate;
+        
         private Date endDate;
         
+        private String endStringDate;
+        
         private Date visitedDate;
+        
+        private String visitedStringDate;
 
         public Long getId() {
             return id;
@@ -59,6 +69,38 @@ public class ServiceIntervalDTO {
             this.visitedDate = visited;
         }
 
+       public String getBeginStringDate() {
+            DateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+            return format.format(beginDate);
+        }
+
+        public void setBeginStringDate(String begin) throws ParseException {
+            this.beginStringDate = begin;
+            DateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+            this.beginDate = format.parse(begin);
+        }
+        
+        public String getEndStringDate() {
+            DateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+            return format.format(endDate);
+        }
+
+        public void setEndStringDate(String end) throws ParseException {
+            this.endStringDate = end;
+            DateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+            this.endDate = format.parse(end);
+        }
+        public String getVisitedStringDate() {
+            DateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+            return format.format(visitedDate);
+        }
+
+        public void setVisitedStringDate(String visited) throws ParseException {
+            this.visitedStringDate = visited;
+            DateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+            this.visitedDate = format.parse(visited);
+        }
+        
         @Override
         public int hashCode() {
             int hash = 7;

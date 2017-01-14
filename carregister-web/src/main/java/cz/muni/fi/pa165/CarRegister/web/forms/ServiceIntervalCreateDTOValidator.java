@@ -29,3 +29,4 @@ public class ServiceIntervalCreateDTOValidator implements Validator {
             errors.rejectValue("endDate", "intervals.err");
     }
 }
+
