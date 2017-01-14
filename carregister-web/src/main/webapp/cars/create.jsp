@@ -18,7 +18,7 @@
     <form:form method="post" action="${pageContext.request.contextPath}/cars/create"
                modelAttribute="car" cssClass="form-horizontal">
 
-        <div class="form-group">
+        <div class="form-group ${manufacturer_error?'has-error':''}">
             <form:label path="manufacturer" cssClass="col-sm-2 control-label"><fmt:message key="cars.manufacturer"/></form:label>
             <div class="col-sm-4">
                 <form:input path="manufacturer" cssClass="form-control"/>
@@ -26,7 +26,7 @@
             </div>
         </div>
           
-        <div class="form-group">
+        <div class="form-group ${model_error?'has-error':''}">
             <form:label path="model" cssClass="col-sm-2 control-label"><fmt:message key="cars.model"/></form:label>
             <div class="col-sm-4">
                 <form:input path="model" cssClass="form-control"/>
@@ -34,7 +34,7 @@
             </div>
         </div>
             
-        <div class="form-group">
+        <div class="form-group ${year_error?'has-error':''}">
             <form:label path="year" cssClass="col-sm-2 control-label"><fmt:message key="cars.year"/></form:label>
             <div class="col-sm-4">
                 <form:input path="year" cssClass="form-control"/>
@@ -54,7 +54,7 @@
             </div> 
         </div>
             
-        <div class="form-group">
+        <div class="form-group ${mileage_error?'has-error':''}">
             <form:label path="mileage" cssClass="col-sm-2 control-label"><fmt:message key="cars.mileage"/></form:label>
             <div class="col-sm-4">
                 <form:input path="mileage" cssClass="form-control"/>
@@ -62,7 +62,7 @@
             </div>
         </div>
       
-          <div class="form-group" >
+          <div class="form-group ${register_number_error?'has-error':''}" >
             <form:label path="register_number" cssClass="col-sm-2 control-label"><fmt:message key="cars.register_number"/></form:label>
             <div class="col-sm-4">
                 <form:input path="register_number" cssClass="form-control"/>
@@ -70,7 +70,7 @@
             </div>
           </div>
             
-        <div class="form-group">
+        <div class="form-group ${vin_error?'has-error':''}">
             <form:label path="vin" cssClass="col-sm-2 control-label"><fmt:message key="cars.vin"/></form:label>
             <div class="col-sm-4">
                 <form:input path="vin" cssClass="form-control"/>
