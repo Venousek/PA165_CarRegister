@@ -18,24 +18,30 @@
     <form:form method="post" action="${pageContext.request.contextPath}/cars/create"
                modelAttribute="car" cssClass="form-horizontal">
 
-        <div class="form-group" >
+        <div class="form-group">
             <form:label path="manufacturer" cssClass="col-sm-2 control-label"><fmt:message key="cars.manufacturer"/></form:label>
             <div class="col-sm-4">
-                <jsp:setProperty name="text" property="text" value="${car.manufacturer}" />
-                <form:input type="text" path="manufacturer" id="text" value=""/>
+                <form:input path="manufacturer" cssClass="form-control"/>
                 <form:errors path="manufacturer" cssClass="help-block"/>
             </div>
         </div>
           
-        <div class="form-group" >
+        <div class="form-group">
             <form:label path="model" cssClass="col-sm-2 control-label"><fmt:message key="cars.model"/></form:label>
             <div class="col-sm-4">
-                <jsp:setProperty name="text" property="text" value="${car.manufacturer}" />
-                <form:input type="text" path="model" id="text" value=""/>
+                <form:input path="model" cssClass="form-control"/>
                 <form:errors path="model" cssClass="help-block"/>
             </div>
-        </div>  
-                    
+        </div>
+            
+        <div class="form-group">
+            <form:label path="year" cssClass="col-sm-2 control-label"><fmt:message key="cars.year"/></form:label>
+            <div class="col-sm-4">
+                <form:input path="year" cssClass="form-control"/>
+                <form:errors path="year" cssClass="help-block"/>
+            </div>
+        </div>
+                                
       <div class="form-group">
           <form:label path="fuel" cssClass="col-sm-2 control-label"><fmt:message key="cars.fuel"/></form:label>
             <div class="col-sm-4">
@@ -46,6 +52,30 @@
                 </form:select>
                 <p class="help-block"><form:errors path="fuel" cssClass="help-block"/></p>
             </div> 
+        </div>
+            
+        <div class="form-group">
+            <form:label path="mileage" cssClass="col-sm-2 control-label"><fmt:message key="cars.mileage"/></form:label>
+            <div class="col-sm-4">
+                <form:input path="mileage" cssClass="form-control"/>
+                <form:errors path="mileage" cssClass="help-block"/>
+            </div>
+        </div>
+      
+          <div class="form-group" >
+            <form:label path="register_number" cssClass="col-sm-2 control-label"><fmt:message key="cars.register_number"/></form:label>
+            <div class="col-sm-4">
+                <form:input path="register_number" cssClass="form-control"/>
+                <form:errors path="register_number" cssClass="help-block"/>
+            </div>
+          </div>
+            
+        <div class="form-group">
+            <form:label path="vin" cssClass="col-sm-2 control-label"><fmt:message key="cars.vin"/></form:label>
+            <div class="col-sm-4">
+                <form:input path="vin" cssClass="form-control"/>
+                <form:errors path="vin" cssClass="help-block"/>
+            </div>
         </div>
            
             <div class="form-group">  
