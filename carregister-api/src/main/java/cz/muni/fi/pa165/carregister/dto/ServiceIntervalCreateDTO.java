@@ -1,6 +1,10 @@
 package cz.muni.fi.pa165.CarRegister.dto;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Objects;
 
 
@@ -16,9 +20,15 @@ public class ServiceIntervalCreateDTO {
         
         private Date beginDate;
         
+        private String beginStringDate;
+        
         private Date endDate;
         
+        private String endStringDate;
+        
         private Date visitedDate;
+        
+        private String visitedStringDate;
 
         public Long getId() {
             return id;
@@ -36,6 +46,35 @@ public class ServiceIntervalCreateDTO {
             this.carId = carId;
         }
 
+        public String getBeginStringDate() {
+            return beginStringDate;
+        }
+
+        public void setBeginStringDate(String begin) throws ParseException {
+            this.beginStringDate = begin;
+            DateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+            this.beginDate = format.parse(begin);
+        }
+        
+        public String getEndStringDate() {
+            return endStringDate;
+        }
+
+        public void setEndStringDate(String end) throws ParseException {
+            this.endStringDate = end;
+            DateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+            this.endDate = format.parse(end);
+        }
+        public String getVisitedStringDate() {
+            return visitedStringDate;
+        }
+
+        public void setVisitedStringDate(String visited) throws ParseException {
+            this.visitedStringDate = visited;
+            DateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+            this.visitedDate = format.parse(visited);
+        }
+        
         public Date getBeginDate() {
             return beginDate;
         }

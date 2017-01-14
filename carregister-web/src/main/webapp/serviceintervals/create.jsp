@@ -9,7 +9,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<jsp:useBean id="dateObject" class="java.util.Date" />
 <s:message code="intervals.new" var="title"/>
 <my:pagetemplate title="${title}">
 <jsp:attribute name="body">
@@ -27,30 +26,24 @@
             </div> 
         </div>
         <div class="form-group ${begin_error?'has-error':''}" >
-            <form:label path="beginDate" cssClass="col-sm-2 control-label"><fmt:message key="general.begin"/></form:label>
+            <form:label path="beginStringDate" cssClass="col-sm-2 control-label"><fmt:message key="general.begin"/></form:label>
             <div class="col-sm-4">
-                <jsp:setProperty name="dateObject" property="date" value="${interval.beginDate}" />
-                <fmt:formatDate value="${dateObject}" type="date" pattern="dd/MM/yyyy" var="theFormattedDate" />
-                <form:input type="text" path="beginDate" id="timepicker"  value="${theFormattedDate}" cssClass="form-control"/>
-                <form:errors path="beginDate" cssClass="help-block"/>
+                <form:input type="text" path="beginStringDate" id="timepicker" cssClass="form-control"/>
+                <form:errors path="beginStringDate" cssClass="help-block"/>
             </div>
         </div>
         <div class="form-group ${end_error?'has-error':''}" >
             <form:label path="endDate" cssClass="col-sm-2 control-label"><fmt:message key="general.end"/></form:label>
             <div class="col-sm-4">
-                <jsp:setProperty name="dateObject" property="date" value="${interval.endDate}" />
-                <fmt:formatDate value="${dateObject}" type="date" pattern="dd/MM/yyyy" var="theFormattedDate" />
-                <form:input type="text" path="endDate" id="timepicker2"  value="${theFormattedDate}" cssClass="form-control"/>
+                <form:input type="text" path="endStringDate" id="timepicker2" cssClass="form-control"/>
                 <form:errors path="endDate" cssClass="help-block"/>
             </div>
         </div>
         <div class="form-group ${visited_error?'has-error':''}" >
             <form:label path="visitedDate" cssClass="col-sm-2 control-label"><fmt:message key="general.visited"/></form:label>
             <div class="col-sm-4">
-                <jsp:setProperty name="dateObject" property="date" value="${interval.visitedDate}" />
-                <fmt:formatDate value="${dateObject}" type="date" pattern="dd/MM/yyyy" var="theFormattedDate" />
-                <form:input type="text" path="visitedDate" id="timepicker3"  value="${theFormattedDate}" cssClass="form-control"/>
-                <form:errors path="visitedDate" cssClass="help-block"/>
+                <form:input type="text" path="visitedStringDate" id="timepicker3" cssClass="form-control"/>
+                <form:errors path="visitedStringDate" cssClass="help-block"/>
             </div>
         </div>
            
