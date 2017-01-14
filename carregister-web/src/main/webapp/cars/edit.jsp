@@ -13,6 +13,7 @@
 
 <s:message code="cars.edit" var="title"/>
 <my:pagetemplate title="${title}">
+    
 <jsp:attribute name="body">
     <form:form method="post" action="${pageContext.request.contextPath}/cars/edited"
                modelAttribute="car" cssClass="form-horizontal">
@@ -39,12 +40,17 @@
                 <form:input path="year" cssClass="form-control"/>
             </div>
           </div>
-            
-          <div class="form-group" >
+                
+          <div class="form-group">
             <form:label path="fuel" cssClass="col-sm-2 control-label"><fmt:message key="cars.fuel"/></form:label>
             <div class="col-sm-4">
-                <form:input path="fuel" cssClass="form-control"/>
-            </div>
+                <form:select path="fuel" cssClass="form-control">
+                    <c:forEach items="${fuels}" var="f">
+                        <form:option value="${f}">${f.description}</form:option>
+                    </c:forEach>
+                </form:select>
+                <p class="help-block"><form:errors path="fuel" cssClass="error"/></p>
+            </div> 
           </div>
             
           <div class="form-group" >

@@ -6,6 +6,7 @@
 package cz.muni.fi.pa165.CarRegister.web.controllers;
 
 import cz.muni.fi.pa165.CarRegister.dto.CarDTO;
+import cz.muni.fi.pa165.CarRegister.enums.Fuel;
 import cz.muni.fi.pa165.CarRegister.facade.CarFacade;
 import cz.muni.fi.pa165.CarRegister.web.forms.CarDTOValidator;
 import javax.inject.Inject;
@@ -15,6 +16,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -58,22 +61,33 @@ public class CarController
         return "cars/admin";
     }
     
-    @RequestMapping(value = "/create", method = RequestMethod.GET)
+    @RequestMapping(value = "/new", method = RequestMethod.GET)
     public String create(Model model) {  
         log.debug("New car");
         model.addAttribute("car", new CarDTO());
         return "cars/create";
     }
     
-    @RequestMapping(value = "/created", method = RequestMethod.POST)
-    public String created(@Valid @ModelAttribute("carCreate") CarDTO formBean, BindingResult bindingResult,
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    public String created(@Valid @ModelAttribute("car") CarDTO formBean, BindingResult bindingResult,
                          Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder) {
         log.debug("Created car {}", formBean);
           
+        if (bindingResult.hasErrors()) {
+            for (ObjectError ge : bindingResult.getGlobalErrors()) {
+                log.trace("ObjectError: {}", ge);
+            }
+            for (FieldError fe : bindingResult.getFieldErrors()) {
+                model.addAttribute(fe.getField() + "_error",true);
+                log.trace("FieldError: {}", fe);
+            }
+            return "cars/create";
+        }
+        
         CarDTO car = carFacade.createCar(formBean);
        
         redirectAttributes.addFlashAttribute("alert_success", "Car " + car.getId() + " was created");
-        return "redirect:" + uriBuilder.path("/cars/admin").buildAndExpand(car.getId()).encode().toUriString();
+        return "redirect:" + uriBuilder.path("/cars/view/{id}").buildAndExpand(car.getId()).encode().toUriString();
     }
     
     
@@ -98,7 +112,7 @@ public class CarController
                          Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder) {
         log.debug("Edit car {}", formBean);
 
-        /*if (bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors()) {
             for (ObjectError ge : bindingResult.getGlobalErrors()) {
                 log.trace("ObjectError: {}", ge);
             }
@@ -107,12 +121,12 @@ public class CarController
                 log.trace("FieldError: {}", fe);
             }
             return "redirect:" + uriBuilder.path("/cars/edit/{id}").buildAndExpand(formBean.getId()).encode().toUriString();
-        }*/
+        }
         
         CarDTO car = carFacade.update(formBean);
              
         redirectAttributes.addFlashAttribute("alert_success", "Car " + car.getId() + " was edited");
-        return "redirect:" + uriBuilder.path("/cars/admin").buildAndExpand(formBean.getId()).encode().toUriString();
+        return "redirect:" + uriBuilder.path("/cars/view/{id}").buildAndExpand(formBean.getId()).encode().toUriString();
     }
     
     
@@ -123,5 +137,13 @@ public class CarController
         model.addAttribute("cars", carFacade.findAll());
         redirectAttributes.addFlashAttribute("alert_warning", "Car " + id + " was deleted");
         return "redirect:" + uriBuilder.path("/cars/admin").buildAndExpand().encode().toUriString();
+    }
+    
+    
+    @ModelAttribute("fuels")
+    public Fuel[] fuels() {
+        log.debug("fuels()");
+       
+        return Fuel.values();
     }
 }

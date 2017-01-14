@@ -15,7 +15,8 @@
 <my:pagetemplate title="${title}">
     
 <jsp:attribute name="body">
-    <form:form method="post" action="${pageContext.request.contextPath}/cars/created" modelAttribute="car" cssClass="form-horizontal">
+    <form:form method="post" action="${pageContext.request.contextPath}/cars/create"
+               modelAttribute="car" cssClass="form-horizontal">
 
         <div class="form-group" >
             <form:label path="manufacturer" cssClass="col-sm-2 control-label"><fmt:message key="cars.manufacturer"/></form:label>
@@ -50,7 +51,7 @@
             <div class="form-group">  
                 <div class="col-sm-2"></div>
                 <div class="col-sm-4">
-                    <button class="btn btn-primary" type="submit"><fmt:message key="cars.created"/></button>
+                    <button class="btn btn-primary" type="submit"><fmt:message key="cars.create"/></button>
                 </div>
             </div>
  
