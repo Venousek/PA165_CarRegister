@@ -1,10 +1,12 @@
 package cz.muni.fi.pa165.CarRegister.service;
 
 import cz.muni.fi.pa165.CarRegister.dao.UserDao;
+import cz.muni.fi.pa165.CarRegister.entities.Drive;
 import cz.muni.fi.pa165.CarRegister.entities.User;
 import java.math.BigInteger;
 import java.security.SecureRandom;
 import java.util.List;
+import java.util.Objects;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 import javax.inject.Inject;
@@ -23,6 +25,9 @@ public class UserServiceImpl implements UserService {
     @Inject
     private UserDao userDao;
 
+    @Inject
+    private DriveService driveService;
+    
     public void setUserDAO(UserDao userDao) {
         this.userDao = userDao;
     }
@@ -46,6 +51,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public void delete(User user) {
         User foundUser = findById(user.getId());
+        
+        List<Drive> drives = driveService.findAll();
+        for (Drive drive : drives)
+        {
+           if (Objects.equals(drive.getUser().getId(), foundUser.getId()))
+           {
+               driveService.delete(drive);
+           }
+        }
         
         userDao.delete(foundUser);        
     }
