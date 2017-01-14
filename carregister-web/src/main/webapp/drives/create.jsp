@@ -10,7 +10,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<jsp:useBean id="dateObject" class="java.util.Date" />
 <s:message code="drives.new" var="title"/>
 <my:pagetemplate title="${title}">
 <jsp:attribute name="body">
@@ -19,7 +18,7 @@
         
         <div class="form-group">
             <form:label path="userId" cssClass="col-sm-2 control-label"><fmt:message key="general.user"/></form:label>
-            <div class="col-sm-10">
+            <div class="col-sm-4">
                 <form:select path="userId" cssClass="form-control">
                     <c:forEach items="${users}" var="u">
                         <form:option value="${u.id}">${u.firstname} - ${u.lastname}</form:option>
@@ -42,24 +41,20 @@
         <div class="form-group ${begin_error?'has-error':''}" >
             <form:label path="beginDate" cssClass="col-sm-2 control-label"><fmt:message key="general.begin"/></form:label>
             <div class="col-sm-4">
-                <jsp:setProperty name="dateObject" property="date" value="${drive.beginDate}" />
-                <fmt:formatDate value="${dateObject}" type="date" pattern="dd/MM/yyyy" var="theFormattedDate" />
-                <form:input type="text" path="beginDate" id="timepicker"  value="${theFormattedDate}" cssClass="form-control"/>
+                <form:input type="text" path="beginStringDate" id="timepicker" cssClass="form-control"/>
                 <form:errors path="beginDate" cssClass="help-block"/>
             </div>
         </div>
         <div class="form-group ${end_error?'has-error':''}" >
             <form:label path="endDate" cssClass="col-sm-2 control-label"><fmt:message key="general.end"/></form:label>
             <div class="col-sm-4">
-                <jsp:setProperty name="dateObject" property="date" value="${drive.endDate}" />
-                <fmt:formatDate value="${dateObject}" type="date" pattern="dd/MM/yyyy" var="theFormattedDate" />
-                <form:input type="text" path="endDate" id="timepicker2"  value="${theFormattedDate}" cssClass="form-control"/>
+                <form:input type="text" path="endStringDate" id="timepicker2" cssClass="form-control"/>
                 <form:errors path="endDate" cssClass="help-block"/>
             </div>
         </div>
         <div class="form-group ${distance_error?'has-error':''}">
             <form:label path="distance" cssClass="col-sm-2 control-label"><fmt:message key="general.distance"/></form:label>
-            <div class="col-sm-10">
+            <div class="col-sm-4">
                 <form:input path="distance" cssClass="form-control"/>
                 <form:errors path="distance" cssClass="help-block"/>
             </div>

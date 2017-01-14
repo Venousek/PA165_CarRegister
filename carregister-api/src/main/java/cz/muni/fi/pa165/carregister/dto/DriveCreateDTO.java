@@ -1,7 +1,11 @@
 package cz.muni.fi.pa165.CarRegister.dto;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Objects;
 import java.util.Date;
+import java.util.Locale;
 /**
  *
  * @author Cernak
@@ -18,8 +22,33 @@ public class DriveCreateDTO {
         
         private Date endDate;
 
+        private String beginStringDate;
+        
+        private String endStringDate;
+
         int distance;
 
+        public String getBeginStringDate() {
+            return beginStringDate;
+        }
+
+        public void setBeginStringDate(String begin) throws ParseException {
+            this.beginStringDate = begin;
+            DateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+            this.beginDate = format.parse(begin);
+        }
+        
+        public String getEndStringDate() {
+            return endStringDate;
+        }
+
+        public void setEndStringDate(String end) throws ParseException {
+            this.endStringDate = end;
+            DateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+            this.endDate = format.parse(end);
+        }
+        
+        
         public Long getId() {
             return id;
         }

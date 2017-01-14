@@ -43,22 +43,21 @@
        <div class="form-group ${begin_error?'has-error':''}" >
             <form:label path="beginDate" cssClass="col-sm-2 control-label"><fmt:message key="general.begin"/></form:label>
             <div class="col-sm-4">
-                <fmt:formatDate value="${drive.beginDate}" type="date" pattern="dd/MM/yyyy" var="theFormattedDate" />
-                <form:input type="text" path="beginDate" id="timepicker"  value="${theFormattedDate}" cssClass="form-control"/>
+              
+                <form:input type="text" path="beginStringDate" id="timepicker" cssClass="form-control"/>
                 <form:errors path="beginDate" cssClass="help-block"/>
             </div>
         </div>
         <div class="form-group ${end_error?'has-error':''}" >
             <form:label path="endDate" cssClass="col-sm-2 control-label"><fmt:message key="general.end"/></form:label>
-            <div class="col-sm-4">
-                <fmt:formatDate value="${drive.endDate}" type="date" pattern="dd/MM/yyyy" var="theFormattedDate" />
-                <form:input type="text" path="endDate" id="timepicker2"  value="${theFormattedDate}" cssClass="form-control"/>
+            <div class="col-sm-4"> 
+                <form:input type="text" path="endStringDate" id="timepicker2" cssClass="form-control"/>
                 <form:errors path="endDate" cssClass="help-block"/>
             </div>
         </div>
         <div class="form-group ${distance_error?'has-error':''}">
             <form:label path="distance" cssClass="col-sm-2 control-label"><fmt:message key="general.distance"/></form:label>
-            <div class="col-sm-10">
+            <div class="col-sm-4">
                 <form:input path="distance" cssClass="form-control"/>
                 <form:errors path="distance" cssClass="help-block"/>
             </div>
