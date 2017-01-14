@@ -3,6 +3,7 @@ package cz.muni.fi.pa165.CarRegister.web.security;
 import cz.muni.fi.pa165.CarRegister.dto.UserAuthenticateDTO;
 import cz.muni.fi.pa165.CarRegister.dto.UserDTO;
 import cz.muni.fi.pa165.CarRegister.facade.UserFacade;
+import cz.muni.fi.pa165.exception.CarRegisterDataAccessException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.context.support.WebApplicationContextUtils;
@@ -38,13 +39,24 @@ public class ProtectFilter implements Filter {
         String password = creds[1];
 
         //get Spring context and UserFacade from it
-        UserFacade userFacade = WebApplicationContextUtils.getWebApplicationContext(r.getServletContext()).getBean(UserFacade.class);
-        UserDTO matchingUser = userFacade.findByLogin(login);
-        if(matchingUser==null) {
+        UserFacade userFacade = WebApplicationContextUtils.getWebApplicationContext(r.getServletContext()).getBean(UserFacade.class);    
+        UserDTO matchingUser;
+        
+        try
+        {
+            matchingUser = userFacade.findByLogin(login);
+        }
+        catch (CarRegisterDataAccessException ex)
+        {
+            matchingUser = null;
+        }
+        
+        if(matchingUser == null) {
             log.warn("no user with login {}", login);
             response401(response);
             return;
         }
+        
         UserAuthenticateDTO userAuthenticateDTO = new UserAuthenticateDTO();
         userAuthenticateDTO.setUserId(matchingUser.getId());
         userAuthenticateDTO.setPassword(password);
