@@ -36,7 +36,7 @@ public enum Fuel {
 
     static {
         Map<Integer, String> descMap = new HashMap<Integer, String>();
-        descMap.put(0, "Gasolide");
+        descMap.put(0, "Gasoline");
         descMap.put(1, "Diesel");
         descriptions = Collections.unmodifiableMap(descMap);
     }

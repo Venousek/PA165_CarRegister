@@ -15,7 +15,7 @@
 <my:pagetemplate title="${title}">
 <jsp:attribute name="body">
     
-    <my:a href="/cars/create" class="btn btn-primary">
+    <my:a href="/cars/new" class="btn btn-primary">
         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
         <fmt:message key="cars.new"/>
     </my:a>        
@@ -26,6 +26,7 @@
             <th><fmt:message key="cars.model"/></th>
             <th><fmt:message key="cars.year"/></th>
             <th><fmt:message key="cars.fuel"/></th>
+            <th><fmt:message key="cars.mileage"/></th>
             <th><fmt:message key="cars.register_number"/></th>
         </tr>
         </thead>
@@ -36,6 +37,7 @@
                 <td><c:out value="${car.model}"/></td>
                 <td><c:out value="${car.year}"/></td>
                 <td><c:out value="${car.fuel}"/></td>
+                <td><c:out value="${car.mileage}"/></td>
                 <td><c:out value="${car.register_number}"/></td>
                 <td><my:a href="/cars/view/${car.id}"><fmt:message key="general.detail"/></my:a> | 
                     <my:a href="/cars/edit/${car.id}" class=""><fmt:message key="general.edit"/></my:a> | 
