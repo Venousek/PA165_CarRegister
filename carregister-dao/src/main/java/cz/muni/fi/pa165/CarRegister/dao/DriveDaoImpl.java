@@ -65,7 +65,8 @@ public class DriveDaoImpl extends HibernateDaoSupport implements DriveDao
 
     @Override
     public void delete(Drive drive) {
-        em.remove(drive);        
+        em.remove(drive);     
+        em.flush();
     }
 
     
