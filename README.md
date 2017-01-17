@@ -1,3 +1,4 @@
+
 # PA165_CarRegister
 
 run as:
@@ -10,6 +11,7 @@ mvn clean install && cd carregister-web && mvn tomcat7:run
 
 
 login/passwd: "Admin" / "heslo"
+
 login/passwd: "drak" / "heslo"
 
 
